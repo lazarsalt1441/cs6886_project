@@ -2,8 +2,7 @@
 
 ## Current reproduction and evaluation
 
-* [Submission report](report/CS6886_Report.pdf) and [LaTeX](report/CS6886_Report.tex): five main pages plus references. Plain-language background, both GQA flags, transformation examples and per-study results.
-* [Short report](report/CS6886_Report_Concise.pdf) and [LaTeX](report/CS6886_Report_Concise.tex): two main pages plus references, retained as a compact overview.
+* [Final report](report/CS6886_GQA_Attention_Report.pdf) and [LaTeX source](report/CS6886_GQA_Attention_Report.tex).
 * [README.md](README.md): project scope, final IREE comparisons, installation,
   C++ build, CPU checks, Colab execution and raw-result reanalysis.
 * [STATUS.md](STATUS.md): completed implementation/evaluation and limitations.
