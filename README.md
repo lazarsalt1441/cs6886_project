@@ -2,6 +2,8 @@
 
 This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
 
+**Project report:** [PDF](report/CS6886_Report.pdf) · [Editable LaTeX](report/CS6886_Report.tex). Two main pages plus one page of references.
+
 ## What the results support
 
 The original repeated-K/V-head rewrite improves the tested default CPU lowering, but existing IREE matmul generalization **together with** aggressive reshape movement eliminates the tested expansion. O3 alone is not the explanation. This is an investigation result, not a claim of a universally new GQA optimization. The extra-scalar-observation graph was an artificial IR counterexample, not a natural-model result. See [the recovered flag study](audit/sources/previous-GQA-flag-ablation.md) after unpacking artifacts, and [the independent audit](audit/TECHNICAL_REPORT.md).

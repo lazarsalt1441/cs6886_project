@@ -1,11 +1,11 @@
 {
   ".github/workflows/validate.yml": "ceca0ec870c6f4ccf934060a601b7550463caab42e130cb8da8ff3a1227f0c15",
   ".gitignore": "970ef0adfa428eab5a7ba8a2d7f9b10822b6c20a6cc65df34e667d3470dc6bba",
-  "DOCUMENTATION.md": "aeab66445ac1ed1b4c9b0dbf0ecf08516037210bed50366b7d5e05b3c71796ad",
+  "DOCUMENTATION.md": "b1d2636cd5c1fb44b3536adda485fa48a74ecba53779196b768a6fa62b403b7d",
   "LICENSE": "fbfdf9de0f896ce7ccdab2d6a467a497e1d3ad764500fbb071f4dce76b774c66",
-  "README.md": "0d33609c644e7609f1752357512d6914ddfb5a7b83a34a8789aaed7f4766c873",
+  "README.md": "a6c4ce5f77eb41cb04304e7d7d0555d07daf22b41ab0f0be21a60ca1ebff6c4b",
   "RESUME.md": "6f2f3deba11e956f629b40c252403331aeb5d893cc69bc8d49905302d12a2fc4",
-  "STATUS.md": "666f5b869d0da756077afda2264ce18d6c3e4d4271c6205b7919031cdc132651",
+  "STATUS.md": "57f4481008ad01358ac29e509d511e25e0b4d329d775ce9c820462599b112614",
   "artifacts/historical_evidence.tar.gz.part000": "d0a725857417e1e6188a290ec69cf49b8e87ba89978db645eca2815452b4fe17",
   "artifacts/historical_evidence.tar.gz.part001": "bc06e1d3fd7841279c614f23d9232765b1934b2775055adaf327002b4396527f",
   "artifacts/historical_evidence.tar.gz.part002": "e2ff350e7c3657e664735d27717d64c907e97edbe080365019a7d0308c169560",
@@ -384,6 +384,10 @@
   "real_model/tests/validate_pretrained.py": "deec37b90b0a3206da7671df94d6afc5abbc26e70ea7fa185afdbc79316d61b4",
   "real_model/tests/validate_sdpa.py": "bb3c3ccaf166534d241024d58285efa251242d0d64d760138b6454c35a9a698e",
   "real_model/text_only.py": "5bad9b8ff9a9af6d7f65bea5383668f10b4cdec24ce2f6856c7d6104f6437e3d",
+  "report/.gitignore": "a8e827cd64edaa39b2dfd3deb2d39267a2a6bb2960ec39272f41ba2b43b5f7fe",
+  "report/CS6886_Report.pdf": "7dbb0860404e772a43ceefda0e8d4258ada48aeb3b5253ded95d7e4bccf11c95",
+  "report/CS6886_Report.tex": "bf7a67a9c8acf02f1ba48fd1fe0c122b2325e1b78cc7bb59fe652ae2ffaa1540",
+  "report/README.md": "6638408c9f3d4a31d3440effd21d2b01a3a687eaf6f1e7133ae2ddb68f2a5615",
   "requirements-cpu.txt": "0a6b41cbc334ca396b81530c31f07c51f13159d738c134a62ab416cc5c95ef59",
   "requirements.txt": "dc0aba91d208a31d6fa4aec1776a0476f81219ab84baa867ddd83b32bd87a178",
   "results/archive_provenance.json": "52a91487794c61c6f5e0fab525d18040aa3600280005e83cb32625c20f0e850a",
@@ -1906,6 +1910,7 @@
   "validation/consolidated_cpu_integration.log": "f3a1ecfe6daa3bfaa6c8e218c840320e45b8bb8596f0e433d485e85edb0e7931",
   "validation/consolidated_cuda_compile.log": "c073e47a9df52aa2e9d1db55b1ab94bd64044f04176b7ae807d47e377b81a63f",
   "validation/consolidated_unit_tests.log": "9d5663e96986e96d54b7c73f0f4e96452717d8965fbe3249ef5833dd4896460d",
-  "validation/documentation_checks.json": "df699a4102575e2a633bb36f36d76697fabc6fdb351feff0779da1478e53132a",
-  "validation/reanalysis.log": "41cad5a11ed96e176b2afe1d9b5f6202c52819e3b78caeb211ef0c6390454357"
+  "validation/documentation_checks.json": "59adf5f6b2c539842398cf9c2160f6ff471bfdd46a4c8f6776fff5d885f8e43f",
+  "validation/reanalysis.log": "41cad5a11ed96e176b2afe1d9b5f6202c52819e3b78caeb211ef0c6390454357",
+  "validation/report_checks.json": "ebe259b66c4e8fa53bc4ea7a23e72332afc60ed00cbc3c7287d628bc7b410c29"
 }

@@ -1,0 +1,11 @@
+{
+  "pages": 3,
+  "main_pages": 2,
+  "reference_pages": 1,
+  "bibliography_entries": 16,
+  "external_link_targets": 16,
+  "unresolved_tex_references": false,
+  "overfull_tex_boxes": false,
+  "all_pages_visually_reviewed": true,
+  "scope": "Report reuses recorded IREE measurements; no new GPU run. Bibliographic sources verified against primary papers, official source and documentation."
+}
