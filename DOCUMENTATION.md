@@ -2,7 +2,7 @@
 
 ## Current reproduction and evaluation
 
-* [Project report](report/CS6886_Report.pdf) and [LaTeX source](report/CS6886_Report.tex): two main pages plus one page of references, covering implementation, evaluation and prior-work attribution.
+* [Expanded report](report/CS6886_Report.pdf) and [LaTeX source](report/CS6886_Report.tex): five pages including references, with a source/IR explanation of the two GQA flags and examples of every transformation. The [concise report](report/CS6886_Report_Concise.pdf) retains the two-page main-body format.
 * [README.md](README.md): project scope, final IREE comparisons, installation,
   C++ build, CPU checks, Colab execution and raw-result reanalysis.
 * [STATUS.md](STATUS.md): completed implementation/evaluation and limitations.

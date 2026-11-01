@@ -1,0 +1,76 @@
+[
+  {
+    "generalize": false,
+    "aggressive_reshape": false,
+    "broadcast_calls": 2,
+    "all_dispatch_calls": 5,
+    "commands": [
+      "/workspace/scratch/4088b657d6f5/followup_deps/bin/iree-compile",
+      "/workspace/scratch/4088b657d6f5/cs6886_project/compiler/ir/linalg.mlir",
+      "--iree-hal-target-backends=llvm-cpu",
+      "--iree-llvmcpu-target-cpu=host",
+      "--iree-opt-level=O3",
+      "--compile-to=flow",
+      "--iree-opt-generalize-matmul=false",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement=false",
+      "-o",
+      "/workspace/scratch/4088b657d6f5/report_work/expanded_report/flag_evidence/g0_r0.mlir"
+    ]
+  },
+  {
+    "generalize": true,
+    "aggressive_reshape": false,
+    "broadcast_calls": 2,
+    "all_dispatch_calls": 5,
+    "commands": [
+      "/workspace/scratch/4088b657d6f5/followup_deps/bin/iree-compile",
+      "/workspace/scratch/4088b657d6f5/cs6886_project/compiler/ir/linalg.mlir",
+      "--iree-hal-target-backends=llvm-cpu",
+      "--iree-llvmcpu-target-cpu=host",
+      "--iree-opt-level=O3",
+      "--compile-to=flow",
+      "--iree-opt-generalize-matmul=true",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement=false",
+      "-o",
+      "/workspace/scratch/4088b657d6f5/report_work/expanded_report/flag_evidence/g1_r0.mlir"
+    ]
+  },
+  {
+    "generalize": false,
+    "aggressive_reshape": true,
+    "broadcast_calls": 2,
+    "all_dispatch_calls": 5,
+    "commands": [
+      "/workspace/scratch/4088b657d6f5/followup_deps/bin/iree-compile",
+      "/workspace/scratch/4088b657d6f5/cs6886_project/compiler/ir/linalg.mlir",
+      "--iree-hal-target-backends=llvm-cpu",
+      "--iree-llvmcpu-target-cpu=host",
+      "--iree-opt-level=O3",
+      "--compile-to=flow",
+      "--iree-opt-generalize-matmul=false",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement=true",
+      "-o",
+      "/workspace/scratch/4088b657d6f5/report_work/expanded_report/flag_evidence/g0_r1.mlir"
+    ]
+  },
+  {
+    "generalize": true,
+    "aggressive_reshape": true,
+    "broadcast_calls": 0,
+    "all_dispatch_calls": 3,
+    "commands": [
+      "/workspace/scratch/4088b657d6f5/followup_deps/bin/iree-compile",
+      "/workspace/scratch/4088b657d6f5/cs6886_project/compiler/ir/linalg.mlir",
+      "--iree-hal-target-backends=llvm-cpu",
+      "--iree-llvmcpu-target-cpu=host",
+      "--iree-opt-level=O3",
+      "--compile-to=flow",
+      "--iree-opt-generalize-matmul=true",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement=true",
+      "-o",
+      "/workspace/scratch/4088b657d6f5/report_work/expanded_report/flag_evidence/g1_r1.mlir",
+      "--mlir-print-ir-after-all",
+      "--mlir-print-ir-after-change"
+    ]
+  }
+]

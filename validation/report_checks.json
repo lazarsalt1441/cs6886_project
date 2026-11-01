@@ -1,11 +1,27 @@
 {
-  "pages": 3,
-  "main_pages": 2,
+  "pages": 5,
+  "main_pages": 4,
   "reference_pages": 1,
-  "bibliography_entries": 16,
-  "external_link_targets": 16,
+  "bibliography_entries": 17,
+  "external_link_targets": 19,
+  "concise_version_pages": 3,
+  "concise_main_pages": 2,
   "unresolved_tex_references": false,
   "overfull_tex_boxes": false,
   "all_pages_visually_reviewed": true,
-  "scope": "Report reuses recorded IREE measurements; no new GPU run. Bibliographic sources verified against primary papers, official source and documentation."
+  "illustrative_array_law_checks": 14,
+  "fresh_flag_compilations": 4,
+  "broadcast_dispatch_counts": [
+    2,
+    2,
+    2,
+    0
+  ],
+  "total_dispatch_counts": [
+    5,
+    5,
+    5,
+    3
+  ],
+  "scope": "Expanded explanations with recorded IREE performance results, new CPU Flow flag checks and illustrative NumPy laws; no new GPU timing."
 }

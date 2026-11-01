@@ -1,8 +1,9 @@
 # Project report
 
-* [PDF](CS6886_Report.pdf): two main pages plus one reference page.
-* [Editable LaTeX](CS6886_Report.tex): self-contained source, including the diagram,
-  tables and bibliography. No external figures or BibTeX build are required.
+* [Expanded PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex): five pages, including references. Each transformation has a before/after example, use case and validity limits. Page 1 traces both IREE flags through generalization, reshape movement and fusion.
+* [Concise submission PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex): the earlier two-page main body plus one reference page, retained for the course's original body-length limit.
+
+Both LaTeX files are self-contained; no external figures or BibTeX build are required.
 
 Upload `CS6886_Report.tex` to a standard Overleaf project, or compile locally:
 
@@ -17,3 +18,32 @@ tabularx, tcolorbox and hyperref. Edit `\projectauthors` to update the author li
 Results are tied to the experiment-source snapshot cited in the references.
 The reference page distinguishes originating papers, classical principles and
 related systems; it does not claim that the array identities are new.
+
+## Runnable examples and IR evidence
+
+From the repository root, with the CPU dependencies installed:
+
+```bash
+python report/examples.py
+python report/reproduce_flags.py --output reproduced/flag_evidence
+```
+
+The first command checks 14 concrete NumPy examples of the displayed array laws,
+including both winner conditions and invalid-operation counterexamples. These
+are explanatory semantic checks, not C++ pass tests or GPU measurements. The
+second command recompiles the original fixture under all four flag combinations;
+run the root artifact unpacker first. Saved Flow IR and the changed-pass trace
+are in `flag_evidence/`. Dispatch-name counting is specific to the pinned compiler.
+
+| Report transformation | C++ implementation under `compiler/src/` |
+|---|---|
+| Original grouped head reuse | `GQAHeadReuse.cpp` |
+| Conditional forwarding | `CacheReadForwarding.cpp` |
+| Masked gather forwarding | `CacheGatherForwarding.cpp` |
+| Winner factoring | `CacheCommitFactoring.cpp`; concat extension under `real_model/compiler/src/ConcatCommit.inc` |
+| Update coalescing | `CacheUpdateCoalescing.cpp` |
+| Gather-index normalization | `GatherIndexProjection.cpp` |
+| Snapshot and borrowed-buffer COW | `CacheSnapshotProtection.cpp` |
+| Projection and partial RoPE | `AttentionProjection.cpp` |
+| Native reduction guard/fallback | `OnlineAttentionGuard.cpp`, `AttentionProjection.cpp` |
+| Stable trig | `StableTrig.cpp` |

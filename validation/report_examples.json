@@ -1,0 +1,61 @@
+{
+  "scope": "Illustrative array-law checks only; not compiler/GPU execution",
+  "checks": [
+    {
+      "example": "grouped_GQA_without_repeat",
+      "passed": true
+    },
+    {
+      "example": "conditional_read_forwarding",
+      "passed": true
+    },
+    {
+      "example": "masked_gather_forwarding_with_safe_indices",
+      "passed": true
+    },
+    {
+      "example": "winner_commit_False",
+      "passed": true
+    },
+    {
+      "example": "winner_commit_True",
+      "passed": true
+    },
+    {
+      "example": "adjacent_update_coalescing",
+      "passed": true
+    },
+    {
+      "example": "unit_component_axis_gather_normalization",
+      "passed": true
+    },
+    {
+      "example": "snapshot_old_buffer_preserved",
+      "passed": true
+    },
+    {
+      "example": "key_projection_placement",
+      "passed": true
+    },
+    {
+      "example": "value_projection_placement",
+      "passed": true
+    },
+    {
+      "example": "partial_RoPE_preserves_original_scale",
+      "passed": true
+    },
+    {
+      "example": "native_phase_counterexample_correct_result",
+      "passed": true
+    },
+    {
+      "example": "native_phase_counterexample_wrong_result",
+      "passed": true
+    },
+    {
+      "example": "bounded_trig_example_and_exact_fallback",
+      "passed": true
+    }
+  ]
+}
