@@ -1,8 +1,8 @@
 # Attention DRAM traffic study
 
 This kit profiles the saved, genuine C++ MLIR transformations from the CS6886
-attention project. It adds hardware traffic evidence and a fresh, separately
-timed compiled-PyTorch comparison. Completed GPU results are now preserved in
+attention project. It adds hardware traffic evidence and separately timed
+IREE baseline/optimized comparisons. Completed GPU results are now preserved in
 `../results/dram/A` and `../results/dram/B`; see the repository root README for
 the measured improvements, traffic tradeoffs and timing limitations. The ZIP
 upload instructions below remain available; the root README also gives a direct
@@ -94,16 +94,20 @@ Backups occur every five minutes and on completion/interruption. The final cell
 attempts a browser download. Browser downloads cannot be guaranteed; the Drive
 copy is the durable fallback. Return the entire `attention_dram_*.tar.gz`.
 
-## Experiments
+## Displayed IREE comparisons
+
+Default plots and regenerated model summary tables show IREE variants only.
+Raw experiment records retain all originally collected backends and numerical
+references; the collection protocol below continues to describe those full runs.
 
 | Test | Purpose | Comparators |
 |---|---|---|
 | Random 64 MiB streaming kernel | Check the marked window and byte units; no initialization in range | Known one read and one write per element |
-| Small forked cache | Measure the conditional read-forwarding mechanism | Strong IREE, C++ forwarded IR, compiled Torch |
-| Large forked cache | Test whether avoided history copies actually reduce DRAM | Same three comparators |
+| Small forked cache | Measure the conditional read-forwarding mechanism | Strong IREE, C++ forwarded IR |
+| Large forked cache | Test whether avoided history copies actually reduce DRAM | Same two IREE comparators |
 | Dense-demand control | Test a case where the forwarding cost gate does not fire | Same comparators; zero forwarding markers |
-| Full model B | Measure winner-commit factoring on real weights | Repaired strong IREE, repaired C++ commit IR, compiled Torch |
-| Full model A | No-match control for ordinary decode | Repaired strong IREE, compiled Torch |
+| Full model B | Measure winner-commit factoring on real weights | Repaired strong IREE, repaired C++ commit IR |
+| Full model A | No-match control for ordinary decode | Repaired strong IREE; no optimized variant manufactured |
 | Kernel diagnostic | Attribute traffic to kernels and inspect L2 request sectors | Separate application replay report |
 | Nsight Systems trace | Attribute CUDA copies and kernel launches within the window | Same isolated call window, if nsys is installed |
 

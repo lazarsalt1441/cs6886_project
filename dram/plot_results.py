@@ -1,4 +1,4 @@
-"""Plots from validated collected data only. Error bars show min/max, not confidence intervals."""
+"""IREE baseline/optimized plots. Error bars show min/max, not confidence intervals."""
 import argparse,json,statistics
 from pathlib import Path
 
@@ -8,18 +8,18 @@ def plot(out):
     import matplotlib.pyplot as plt
     import numpy as np
     out=Path(out);data=json.loads((out/'summary.json').read_text())
-    rows=[r for r in data['counter_summaries'] if r['cache']=='warm' and r['replay']=='app-range']
+    backend_order=['iree_stable','iree_commit','iree_forwarded']
+    rows=[r for r in data['counter_summaries'] if r['cache']=='warm' and r['replay']=='app-range' and r['backend'] in backend_order]
     labels=sorted({r['case'] for r in rows if r['case']!='stream_control'})
     if not labels:return
-    backend_order=['iree_stable','iree_commit','iree_forwarded','torch_compile']
-    colors=['#405D78','#3C8A72','#8A6EAB','#D89B45']
+    colors=['#405D78','#3C8A72','#8A6EAB']
     fig,ax=plt.subplots(figsize=(max(8,len(labels)*1.1),4.6),layout='constrained');width=.19
     for i,backend in enumerate(backend_order):
         xs=[];ys=[];lo=[];hi=[]
         for j,label in enumerate(labels):
             r=next((r for r in rows if r['case']==label and r['backend']==backend),None)
             if r:
-                value=r['total_bytes_per_call'];xs.append(j+(i-1.5)*width);ys.append(value/1e6)
+                value=r['total_bytes_per_call'];xs.append(j+(i-(len(backend_order)-1)/2)*width);ys.append(value/1e6)
                 lo.append((value-r['total_bytes_per_call_min'])/1e6);hi.append((r['total_bytes_per_call_max']-value)/1e6)
         if xs:ax.bar(xs,ys,width,label=backend,color=colors[i],yerr=np.array([lo,hi]),capsize=2)
     ax.set_xticks(range(len(labels)),labels,rotation=25,ha='right');ax.set_ylabel('Measured DRAM read plus write MB per call')

@@ -17,15 +17,17 @@ The most useful later transformations concern functional cache versions:
 
 SmolLM2-135M-Instruct, FP32, 30 layers, real prompt-derived caches; three prompts and three timing repetitions per context. Values below are medians of the nine per-repetition medians. Compilation, prefill, upload, and profiling are excluded from latency. DRAM counters cover prompt 0, three independent profiles, three fixed-input calls per range.
 
-| Context | Strong repaired IREE | Commit-factored IREE | Latency reduction | Compiled PyTorch | Total DRAM change |
-|---:|---:|---:|---:|---:|---:|
-| 2048 | 43.264 ms | 31.815 ms | 26.46% | 25.731 ms | 3.91% lower |
-| 3072 | 63.326 ms | 60.386 ms | 4.64% | 27.422 ms | 1.24% higher |
-| 4096 | 82.409 ms | 77.858 ms | 5.52% | 29.722 ms | 0.27% lower |
+| Context | Strong repaired IREE | Commit-factored IREE | Latency reduction | Total DRAM change |
+|---:|---:|---:|---:|---:|
+| 2048 | 43.264 ms | 31.815 ms | 26.46% | 3.91% lower |
+| 3072 | 63.326 ms | 60.386 ms | 4.64% | 1.24% higher |
+| 4096 | 82.409 ms | 77.858 ms | 5.52% | 0.27% lower |
 
-All nine natural cases and eighteen forced-winner checks per backend passed. This is a custom one-step branching driver, **not** complete beam/speculative generation or a serving throughput benchmark. It does not beat compiled PyTorch. Lower writes are partly offset by higher reads; these data do not establish consistent full-model DRAM reduction. No-match synthetic timing regressions and changing GPU clocks are retained and limit causal attribution and generalization.
+These comparisons measure the optimization within IREE: strong repaired IREE versus the same compiler settings with commit factoring. The displayed tables, default plots and regenerated model summary show IREE variants only. Original measurements from all collected backends remain in the raw experiment records for reproducibility.
 
-The large synthetic forked-cache case reduces measured IREE DRAM traffic by about 99.92% in both tracks. That demonstrates a mechanism on that fixture; it is not the full-model traffic result, and compiled PyTorch already has similarly low synthetic traffic. Logical expansion, physical allocation, DRAM bytes and runtime improvement are separate claims.
+All nine natural cases and eighteen forced-winner checks per backend passed. This is a custom one-step branching driver, **not** complete beam/speculative generation or a serving throughput benchmark. Lower writes are partly offset by higher reads; these data do not establish consistent full-model DRAM reduction. No-match synthetic timing regressions and changing GPU clocks are retained and limit causal attribution and generalization.
+
+The large synthetic forked-cache case reduces measured IREE DRAM traffic by about 99.92% in both tracks. That demonstrates a mechanism on that fixture; it is not the full-model traffic result. Logical expansion, physical allocation, DRAM bytes and runtime improvement are separate claims.
 
 ## Checkout and inspect the saved results
 

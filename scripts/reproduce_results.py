@@ -1,4 +1,4 @@
-"""Recompute final GPU aggregates from retained raw CSVs and timing samples."""
+"""Recompute IREE-only presentation aggregates; verify all retained GPU counters."""
 from pathlib import Path
 import argparse,csv,json,statistics,sys
 ROOT=Path(__file__).resolve().parents[1]
@@ -26,7 +26,7 @@ def main():
         result=summarize(root)
         for context in [2048,3072,4096]:
             row=dict(track=track,context=context)
-            for backend in ['iree_stable','iree_commit','torch_compile']:
+            for backend in ['iree_stable','iree_commit']:
                 samples=[r['median_ms'] for r in result['valid_latency_rows'] if r['backend']==backend and r['case'].startswith(f'{track}_n{context}_')]
                 if samples:row[backend+'_ms']=statistics.median(samples);row[backend+'_row_count']=len(samples)
             if 'iree_commit_ms' in row:
