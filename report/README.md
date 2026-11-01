@@ -1,5 +1,7 @@
 # Project report
 
+Authors: Nishanth Senthil Kumar (EE23B049) and Dhruv Prasad (EE23B130).
+
 * **Main course report:** [PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex), **five main pages plus references**. It introduces attention, KV caching and compiler terms, explains both upstream GQA flags, shows before/after examples for every transformation, and maps individual/combined effects to the measurements.
 * **Short overview:** [PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex), two main pages plus references.
 * **Per-study measurements:** [readable tables](study_results/per_study_results.md), [CSV](study_results/per_study_results.csv) and [JSON](study_results/per_study_results.json). Includes 182 IREE comparisons, individual variants, combined-pass ablations and regressions.
@@ -61,3 +63,5 @@ python3 report/summarize_studies.py
 ```
 
 Only the Python standard library is needed. This recalculates recorded ratios; it does not rerun benchmarks. Synthetic CPU, GPU operator and pretrained-model timing contracts differ and are not pooled. Protection/normalization/phase guards are correctness repairs; combined forwarding gains are not attributed to a repair alone. No compiled-PyTorch metric is included.
+
+The main model table includes within-session bootstrap intervals. Error-bar figures and the no-match-control audit are under `../evaluation/results/`; these do not establish cross-session confidence or a complete explanation of the 2048 gain.

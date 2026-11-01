@@ -2,6 +2,8 @@
 
 This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
 
+**Authors:** Nishanth Senthil Kumar (EE23B049) and Dhruv Prasad (EE23B130), IIT Madras.
+
 **Course submission report:** [PDF](report/CS6886_Report.pdf) · [Editable LaTeX](report/CS6886_Report.tex). **Five main pages, plus references**, with plain-language background, before/after examples, implementation details and per-optimization results.
 
 The [short version](report/CS6886_Report_Concise.pdf) ([LaTeX](report/CS6886_Report_Concise.tex)) remains available as a compact overview. [Per-study results](report/study_results/per_study_results.md) ([CSV](report/study_results/per_study_results.csv)) map each measured effect to its pass, workload and raw source; combined effects are labelled.
@@ -32,6 +34,10 @@ These comparisons measure the optimization within IREE: strong repaired IREE ver
 All nine natural cases and eighteen forced-winner checks per backend passed. This is a custom one-step branching driver, **not** complete beam/speculative generation or a serving throughput benchmark. Lower writes are partly offset by higher reads; these data do not establish consistent full-model DRAM reduction. No-match synthetic timing regressions and changing GPU clocks are retained and limit causal attribution and generalization.
 
 The large synthetic forked-cache case reduces measured IREE DRAM traffic by about 99.92% in both tracks. That demonstrates a mechanism on that fixture; it is not the full-model traffic result. Logical expansion, physical allocation, DRAM bytes and runtime improvement are separate claims.
+
+## Evaluation uncertainty and additional tests
+
+[Saved-run reanalysis](evaluation/results/ANALYSIS.md) adds within-session error bars. The context-2048 gain appears in every paired repeat and remains after excluding repetition zero; its kernel-level cause is unresolved. Dense control timing changes direction despite matching canonical input IR and fresh GPU codegen. [The follow-up runner](evaluation/README.md) adds context points around 2048 and a byte-identical-module placebo. The new GPU experiment is prepared, not executed; its changed timing protocol must be analysed separately.
 
 ## Checkout and inspect the saved results
 

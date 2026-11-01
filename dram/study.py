@@ -77,7 +77,7 @@ def main():
     p.add_argument('--cache',type=Path,default=ROOT/'cache');p.add_argument('--output',type=Path,default=ROOT/'results_B_main')
     p.add_argument('--reuse-project',type=Path,default=Path('/content/attention_real_llm'));p.add_argument('--ncu',default=shutil.which('ncu'))
     p.add_argument('--timeout',type=int,default=1800);p.add_argument('--skip-nsys',action='store_true');p.add_argument('--skip-latency',action='store_true')
-    p.add_argument('--extra-torch',action='store_true');p.add_argument('--prepare-only',action='store_true');a=p.parse_args()
+    p.add_argument('--extra-torch',action='store_true');p.add_argument('--prepare-only',action='store_true');p.add_argument('--latency-repetitions',type=int,default=3);p.add_argument('--latency-warmup-calls',type=int,default=5);a=p.parse_args()
     a.output=a.output.resolve();a.cache=a.cache.resolve();out=a.output;out.mkdir(parents=True,exist_ok=True)
     verify_assets();plan=build_plan(a.track,a.plan);write_json(out/'plan.json',plan)
     os.environ.setdefault('OMP_NUM_THREADS','1');os.environ.setdefault('OPENBLAS_NUM_THREADS','1')
@@ -127,12 +127,12 @@ def main():
             folder=out/'latency'/case['id'];folder.mkdir(parents=True,exist_ok=True);casepath=folder/'case.json';write_json(casepath,case)
             contract=dict(case=case,fixture=sha(a.cache/'data'/case['id']/'fixture.json'),builds=built,
                           environment={k:environment[k] for k in ['torch','cuda','gpu_identity','iree','assets_manifest_sha256']},
-                          plan=a.plan,extra_torch=a.extra_torch)
+                          plan=a.plan,extra_torch=a.extra_torch,latency_repetitions=a.latency_repetitions,latency_warmup_calls=a.latency_warmup_calls,output_release_timing='before timer')
             contract_path=folder/'latency_contract.json'
             if (folder/'latency.json').exists() and contract_path.exists() and json.loads(contract_path.read_text())==contract:continue
             write_json(contract_path,contract)
             cmd=[sys.executable,str(ROOT/'latency.py'),'--case',str(casepath),'--cache',str(a.cache),'--output',str(folder),
-                 '--trials','11' if a.plan=='smoke' else '31','--repetitions','1' if a.plan=='smoke' else '3']
+                 '--trials','11' if a.plan=='smoke' else '31','--repetitions','1' if a.plan=='smoke' else str(a.latency_repetitions),'--warmup-calls',str(a.latency_warmup_calls)]
             if a.extra_torch:cmd+=['--extra-torch']
             try:run(cmd,folder/'latency.log',a.timeout)
             except Exception:write_json(folder/'error.json',dict(error=traceback.format_exc()))

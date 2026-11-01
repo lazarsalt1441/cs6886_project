@@ -23,6 +23,11 @@
     5,
     3
   ],
-  "scope": "Five-page plain-language main report plus a separate reference page. Explanations cover background, two upstream flags, cache transformations, ownership/numerical repairs, projection and per-study IREE results. No benchmark results changed.",
-  "per_study_iree_comparisons": 182
+  "scope": "Five main pages plus references; both authors, clearer isolated-cache explanation, within-session model intervals. Additional GPU contexts and causal attribution remain unmeasured/unresolved.",
+  "per_study_iree_comparisons": 182,
+  "authors": [
+    "Nishanth Senthil Kumar (EE23B049)",
+    "Dhruv Prasad (EE23B130)"
+  ],
+  "within_session_intervals_added": true
 }

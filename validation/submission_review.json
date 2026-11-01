@@ -29,5 +29,8 @@
     "112_profile_reanalysis": "pass",
     "182_comparison_tables_byte_identical": "pass"
   },
-  "report_revision": "Five main pages excluding references; plain-language explanations. Earlier runtime checks retained; compiler sources and raw results unchanged."
+  "report_revision": "Five main pages excluding references; plain-language explanations. Earlier runtime checks retained; compiler sources and raw results unchanged.",
+  "evaluation_helper_tests_passed": 5,
+  "new_gpu_followup_executed": false,
+  "control_audit": "Canonical dense input and fresh codegen equal; timing direction flips. Cause not resolved."
 }

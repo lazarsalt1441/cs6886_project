@@ -56,3 +56,6 @@ real_model/model/
 /results/real_llm_set_B_20261031_193614/results_B/correctness.json
 /results/repair_results_A/repair_results_A/validation.json
 /results/repair_results_B/repair_results_B/validation.json
+
+/evaluation/cache/
+/evaluation/gpu_run/

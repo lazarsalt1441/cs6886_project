@@ -33,3 +33,5 @@ permission for DRAM collection. Nsight raw CSV export uses `--print-units base`
 and omits the details-only `--print-metric-name` option.
 
 Course submission report: `report/CS6886_Report.pdf` (five body pages plus references); editable source alongside it. `report/CS6886_Report_Concise.pdf` is the shorter overview. Current DRAM plans use IREE metrics only; historical plan files retain the original extra backends.
+
+Evaluation reanalysis: `python3 evaluation/analyze_saved.py`; helper tests: `python3 -m unittest discover -s evaluation -p "test_*.py" -v`. The new GPU plan is printed with `python3 evaluation/run_followup.py --print-plan`; its Colab instructions are in `evaluation/README.md`. Additional contexts and a same-binary dense placebo have not been GPU-executed.

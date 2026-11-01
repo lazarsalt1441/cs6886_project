@@ -13,7 +13,7 @@
 \usetikzlibrary{arrows.meta,positioning}
 \usepackage{tcolorbox}
 \usepackage[colorlinks=true,linkcolor=teal!65!black,citecolor=teal!65!black,urlcolor=teal!65!black]{hyperref}
-\hypersetup{pdftitle={Compiler Optimizations for Attention and Functional KV Caches},pdfauthor={Nishanth Senthil Kumar}}
+\hypersetup{pdftitle={Compiler Optimizations for Attention and Functional KV Caches},pdfauthor={Nishanth Senthil Kumar and Dhruv Prasad}}
 \definecolor{accent}{HTML}{176B70}
 \definecolor{pale}{HTML}{EFF6F6}
 \definecolor{ink}{HTML}{192A35}
@@ -45,7 +45,7 @@
 \newcommand{\smallnote}[1]{{\footnotesize #1\par}}
 \newtcolorbox{resultbox}{colback=pale,colframe=accent,boxrule=0.45pt,arc=1mm,left=5pt,right=5pt,top=3pt,bottom=3pt}
 % Edit/add team members here as appropriate.
-\newcommand{\projectauthors}{Nishanth Senthil Kumar (EE23B049) \quad IIT Madras}
+\newcommand{\projectauthors}{Nishanth Senthil Kumar (EE23B049) \quad Dhruv Prasad (EE23B130) \quad IIT Madras}
 
 \begin{document}
 \thispagestyle{plain}
@@ -54,7 +54,7 @@
 {\small\projectauthors\par}
 \vspace{2pt}
 \begin{resultbox}
-\textbf{Main result.} On a Tesla T4, winner-cache factoring lowers a pretrained two-candidate step's IREE latency by \textbf{26.46\% at context 2048}. Sparse synthetic cache forwarding reduces measured DRAM bytes by \textbf{99.92\%}. These are different workloads; full-model DRAM reduction is not consistent.
+\textbf{Main result.} On a Tesla T4, winner-cache factoring lowers a pretrained two-candidate step's IREE latency by \textbf{26.46\% at context 2048}. A separate constructed cache test reduces GPU memory traffic from 178.9 to 0.137 MB/call (\textbf{99.92\% less}). This is not the full-model traffic result.
 \end{resultbox}
 
 \section{Problem and baseline investigation}

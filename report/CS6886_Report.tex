@@ -20,7 +20,7 @@
 \titleformat{\subsection}{\normalsize\bfseries\color{accent}}{\thesubsection}{.5em}{}
 \titlespacing*{\subsection}{0pt}{4pt}{2pt}
 \usepackage[colorlinks=true,linkcolor=teal!65!black,citecolor=teal!65!black,urlcolor=teal!65!black]{hyperref}
-\hypersetup{pdftitle={Compiler Optimizations for Attention and Functional KV Caches},pdfauthor={Nishanth Senthil Kumar}}
+\hypersetup{pdftitle={Compiler Optimizations for Attention and Functional KV Caches},pdfauthor={Nishanth Senthil Kumar and Dhruv Prasad}}
 \definecolor{accent}{HTML}{176B70}
 \definecolor{pale}{HTML}{EFF6F6}
 \definecolor{ink}{HTML}{192A35}
@@ -52,7 +52,7 @@
 \newcommand{\smallnote}[1]{{\footnotesize #1\par}}
 \newtcolorbox{resultbox}{colback=pale,colframe=accent,boxrule=0.45pt,arc=1mm,left=5pt,right=5pt,top=3pt,bottom=3pt}
 % Edit/add team members here as appropriate.
-\newcommand{\projectauthors}{Nishanth Senthil Kumar (EE23B049) \quad IIT Madras}
+\newcommand{\projectauthors}{Nishanth Senthil Kumar (EE23B049) \quad Dhruv Prasad (EE23B130) \quad IIT Madras}
 
 
 \begin{document}
@@ -64,7 +64,7 @@
 
 \section{Problem, background and approach}
 \begin{resultbox}
-\textbf{Project goal.} Reduce unnecessary attention computation and KV-cache movement in IREE using C++ compiler passes. The strongest model result is \textbf{26.46\% lower latency} for a custom two-candidate SmolLM2 step at context 2048. A separate synthetic forwarding test reduces DRAM traffic by \textbf{99.92\%}. The two numbers describe different experiments.
+\textbf{Project goal.} Reduce unnecessary attention computation and KV-cache movement in IREE using C++ compiler passes. The strongest model result is \textbf{26.46\% lower latency} for a custom two-candidate SmolLM2 step at context 2048. In a separate, constructed cache workload, forwarding lowers GPU memory traffic from \textbf{178.9 MB to 0.137 MB per call (99.92\% less)}. This is an isolated cache test, not the full LLM result.
 \end{resultbox}
 
 \subsection*{What attention and the KV cache do}
@@ -263,16 +263,16 @@ Sine/cosine repeat every $2\pi$. First reducing a large angle to a small one in 
 
 \section{Winner factoring: pretrained two-candidate step}
 {\small
-\begin{tabularx}{\linewidth}{@{}r r r r r Y@{}}
+\begin{tabularx}{\linewidth}{@{}r r r P{36mm} r Y@{}}
 \toprule
-\textbf{Context} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup} & \textbf{Latency lower} & \textbf{Total DRAM change}\\
+\textbf{Context} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup [95\% interval]} & \textbf{Latency lower} & \textbf{Total DRAM change}\\
 \midrule
-2048 &43.264&31.815&\textbf{1.36$\times$}&\textbf{26.46\%}&$-3.91\%$\\
-3072 &63.326&60.386&1.05$\times$&4.64\%&$+1.24\%$\\
-4096 &82.409&77.858&1.06$\times$&5.52\%&$-0.27\%$\\
+2048 &43.264&31.815&\textbf{1.360 [1.346, 1.363]}&\textbf{26.46\%}&$-3.91\%$\\
+3072 &63.326&60.386&1.049 [1.037, 1.058]&4.64\%&$+1.24\%$\\
+4096 &82.409&77.858&1.058 [1.056, 1.064]&5.52\%&$-0.27\%$\\
 \bottomrule
 \end{tabularx}}
-\smallnote{This comparison isolates concat winner factoring within the repaired IREE pipeline. All natural and forced-winner cases pass, with exact cache prefixes and unchanged inputs. Worst absolute error: $5.05\!\times\!10^{-5}$ (atol$=5\!\times\!10^{-4}$, rtol$=3\!\times\!10^{-3}$). Ordinary decode has no matches. Writes fall but reads rise: full-model DRAM reduction is inconsistent. At context 2048, kernels increase 987$\to$1047/call and logical memcpy remains 188.8\,MB/call.}
+\smallnote{Intervals resample prompts and paired repetition medians (10,000 bootstrap draws). They describe one recorded session, not independent GPU sessions. The 2048 gain occurs in all nine paired repeats and remains 1.359$\times$ after excluding repetition 0; its kernel-level cause is unresolved. All natural/forced-winner checks pass, with exact cache prefixes and unchanged inputs; worst absolute error $5.05\!\times\!10^{-5}$. The 3.91\% DRAM reduction alone does not explain the 26.46\% latency reduction. Error-bar plots and the control audit are in \code{evaluation/results/}.}
 
 \section{Per-transformation operator results}
 \smallnote{Speedup $=$ baseline time / optimized time: 2$\times$ halves latency, while below 1 means slower. CPU rows are separate synthetic studies, not full-model gains. Suite figures use a geometric mean, averaging the ratios on a multiplicative scale. Earlier T4 projection timings include output downloads; final model timings leave outputs resident. Combined gains are not additive. Full per-case times, variant names and source paths: \code{report/study\_results/}.}
@@ -300,16 +300,16 @@ Extra aggressive fusion flag &0.97$\times$ at 2048&Earlier repaired B run: 32.02
 {\small
 \begin{tabularx}{\linewidth}{@{}Y r r r P{36mm}@{}}
 \toprule
-\textbf{Track B fixture} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup} & \textbf{DRAM MB: base $\to$ opt.}\\
+\textbf{Isolated cache workload} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup} & \textbf{DRAM MB: base $\to$ opt.}\\
 \midrule
 Small sparse forks&0.288&0.246&1.17$\times$&5.831$\to$0.128 (97.80\% less)\\
 Large sparse forks&1.777&1.230&1.44$\times$&178.897$\to$0.137 (99.92\% less)\\
 Dense no-rewrite control&0.545&1.268&\textbf{0.43$\times$}&0.285$\to$0.275 (small / variable)\\
 \bottomrule
 \end{tabularx}}
-\smallnote{Conditional forwarding, separate from the model factoring result. Track A large fixture: 1.14$\times$, 178.228$\to$0.132\,MB in a second T4 session. Synthetic checks use independent FP64 NumPy references (atol$=5\!\times\!10^{-5}$, rtol$=2\!\times\!10^{-3}$). The unexplained no-rewrite regression and uncontrolled clocks limit causal attribution.}
+\smallnote{These are constructed cache operations, not full-model runs: several branches share a large history but read only a few rows. Forwarding reads the requested history/update rows directly instead of building full temporary cache versions. DRAM means the GPU main memory; counters measure reads plus writes. The 99.92\% traffic reduction gives a 1.44$\times$ measured speedup in this fixture, not a 99.92\% inference speedup. Independent FP64 NumPy checks use atol$=5\!\times\!10^{-5}$, rtol$=2\!\times\!10^{-3}$. The dense control has equal canonical IR and fresh GPU code, but its timing direction flips across repeats; the cause remains unresolved.}
 
-\textbf{Limitations.} One FP32 small model and GPU family; custom one-step branching, not complete serving throughput. Removing a tensor operation, saving a buffer, reducing memory traffic and lowering latency are separate results. Incorrect ownership/numerical cases and irregular masked CUDA compile failures remain recorded. No all-GQA, mixed-precision or global-novelty claim is made.
+\textbf{Limitations.} One FP32 small model and GPU family; a custom branching step, not serving throughput. Unsafe ownership, numerical failures and irregular masked CUDA compile failures remain recorded. No all-GQA, mixed-precision or global-novelty claim is made.
 
 \clearpage
 \renewcommand{\refname}{References and attribution}

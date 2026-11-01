@@ -1,0 +1,207 @@
+{
+  "scope": "One recorded GPU session, three fixed prompts; intervals exclude cross-session, compiler and device variability. No new context measurements.",
+  "model": [
+    {
+      "baseline_ms": 43.264317,
+      "optimized_ms": 31.8148,
+      "speedup": 1.3598802129826368,
+      "within_session_bootstrap_95": [
+        1.3460759289126871,
+        1.3629479597896235
+      ],
+      "paired_repetition_speedups": [
+        1.373528689995888,
+        1.3583342255080766,
+        1.3460759289126871,
+        1.3430440807757869,
+        1.3496215425709142,
+        1.359365485739493,
+        1.3629479597896235,
+        1.3601942177854331,
+        1.3487817442206382
+      ],
+      "paired_range": [
+        1.3430440807757869,
+        1.373528689995888
+      ],
+      "prompts": 3,
+      "paired_repetitions": 9,
+      "context": 2048,
+      "repetitions_1_and_2_only_speedup": 1.3592636927104202
+    },
+    {
+      "baseline_ms": 63.325772,
+      "optimized_ms": 60.3864,
+      "speedup": 1.0486760595100884,
+      "within_session_bootstrap_95": [
+        1.0367389213830853,
+        1.058236455117355
+      ],
+      "paired_repetition_speedups": [
+        1.0522052083032691,
+        1.0388968510936758,
+        1.058236455117355,
+        1.084457130108668,
+        1.0342828186479074,
+        1.0467333729502484,
+        1.0520920391207107,
+        1.0378609553651101,
+        1.0630936626562475
+      ],
+      "paired_range": [
+        1.0342828186479074,
+        1.084457130108668
+      ],
+      "prompts": 3,
+      "paired_repetitions": 9,
+      "context": 3072,
+      "repetitions_1_and_2_only_speedup": 1.047011700575362
+    },
+    {
+      "baseline_ms": 82.409469,
+      "optimized_ms": 77.857766,
+      "speedup": 1.0584617724582543,
+      "within_session_bootstrap_95": [
+        1.0556110034445216,
+        1.064325711028012
+      ],
+      "paired_repetition_speedups": [
+        1.0648592799990582,
+        1.0519019097019677,
+        1.057951855438544,
+        1.057561076879661,
+        1.0578567092142706,
+        1.0556110034445216,
+        1.064325711028012,
+        1.0556663720956505,
+        1.0586416826237885
+      ],
+      "paired_range": [
+        1.0519019097019677,
+        1.0648592799990582
+      ],
+      "prompts": 3,
+      "paired_repetitions": 9,
+      "context": 4096,
+      "repetitions_1_and_2_only_speedup": 1.056984015840606
+    }
+  ],
+  "dense_controls": [
+    {
+      "baseline_ms": 0.248126,
+      "optimized_ms": 0.60034,
+      "speedup": 0.41330912482926346,
+      "within_session_bootstrap_95": [
+        0.1779790820546472,
+        3.396496925309197
+      ],
+      "paired_repetition_speedups": [
+        0.1779790820546472,
+        3.396496925309197,
+        0.41330912482926346
+      ],
+      "paired_range": [
+        0.1779790820546472,
+        3.396496925309197
+      ],
+      "prompts": 1,
+      "paired_repetitions": 3,
+      "track": "A"
+    },
+    {
+      "baseline_ms": 0.545456,
+      "optimized_ms": 1.267582,
+      "speedup": 0.4303122007096977,
+      "within_session_bootstrap_95": [
+        0.20715977348999906,
+        2.2928434813678304
+      ],
+      "paired_repetition_speedups": [
+        0.20715977348999906,
+        2.2928434813678304,
+        0.8314084176984012
+      ],
+      "paired_range": [
+        0.20715977348999906,
+        2.2928434813678304
+      ],
+      "prompts": 1,
+      "paired_repetitions": 3,
+      "track": "B"
+    }
+  ],
+  "dense_compilation_audit": {
+    "canonical_input_equal": true,
+    "canonical_input_sha256": "8fc47e75c9a7ab1ab28853998762d8cba9a81588d9a84474fb49de6ea8314d13",
+    "note": "Equal canonical input is not by itself proof of equal runtime behavior.",
+    "codegen_files": [
+      {
+        "file": "configured_module_main_dispatch_0.mlir",
+        "equal": true,
+        "sha256": "656cf3094a1c7ee6e7c1fcf1d76b5f3f8bdc722b7c147d3ccc3a993d42164fff"
+      },
+      {
+        "file": "configured_module_main_dispatch_2.mlir",
+        "equal": true,
+        "sha256": "eb142e68d7e95f948545cf3818fdda1cf997ce88f6c7a8fc0c13dfd276037319"
+      },
+      {
+        "file": "configured_module_main_dispatch_5.mlir",
+        "equal": true,
+        "sha256": "07c4dbb4f6f0da30aa92befd8dc187bf3943dc8a42371518d4e6684473a2fecd"
+      },
+      {
+        "file": "module_main_dispatch_0.mlir",
+        "equal": true,
+        "sha256": "2dd46f34e8702f03595679b51faacee1a72a988c76e575cab5b23249213ed2d3"
+      },
+      {
+        "file": "module_main_dispatch_0_cuda_nvptx_fb_benchmark.mlir",
+        "equal": true,
+        "sha256": "b0afbb93fe706d899b9e18a308a49c3fd6d237770ceb1874cd1637e0c91ce0af"
+      },
+      {
+        "file": "module_main_dispatch_2.mlir",
+        "equal": true,
+        "sha256": "7ec64c44f53833684c7b02a3c2303a329ac768f9a58a49d53618d6b0ebf9df13"
+      },
+      {
+        "file": "module_main_dispatch_2_cuda_nvptx_fb_benchmark.mlir",
+        "equal": true,
+        "sha256": "9d76d4d537383e93e17b100f2442fc5db8c6a0bd5c627d2157931c88450385e0"
+      },
+      {
+        "file": "module_main_dispatch_5.mlir",
+        "equal": true,
+        "sha256": "608c841b9f5c9d235c6922d5edd726d13cbafee49c1f21ebc9f2b2b9687a4e4d"
+      },
+      {
+        "file": "module_main_dispatch_5_cuda_nvptx_fb_benchmark.mlir",
+        "equal": true,
+        "sha256": "992043ffbcaffe4be7a7b5f3b3bd077d510c1e75cd4399e5656cb49e069bd2ac"
+      },
+      {
+        "file": "module_module_linked_cuda_nvptx_fb.linked.ll",
+        "equal": true,
+        "sha256": "5b12cf17a036b564f1f86e8c587c8c0924c1656ef2caa55d131798d69b70577f"
+      },
+      {
+        "file": "module_module_linked_cuda_nvptx_fb.optimized.ll",
+        "equal": true,
+        "sha256": "9fa271bc7cdfd0e30c27cb60c213c19d1e53d7c31446700b88fb89e6f3eaccb3"
+      },
+      {
+        "file": "module_module_linked_cuda_nvptx_fb.ptx",
+        "equal": true,
+        "sha256": "f19517b2ce9c16a82cd8ce32625ab18300e70518e9f2fc131f068bdeb8d8afee"
+      }
+    ],
+    "all_codegen_equal": true
+  },
+  "conclusions": [
+    "2048 improvement appears in all nine paired repetition medians and persists when repetition zero is excluded. This does not explain the kernel-level cause.",
+    "Only 3.91% less whole-step DRAM at 2048 accompanies 26.46% less latency; bytes alone cannot explain the gap.",
+    "Dense control changes direction across repetitions. Equal canonical IR/codegen narrows the cause to runtime/measurement or other unexamined effects; no pass regression mechanism established.",
+    "Additional contexts and same-binary placebo tests require a new GPU run."
+  ]
+}
