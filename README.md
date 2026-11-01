@@ -1,45 +1,51 @@
-# CS6886: attention and KV-cache compiler optimizations
+# GQA and Attention Optimization in IREE
 
-This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
+CS6886 project by Nishanth Senthil Kumar (EE23B049) and Dhruv Prasad (EE23B130), IIT Madras.
 
-**Authors:** Nishanth Senthil Kumar (EE23B049) and Dhruv Prasad (EE23B130), IIT Madras.
+We implemented C++ MLIR passes to reduce repeated attention computation and unnecessary KV-cache copies in IREE.
 
-**Course submission report:** [PDF](report/CS6886_Report.pdf) · [Editable LaTeX](report/CS6886_Report.tex). **Five main pages, plus references**, with plain-language background, before/after examples, implementation details and per-optimization results.
+[Final report (PDF)](report/CS6886_GQA_Attention_Report.pdf) · [LaTeX source](report/CS6886_GQA_Attention_Report.tex) · [Per-study results](report/study_results/per_study_results.md)
 
-The [short version](report/CS6886_Report_Concise.pdf) ([LaTeX](report/CS6886_Report_Concise.tex)) remains available as a compact overview. [Per-study results](report/study_results/per_study_results.md) ([CSV](report/study_results/per_study_results.csv)) map each measured effect to its pass, workload and raw source; combined effects are labelled.
+## What we implemented
 
-## What the results support
+We started with GQA head expansion: several query heads share the same keys and values, but the exported graph repeats K/V before attention. Our pass removed those repeats. We then found that two existing IREE flags already remove them on the tested graphs:
 
-The original repeated-K/V-head rewrite improves the tested default CPU lowering, but existing IREE matmul generalization **together with** aggressive reshape movement eliminates the tested expansion. O3 alone is not the explanation. This is an investigation result, not a claim of a universally new GQA optimization. The extra-scalar-observation graph was an artificial IR counterexample, not a natural-model result. See [the independent audit](audit/TECHNICAL_REPORT.md). The original flag-ablation record is restored at `audit/sources/previous-GQA-flag-ablation.md` by the artifact unpacker.
+```text
+--iree-opt-generalize-matmul
+--iree-dispatch-creation-enable-aggressive-reshape-movement
+```
 
-The most useful later transformations concern functional cache versions:
+The later experiments use these flags as part of the baseline. They cover:
 
-* **Read forwarding:** read the original cache except at indices covered by a small update. Applies to supported sparse/gather consumers of forked caches. It is not a blanket replacement for a full, externally observed updated cache.
-* **Winner commit factoring:** `select(c, concat(history,a), concat(history,b))` becomes `concat(history, select(c,a,b))`. The real-model driver chooses between two candidate continuations. Ordinary greedy decoding does not match this pattern.
-* Further experiments cover gather normalization, update coalescing, snapshot ownership, projection placement, partial rotary embeddings, and native-attention numerical failures. Their scope and negative results are retained in the historical studies and audit.
-* A separate bounded f64 trig argument-reduction pass repairs long-position FP32 RoPE discrepancies under the fixed numerical criterion. Both performance comparators use the same repair and precision flags.
+- **Cache-read forwarding:** read directly from the old cache or its small update instead of constructing a temporary updated cache. We implemented conditional and masked-gather forms.
+- **Update coalescing:** combine adjacent updates before forwarding reads.
+- **Winner-cache factoring:** select between small candidate updates before appending the winner to a shared history.
+- **Projection placement:** move key/value projections across matrix products when shapes and numerical assumptions allow it, including graphs with separate rotary coordinates.
+- **Correctness repairs:** preserve old cache snapshots, normalize gather indices, and handle problematic attention schedules and large RoPE angles.
 
-### Final T4 result: custom two-candidate pretrained step
+The array identities and projection absorption have prior work. The project studies their implementation, upstream coverage and performance in IREE. See the [audit](audit/TECHNICAL_REPORT.md) for details.
 
-SmolLM2-135M-Instruct, FP32, 30 layers, real prompt-derived caches; three prompts and three timing repetitions per context. Values below are medians of the nine per-repetition medians. Compilation, prefill, upload, and profiling are excluded from latency. DRAM counters cover prompt 0, three independent profiles, three fixed-input calls per range.
+## Results
 
-| Context | Strong repaired IREE | Commit-factored IREE | Latency reduction | Total DRAM change |
+The model experiment runs one step of a custom two-candidate decoder using SmolLM2-135M-Instruct (30 layers, FP32) on a Tesla T4. Winner-cache factoring matches K and V commits in all 30 layers.
+
+| Cached tokens | IREE baseline | With commit factoring | Latency reduction | Total DRAM change |
 |---:|---:|---:|---:|---:|
 | 2048 | 43.264 ms | 31.815 ms | 26.46% | 3.91% lower |
 | 3072 | 63.326 ms | 60.386 ms | 4.64% | 1.24% higher |
 | 4096 | 82.409 ms | 77.858 ms | 5.52% | 0.27% lower |
 
-These comparisons measure the optimization within IREE: strong repaired IREE versus the same compiler settings with commit factoring. The displayed tables, default plots and regenerated model summary show IREE variants only. Original measurements from all collected backends remain in the raw experiment records for reproducibility.
+Both variants use the same compiler settings and numerical repairs. Times are medians of nine repetition medians across three prompts. Compilation, prefill, upload and profiling are excluded. All nine natural cases and eighteen forced-winner checks per backend passed.
 
-All nine natural cases and eighteen forced-winner checks per backend passed. This is a custom one-step branching driver, **not** complete beam/speculative generation or a serving throughput benchmark. Lower writes are partly offset by higher reads; these data do not establish consistent full-model DRAM reduction. No-match synthetic timing regressions and changing GPU clocks are retained and limit causal attribution and generalization.
+These results measure a single branching step. They do not measure full generation or serving throughput. The 2048-token improvement appears in every paired repeat, but its kernel-level cause remains unresolved. DRAM traffic does not consistently fall in the model experiment.
 
-The large synthetic forked-cache case reduces measured IREE DRAM traffic by about 99.92% in both tracks. That demonstrates a mechanism on that fixture; it is not the full-model traffic result. Logical expansion, physical allocation, DRAM bytes and runtime improvement are separate claims.
+An isolated sparse-cache benchmark reduced DRAM traffic by 99.92%, with a 1.44× speedup. That result applies to the constructed cache workload. The dense no-rewrite control showed unstable timing despite equivalent IR.
 
-## Evaluation uncertainty and additional tests
+[Analysis and uncertainty](evaluation/results/ANALYSIS.md) · [Raw GPU results](results/dram) · [Follow-up experiments](evaluation/README.md)
 
-[Saved-run reanalysis](evaluation/results/ANALYSIS.md) adds within-session error bars. The context-2048 gain appears in every paired repeat and remains after excluding repetition zero; its kernel-level cause is unresolved. Dense control timing changes direction despite matching canonical input IR and fresh GPU codegen. [The follow-up runner](evaluation/README.md) adds context points around 2048 and a byte-identical-module placebo. The new GPU experiment is prepared, not executed; its changed timing protocol must be analysed separately.
+The follow-up GPU runner is prepared but has not been executed.
 
-## Checkout and inspect the saved results
+## Inspect the saved results
 
 ```bash
 git clone https://github.com/lazarsalt1441/cs6886_project.git
@@ -50,9 +56,9 @@ python3 scripts/reproduce_results.py
 python3 report/summarize_studies.py
 ```
 
-The result-analysis commands need no GPU or model download. `scripts/reproduce_results.py` independently parses **112 valid final GPU profile CSVs**, verifies their saved byte totals, and regenerates aggregate CSV/JSON files under `reproduced/`. It also regenerates the per-track DRAM summaries. It does not run inference or create new performance measurements. The archive is split into modest Git blobs; the unpacker verifies every part and restores before/after IR, assembly/PTX, raw historical measurements and logs to their original paths.
+These commands unpack the saved artifacts, check the submission and regenerate summaries from recorded results. They do not need a GPU or model download, and they do not rerun inference. The analysis checks 112 final GPU profile CSVs and writes regenerated summaries under `reproduced/`.
 
-`results/archive_provenance.json` records original archive SHA256s and campaign names. Track A's original archive happened to contain `B` in its filename; the internal plan identifies it as **A**. The second uploaded B zip was byte-identical to the B tar contents and is not counted as an independent run. Profiler report binaries, weights, SDKs and executable modules are excluded; exported counter CSVs and raw timing samples are included.
+Archive checksums and campaign names are recorded in `results/archive_provenance.json`. Track A's uploaded archive had B in its filename; its internal plan identifies it as A. Duplicate B uploads count as one run. Raw timing samples, exported counters and failures are retained; weights and profiler binaries are excluded.
 
 ## CPU validation and offline GPU compilation
 
@@ -69,9 +75,9 @@ python dram/tests/compile_gpu.py --cache local_validation --arch sm_75 --compile
 
 The unit suite has 25 tests. CPU integration executes saved C++-generated baseline/optimized synthetic IR against independent FP64 NumPy references, verifies caller inputs, and retains the quarantined single-fork ownership probe. CUDA compilation is **not GPU execution**. These commands do not require Torch or pretrained weights; Turbine/Transformers are required only for model regeneration/execution.
 
-## Build and exercise the actual C++ passes
+## Build and test the C++ passes
 
-The standalone MLIR19 driver rewrites tensor IR before IREE dispatch creation; the generated standard MLIR is consumed by IREE 3.13 (embedded compiler commit `89ece87b89852100c0a4ac3d515e14842d090967`, LLVM24). This is genuine compiled C++ pattern rewriting, not a source-level PyTorch substitution. It is not an upstream IREE plugin or a new GPU kernel.
+The standalone MLIR19 driver rewrites tensor IR before IREE dispatch creation; the generated standard MLIR is consumed by IREE 3.13 (embedded compiler commit `89ece87b89852100c0a4ac3d515e14842d090967`, LLVM24). The driver runs before IREE compilation and emits standard MLIR.
 
 ```bash
 # From repository root, in the environment above:
