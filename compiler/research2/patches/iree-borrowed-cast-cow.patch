@@ -1,0 +1,27 @@
+diff --git a/compiler/src/iree/compiler/Dialect/Stream/Transforms/MaterializeCopyOnWrite.cpp b/compiler/src/iree/compiler/Dialect/Stream/Transforms/MaterializeCopyOnWrite.cpp
+index cb730ae..38b1aea 100644
+--- a/compiler/src/iree/compiler/Dialect/Stream/Transforms/MaterializeCopyOnWrite.cpp
++++ b/compiler/src/iree/compiler/Dialect/Stream/Transforms/MaterializeCopyOnWrite.cpp
+@@ -39,6 +39,22 @@ namespace {
+ // --iree-stream-elide-async-copies pass will do a whole-program analysis and
+ // remove the copies we insert here when possible.
+ static bool isSafeToElideCOW(Value operand, IREE::Stream::ResourceType type) {
++  // Lifetime casts are storage aliases, not ownership boundaries. A cast may
++  // have one local user while its source is borrowed, shared, or a block arg.
++  // Inspect that provenance before deciding a destructive use needs no COW.
++  while (auto castOp = operand.getDefiningOp<IREE::Stream::AsyncCastOp>()) {
++    if (!operand.hasOneUse()) {
++      return false;
++    }
++    operand = castOp.getSource();
++    type = cast<IREE::Stream::ResourceType>(operand.getType());
++  }
++  if (auto importOp = operand.getDefiningOp<IREE::Stream::TensorImportOp>()) {
++    if (!importOp.getConsume()) {
++      return false;
++    }
++  }
++
+   // Can't do anything with block args without analysis - we don't know if the
+   // value they carry is the last user (move semantics).
+   if (isa<BlockArgument>(operand)) {

@@ -1,0 +1,17 @@
+[
+  [
+    0,
+    [
+      "/content/attention_env/bin/python",
+      "research/native_width_probe.py",
+      "--arch",
+      "sm_75",
+      "--seeds",
+      "10",
+      "--trials",
+      "101",
+      "--output",
+      "/content/attention_gpu/followup_probe/probe"
+    ]
+  ]
+]

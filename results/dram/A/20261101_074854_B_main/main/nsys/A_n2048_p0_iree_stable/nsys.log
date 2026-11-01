@@ -1,0 +1,8 @@
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-report-3069.qdstrm'
+[1/1] [0%                          ] trace.nsys-repProcessing events...
+[1/1] [0%                          ] trace.nsys-rep[1/1] [=17%                        ] trace.nsys-rep[1/1] [======35%                   ] trace.nsys-rep[1/1] [5%                          ] trace.nsys-rep[1/1] [==================75%       ] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep
+PROFILE_WINDOW_OK A_n2048_p0 iree_stable warm 3
+Generated:
+	/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/nsys/A_n2048_p0_iree_stable/trace.nsys-rep

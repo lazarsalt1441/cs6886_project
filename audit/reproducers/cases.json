@@ -1,0 +1,937 @@
+[
+  {
+    "name": "forward_64_stock",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        2
+      ]
+    ],
+    "kind": "forward",
+    "N": 64,
+    "U": 4,
+    "custom": false
+  },
+  {
+    "name": "forward_64_custom",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        2
+      ]
+    ],
+    "kind": "forward",
+    "N": 64,
+    "U": 4,
+    "custom": true
+  },
+  {
+    "name": "forward_4096_stock",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        2
+      ]
+    ],
+    "kind": "forward",
+    "N": 4096,
+    "U": 16,
+    "custom": false
+  },
+  {
+    "name": "forward_4096_custom",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        2
+      ]
+    ],
+    "kind": "forward",
+    "N": 4096,
+    "U": 16,
+    "custom": true
+  },
+  {
+    "name": "same_slice",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ]
+    ],
+    "kind": "same_slice"
+  },
+  {
+    "name": "overwrite",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ]
+    ],
+    "kind": "overwrite"
+  },
+  {
+    "name": "disjoint_chain",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ]
+    ],
+    "kind": "disjoint_chain"
+  },
+  {
+    "name": "winner_stock",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        16
+      ],
+      [
+        1
+      ]
+    ],
+    "kind": "winner",
+    "custom": false
+  },
+  {
+    "name": "winner_custom",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        16
+      ],
+      [
+        1
+      ]
+    ],
+    "kind": "winner",
+    "custom": true
+  },
+  {
+    "name": "chain_stock",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ],
+      [
+        3
+      ]
+    ],
+    "kind": "chain",
+    "custom": false
+  },
+  {
+    "name": "chain_custom",
+    "shapes": [
+      [
+        64
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ],
+      [
+        3
+      ]
+    ],
+    "kind": "chain",
+    "custom": true
+  },
+  {
+    "name": "projection_32_stock",
+    "shapes": [
+      [
+        1,
+        16
+      ],
+      [
+        32,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        8,
+        16
+      ]
+    ],
+    "kind": "projection",
+    "N": 32,
+    "R": 8,
+    "D": 16,
+    "custom": false
+  },
+  {
+    "name": "projection_32_custom",
+    "shapes": [
+      [
+        1,
+        16
+      ],
+      [
+        32,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        8,
+        16
+      ]
+    ],
+    "kind": "projection",
+    "N": 32,
+    "R": 8,
+    "D": 16,
+    "custom": true
+  },
+  {
+    "name": "projection_512_stock",
+    "shapes": [
+      [
+        1,
+        128
+      ],
+      [
+        512,
+        32
+      ],
+      [
+        32,
+        128
+      ],
+      [
+        32,
+        128
+      ]
+    ],
+    "kind": "projection",
+    "N": 512,
+    "R": 32,
+    "D": 128,
+    "custom": false
+  },
+  {
+    "name": "projection_512_custom",
+    "shapes": [
+      [
+        1,
+        128
+      ],
+      [
+        512,
+        32
+      ],
+      [
+        32,
+        128
+      ],
+      [
+        32,
+        128
+      ]
+    ],
+    "kind": "projection",
+    "N": 512,
+    "R": 32,
+    "D": 128,
+    "custom": true
+  },
+  {
+    "name": "partial_rope_stock",
+    "shapes": [
+      [
+        1,
+        16
+      ],
+      [
+        32,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        32,
+        4
+      ],
+      [
+        8,
+        16
+      ]
+    ],
+    "kind": "partial_rope",
+    "custom": false
+  },
+  {
+    "name": "partial_rope_custom",
+    "shapes": [
+      [
+        1,
+        16
+      ],
+      [
+        32,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        32,
+        4
+      ],
+      [
+        8,
+        16
+      ]
+    ],
+    "kind": "partial_rope",
+    "custom": true
+  },
+  {
+    "name": "gqa_2_4",
+    "shapes": [
+      [
+        8,
+        1,
+        16
+      ],
+      [
+        2,
+        32,
+        16
+      ]
+    ],
+    "kind": "gqa",
+    "H": 2,
+    "G": 4
+  },
+  {
+    "name": "gqa_1_4",
+    "shapes": [
+      [
+        4,
+        1,
+        16
+      ],
+      [
+        1,
+        32,
+        16
+      ]
+    ],
+    "kind": "gqa",
+    "H": 1,
+    "G": 4
+  },
+  {
+    "name": "gqa_2_1",
+    "shapes": [
+      [
+        2,
+        1,
+        16
+      ],
+      [
+        2,
+        32,
+        16
+      ]
+    ],
+    "kind": "gqa",
+    "H": 2,
+    "G": 1
+  },
+  {
+    "name": "native_64_64",
+    "shapes": [
+      [
+        1,
+        1,
+        64
+      ],
+      [
+        1,
+        32,
+        64
+      ],
+      [
+        1,
+        32,
+        64
+      ]
+    ],
+    "kind": "native",
+    "D": 64,
+    "V": 64
+  },
+  {
+    "name": "native_128_128",
+    "shapes": [
+      [
+        1,
+        1,
+        128
+      ],
+      [
+        1,
+        32,
+        128
+      ],
+      [
+        1,
+        32,
+        128
+      ]
+    ],
+    "kind": "native",
+    "D": 128,
+    "V": 128
+  },
+  {
+    "name": "native_256_128",
+    "shapes": [
+      [
+        1,
+        1,
+        256
+      ],
+      [
+        1,
+        32,
+        256
+      ],
+      [
+        1,
+        32,
+        128
+      ]
+    ],
+    "kind": "native",
+    "D": 256,
+    "V": 128
+  },
+  {
+    "name": "native_512_128",
+    "shapes": [
+      [
+        1,
+        1,
+        512
+      ],
+      [
+        1,
+        32,
+        512
+      ],
+      [
+        1,
+        32,
+        128
+      ]
+    ],
+    "kind": "native",
+    "D": 512,
+    "V": 128
+  },
+  {
+    "name": "native_128_512",
+    "shapes": [
+      [
+        1,
+        1,
+        128
+      ],
+      [
+        1,
+        32,
+        128
+      ],
+      [
+        1,
+        32,
+        512
+      ]
+    ],
+    "kind": "native",
+    "D": 128,
+    "V": 512
+  },
+  {
+    "name": "native_512_512",
+    "shapes": [
+      [
+        1,
+        1,
+        512
+      ],
+      [
+        1,
+        32,
+        512
+      ],
+      [
+        1,
+        32,
+        512
+      ]
+    ],
+    "kind": "native",
+    "D": 512,
+    "V": 512
+  },
+  {
+    "name": "gather_forks_512_stock",
+    "shapes": [
+      [
+        512,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 512,
+    "custom": false
+  },
+  {
+    "name": "gather_forks_512_custom",
+    "shapes": [
+      [
+        512,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 512,
+    "custom": true
+  },
+  {
+    "name": "gather_forks_8192_stock",
+    "shapes": [
+      [
+        8192,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 8192,
+    "custom": false
+  },
+  {
+    "name": "gather_forks_8192_custom",
+    "shapes": [
+      [
+        8192,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 8192,
+    "custom": true
+  },
+  {
+    "name": "gather_forks_512_actual",
+    "shapes": [
+      [
+        512,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 512,
+    "custom": true
+  },
+  {
+    "name": "gather_forks_8192_actual",
+    "shapes": [
+      [
+        8192,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "gather_forks",
+    "N": 8192,
+    "custom": true
+  },
+  {
+    "name": "winner_generic_stock",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        16
+      ],
+      []
+    ],
+    "kind": "winner_bool",
+    "custom": false
+  },
+  {
+    "name": "winner_actual",
+    "shapes": [
+      [
+        4096
+      ],
+      [
+        16
+      ],
+      [
+        16
+      ],
+      []
+    ],
+    "kind": "winner_bool",
+    "custom": true
+  },
+  {
+    "name": "coalesce_stock",
+    "shapes": [
+      [
+        512,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "coalesce",
+    "N": 512,
+    "custom": false
+  },
+  {
+    "name": "coalesce_actual",
+    "shapes": [
+      [
+        512,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        8
+      ]
+    ],
+    "kind": "coalesce",
+    "N": 512,
+    "custom": true
+  },
+  {
+    "shapes": [
+      [
+        1,
+        1,
+        16
+      ],
+      [
+        1,
+        32,
+        8
+      ],
+      [
+        1,
+        8,
+        16
+      ]
+    ],
+    "kind": "original_projection",
+    "rope": false,
+    "custom": false,
+    "name": "original_projection_stock"
+  },
+  {
+    "shapes": [
+      [
+        1,
+        1,
+        16
+      ],
+      [
+        1,
+        32,
+        8
+      ],
+      [
+        1,
+        8,
+        16
+      ]
+    ],
+    "kind": "original_projection",
+    "rope": false,
+    "custom": true,
+    "name": "original_projection_actual"
+  },
+  {
+    "shapes": [
+      [
+        1,
+        1,
+        20
+      ],
+      [
+        1,
+        32,
+        8
+      ],
+      [
+        1,
+        8,
+        16
+      ],
+      [
+        1,
+        32,
+        4
+      ]
+    ],
+    "kind": "original_projection",
+    "rope": true,
+    "custom": false,
+    "name": "original_rope_stock"
+  },
+  {
+    "shapes": [
+      [
+        1,
+        1,
+        20
+      ],
+      [
+        1,
+        32,
+        8
+      ],
+      [
+        1,
+        8,
+        16
+      ],
+      [
+        1,
+        32,
+        4
+      ]
+    ],
+    "kind": "original_projection",
+    "rope": true,
+    "custom": true,
+    "name": "original_rope_actual"
+  },
+  {
+    "shapes": [
+      [
+        1,
+        2,
+        8192,
+        4
+      ],
+      [
+        1,
+        2,
+        8192,
+        4
+      ],
+      [
+        1,
+        2,
+        1,
+        4
+      ],
+      [
+        1,
+        2,
+        1,
+        4
+      ],
+      []
+    ],
+    "kind": "concat",
+    "custom": false,
+    "name": "concat_stock"
+  },
+  {
+    "shapes": [
+      [
+        1,
+        2,
+        8192,
+        4
+      ],
+      [
+        1,
+        2,
+        8192,
+        4
+      ],
+      [
+        1,
+        2,
+        1,
+        4
+      ],
+      [
+        1,
+        2,
+        1,
+        4
+      ],
+      []
+    ],
+    "kind": "concat",
+    "custom": true,
+    "name": "concat_actual"
+  }
+]

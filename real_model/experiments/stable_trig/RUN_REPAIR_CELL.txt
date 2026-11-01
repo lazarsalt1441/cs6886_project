@@ -1,0 +1,53 @@
+from google.colab import files
+from pathlib import Path
+import zipfile, subprocess, os, shutil, tarfile, time, signal
+project = Path('/content/attention_real_llm')
+python = '/content/attention_real_env/bin/python'
+SET = 'B'  # You/friend: use the same A or B as the original notebook.
+uploaded = files.upload()  # Select Attention_Repair_Tests.zip
+zips = [Path(n) for n in uploaded if Path(n).suffix == '.zip']
+assert len(zips) == 1
+with zipfile.ZipFile(zips[0]) as z:
+    assert all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in z.namelist())
+    z.extractall(project / 'repair_extension')
+env = os.environ.copy()
+env['PATH'] = '/content/attention_real_env/bin:' + env['PATH']
+env['OMP_NUM_THREADS'] = env['OPENBLAS_NUM_THREADS'] = '1'
+log = project / ('repair_v2_' + SET + '.log')
+def save_snapshot():
+    archive = project / ('repair_results_v2_' + SET + '.tar.gz')
+    tmp = archive.with_suffix('.tmp')
+    with tarfile.open(tmp, 'w:gz') as t:
+        paths = list((project/('repair_results_v2_'+SET)).rglob('*')) + [log]
+        for path in paths:
+            if not path.is_file() or path.suffix == '.tmp': continue
+            try: t.add(path, arcname=path.relative_to(project), recursive=False)
+            except FileNotFoundError: pass
+    tmp.replace(archive)
+    backup = Path('/content/drive/MyDrive/Attention_Real_LLM_Results')
+    if backup.is_dir(): shutil.copy2(archive, backup/archive.name)
+    return archive
+proc = None
+try:
+    cmd = [python, '-u', str(project/'repair_extension/run_repair.py'),
+           '--project', str(project), '--set', SET, '--torch-compile', '--contexts', '2048', '4096']
+    with log.open('w') as f:
+        proc = subprocess.Popen(cmd, env=env, stdout=f, stderr=subprocess.STDOUT, start_new_session=True)
+        last_backup = time.monotonic()
+        while proc.poll() is None:
+            try: proc.wait(timeout=60)
+            except subprocess.TimeoutExpired: pass
+            print('\n'.join(log.read_text(errors='replace').splitlines()[-3:]), flush=True)
+            if time.monotonic()-last_backup >= 300:
+                save_snapshot(); last_backup=time.monotonic()
+                print('Partial backup saved', flush=True)
+    print('Exit:', proc.returncode)
+except BaseException:
+    if proc is not None and proc.poll() is None:
+        os.killpg(proc.pid, signal.SIGTERM)
+        try: proc.wait(timeout=10)
+        except subprocess.TimeoutExpired: os.killpg(proc.pid, signal.SIGKILL)
+    raise
+finally:
+    archive = save_snapshot()
+    files.download(str(archive))

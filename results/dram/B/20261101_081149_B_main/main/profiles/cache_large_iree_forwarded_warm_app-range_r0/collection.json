@@ -1,0 +1,33 @@
+{
+  "task": {
+    "case": {
+      "id": "cache_large",
+      "kind": "synthetic"
+    },
+    "backend": "iree_forwarded",
+    "rep": 0,
+    "cache": "warm",
+    "calls": 3,
+    "replay": "app-range",
+    "cache_dir": "/content/Attention_DRAM_Tests/cache",
+    "warmup": 5,
+    "result": "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/cache_large_iree_forwarded_warm_app-range_r0/worker.json",
+    "environment_sha256": "50d4c1b0c2bf882edbec7b0299e31c305cfcb51c7ad8aca0e0cd3622d1fb3cca",
+    "fixture_sha256": "d25a26790c7b3a841395ea5a53997fc86ee45c9b422b021b2b003c3e0ae46830",
+    "build_sha256": "c7b49d0040bae73c832a51a1031d3f1df2a736b3ae6c6d8652a9d6e94c2da505"
+  },
+  "valid": true,
+  "capture_reused": false,
+  "metrics": {
+    "read_bytes_per_call": 72053.33333333333,
+    "write_bytes_per_call": 64821.333333333336,
+    "total_bytes_per_call": 136874.66666666666,
+    "profiled_actions": 1,
+    "replay": "app-range",
+    "calls": 3,
+    "l2_requested_sectors": {},
+    "csv_format": "wide",
+    "scope": "range hardware DRAM counters"
+  },
+  "seconds": 6.937684061999789
+}

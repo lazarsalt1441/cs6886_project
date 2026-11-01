@@ -1,0 +1,7 @@
+{
+  "calls": 3,
+  "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+  "memcpy_table": "absent; no logical-copy total asserted",
+  "kernel_count_per_call": 6.0,
+  "valid": true
+}

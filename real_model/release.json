@@ -1,0 +1,49 @@
+{
+  "release": "real-llm-v1",
+  "git_head": "ebb537189510eca8bc4819a326091f902642b03a",
+  "gpu_execution_tested": false,
+  "sets": {
+    "A": {
+      "markers": {
+        "attention.concat_commit_factored": 0,
+        "attention.commit_factored": 0,
+        "attention.cache_read_forwarded": 0,
+        "attention.cache_updates_coalesced": 0
+      },
+      "baseline_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+      "optimized_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+      "identical_ir": true,
+      "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "set": "A",
+      "tiny": false,
+      "dynamic": true,
+      "symbolic_min_range_proofs": 60,
+      "attention_implementation": "eager",
+      "layers": 30,
+      "scope": "Full pretrained model",
+      "any_rewrite": false
+    },
+    "B": {
+      "markers": {
+        "attention.concat_commit_factored": 60,
+        "attention.commit_factored": 0,
+        "attention.cache_read_forwarded": 0,
+        "attention.cache_updates_coalesced": 0
+      },
+      "baseline_sha256": "51e60ca57c659bd8a3569e32ace312752b4029010ac5bf488442f51229d4b3d0",
+      "optimized_sha256": "4dca53098776935a8ec19d996b79c89088723f0c2ea1201c18494d9fae905dc9",
+      "identical_ir": false,
+      "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "set": "B",
+      "tiny": false,
+      "dynamic": true,
+      "symbolic_min_range_proofs": 60,
+      "attention_implementation": "eager",
+      "layers": 30,
+      "scope": "Full pretrained model",
+      "any_rewrite": true
+    }
+  }
+}

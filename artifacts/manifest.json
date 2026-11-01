@@ -1,0 +1,58 @@
+{
+  "historical_evidence.tar.gz": {
+    "sha256": "4b74249475a2a61090040494ea85cbc6a20d5381887cbd189418474a07d96451",
+    "parts": [
+      "historical_evidence.tar.gz.part000",
+      "historical_evidence.tar.gz.part001",
+      "historical_evidence.tar.gz.part002",
+      "historical_evidence.tar.gz.part003",
+      "historical_evidence.tar.gz.part004",
+      "historical_evidence.tar.gz.part005",
+      "historical_evidence.tar.gz.part006",
+      "historical_evidence.tar.gz.part007",
+      "historical_evidence.tar.gz.part008",
+      "historical_evidence.tar.gz.part009",
+      "historical_evidence.tar.gz.part010",
+      "historical_evidence.tar.gz.part011",
+      "historical_evidence.tar.gz.part012",
+      "historical_evidence.tar.gz.part013",
+      "historical_evidence.tar.gz.part014",
+      "historical_evidence.tar.gz.part015",
+      "historical_evidence.tar.gz.part016",
+      "historical_evidence.tar.gz.part017"
+    ],
+    "part_sha256": {
+      "historical_evidence.tar.gz.part000": "d0a725857417e1e6188a290ec69cf49b8e87ba89978db645eca2815452b4fe17",
+      "historical_evidence.tar.gz.part001": "bc06e1d3fd7841279c614f23d9232765b1934b2775055adaf327002b4396527f",
+      "historical_evidence.tar.gz.part002": "e2ff350e7c3657e664735d27717d64c907e97edbe080365019a7d0308c169560",
+      "historical_evidence.tar.gz.part003": "5256ba413ab3a3ae71190f4a2cab4341316fe2ed4e7c1aa18ea23abd5f473def",
+      "historical_evidence.tar.gz.part004": "ebe5fdc3205ca6b80798f340c26121d9b6fc4e749463e2a68bd1898a02dc6362",
+      "historical_evidence.tar.gz.part005": "22dc0a3ed2e182fd8827bdab593b0c6f9e66eac71acb28147b65aee586a8d3a5",
+      "historical_evidence.tar.gz.part006": "b1a7cf46d3198d97fe86d403f9be32b0dffb0b92b403ebed75c26fd0a5572b75",
+      "historical_evidence.tar.gz.part007": "82b96046e31c4d2e73f6c58a8f9c4005c46730c72c54c180ee3846bf707d4071",
+      "historical_evidence.tar.gz.part008": "07358e6e50ee4915a9da889ac10ab36450c5178e3bd9b3a263d3cf2a57566d4e",
+      "historical_evidence.tar.gz.part009": "0cd6a2cb4555952116c742050063571746a38d533fb6508ee04795b93b3c739a",
+      "historical_evidence.tar.gz.part010": "21c5b264f7834b477de4ba814d0bfe74ebe518705638f1f2fadfada6b264b5b2",
+      "historical_evidence.tar.gz.part011": "b3289f4f14116b5471208142a6f5bc9795f3a68400316f7c7151f4b064a25b11",
+      "historical_evidence.tar.gz.part012": "66a010858ef0849b5dbc8b77cfd10cab7a29ef4e91877be1f8123be60f411f29",
+      "historical_evidence.tar.gz.part013": "58b31ada81193bd3e10f1da9fe0a565a49a1c5ebfc8ecae1c0bf4a8898627d42",
+      "historical_evidence.tar.gz.part014": "6a1ce8d5bb409115549cb37e6972ade2370babaa7aa7d9562218cf11d91531ff",
+      "historical_evidence.tar.gz.part015": "aad0e7d9e3afae5f8238537c0b8ee0132c7ee008a56592ae0919d96a95fa1a83",
+      "historical_evidence.tar.gz.part016": "69e444d7efd496252e8dc099cb46d61c21506af6bfb334302f94b34a7a5836ad",
+      "historical_evidence.tar.gz.part017": "a92b2cb6d8a2fa144d7df335cb0656391bf41d6acb4b643c677d86954b171c41"
+    }
+  },
+  "large_gpu_evidence.tar.gz": {
+    "sha256": "86df025704fd308aa1a1fdcb220bc2a85307a7ae74f644faf2e3c482c1f9b564",
+    "parts": [
+      "large_gpu_evidence.tar.gz.part000",
+      "large_gpu_evidence.tar.gz.part001",
+      "large_gpu_evidence.tar.gz.part002"
+    ],
+    "part_sha256": {
+      "large_gpu_evidence.tar.gz.part000": "10d06b88abe3e31a12b48bb1d35cc549a82993b121766d59b277bf61b2777374",
+      "large_gpu_evidence.tar.gz.part001": "85b015bb81821e26fed00a68dcfd70192b4146275c2b753b9c1128921dd784ab",
+      "large_gpu_evidence.tar.gz.part002": "d9efe808d6c776e08fd579da6e556c8aaab5bca0ad5ad53abefb291755321efd"
+    }
+  }
+}

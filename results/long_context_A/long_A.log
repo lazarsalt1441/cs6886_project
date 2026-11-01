@@ -1,0 +1,11 @@
+VALIDATION 2048 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True} opt_base_equal None
+VALIDATION 2048 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False} opt_base_equal None
+VALIDATION 2048 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True} opt_base_equal None
+W1031 20:09:31.170000 13992 torch/_inductor/utils.py:1731] [0/1] Not enough SMs to use max_autotune_gemm mode
+VALIDATION 3072 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True} opt_base_equal None
+VALIDATION 3072 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False} opt_base_equal None
+VALIDATION 3072 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True} opt_base_equal None
+VALIDATION 4096 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False} opt_base_equal None
+VALIDATION 4096 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False} opt_base_equal None
+VALIDATION 4096 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True} opt_base_equal None
+FINISHED /content/attention_real_llm/long_results_A

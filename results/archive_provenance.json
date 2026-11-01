@@ -1,0 +1,79 @@
+[
+  {
+    "campaign": "initial_gpu",
+    "original_archive": "gpu_results_colab_t4_001.tar.gz",
+    "sha256": "e5cb83ae19bf6edb94da43cba4e1a83d2820bf6a7cbffe17699b6852dfa2daa6",
+    "bytes": 1689923,
+    "retained_text_files": 166
+  },
+  {
+    "campaign": "native_width_probe",
+    "original_archive": "gpu_followup_probe.tar.gz",
+    "sha256": "52a58041794fb45116a2d2aa23395fc5db09b8e737d60c412f8b745af5a08c9e",
+    "bytes": 76791,
+    "retained_text_files": 8
+  },
+  {
+    "campaign": "dram/A",
+    "original_archive": "attention_dram_20261101_074854_B_main (2).tar.gz",
+    "sha256": "ebeab865261e6dd9bc39893c0ad341d39addbea9ed1a354d11f980460cbb19f0",
+    "bytes": 19400381,
+    "retained_text_files": 547
+  },
+  {
+    "campaign": "dram/B",
+    "original_archive": "attention_dram_20261101_081149_B_main.tar.gz",
+    "sha256": "c1e4f0157f5fcafb4a5cff36d1b4de421f51ea5a56d8d5ad9b4c63a654c61ae6",
+    "bytes": 25657463,
+    "retained_text_files": 636
+  },
+  {
+    "campaign": "gpu_followup_benchmarks",
+    "original_archive": "gpu_followup_benchmarks.tar.gz",
+    "sha256": "88a6432af950aa33c9b707c907591480ae15d82c1ca74e78c03340e550ce7cf5",
+    "bytes": 985722,
+    "retained_text_files": 87
+  },
+  {
+    "campaign": "long_context_A",
+    "original_archive": "long_context_A.tar.gz",
+    "sha256": "f671e122fede8d2e59e00da450a37f6ae3d2fef37e2db9d986ff400b2252a1cc",
+    "bytes": 10855722,
+    "retained_text_files": 6
+  },
+  {
+    "campaign": "long_context_B",
+    "original_archive": "long_context_B.tar.gz",
+    "sha256": "17bd6d4c42097e807103023423fa16f14116501c08d0888330531720dcf23653",
+    "bytes": 13102912,
+    "retained_text_files": 6
+  },
+  {
+    "campaign": "real_llm_set_A_20261031_193710",
+    "original_archive": "real_llm_set_A_20261031_193710.tar.gz",
+    "sha256": "fcec35fed1f87ab9c27f729e43ad677bb0c5b28f59644df98ca05b755df2f625",
+    "bytes": 608611,
+    "retained_text_files": 18
+  },
+  {
+    "campaign": "real_llm_set_B_20261031_193614",
+    "original_archive": "real_llm_set_B_20261031_193614.tar.gz",
+    "sha256": "8f65cb922ad6919c1de9a774fca319e75909a10747e9da4072aad091a381f412",
+    "bytes": 1103861,
+    "retained_text_files": 20
+  },
+  {
+    "campaign": "repair_results_A",
+    "original_archive": "repair_results_A.tar.gz",
+    "sha256": "1ec3e0f60d54721ea11a542a98c52c1686b418ecca8e4ce3319c06a32f494d99",
+    "bytes": 13336848,
+    "retained_text_files": 10
+  },
+  {
+    "campaign": "repair_results_B",
+    "original_archive": "repair_results_B.tar.gz",
+    "sha256": "b5e895f2aa2e13916e672bc46387b3002d8307baac0bda709aa2aba5b7081c7e",
+    "bytes": 21033374,
+    "retained_text_files": 16
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "calls": 3,
+  "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+  "memcpy_by_kind": [
+    {
+      "copy_kind": 8,
+      "count": 180,
+      "logical_bytes_per_call": 138240.0
+    }
+  ],
+  "logical_memcpy_bytes_per_call": 138240.0,
+  "kernel_count_per_call": 1100.0,
+  "valid": true
+}

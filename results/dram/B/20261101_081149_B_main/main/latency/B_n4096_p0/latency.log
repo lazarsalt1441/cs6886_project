@@ -1,0 +1,12 @@
+LATENCY_VALIDATE B_n4096_p0 iree_stable
+LATENCY_VALIDATE B_n4096_p0 iree_commit
+LATENCY_VALIDATE B_n4096_p0 torch_compile
+W1101 08:36:18.903000 10168 torch/_inductor/utils.py:1731] [0/0] Not enough SMs to use max_autotune_gemm mode
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+LATENCY_DONE B_n4096_p0 {'iree_stable': 82.37, 'iree_commit': 77.858, 'torch_compile': 28.553}

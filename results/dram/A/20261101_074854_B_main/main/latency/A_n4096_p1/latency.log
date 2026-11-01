@@ -1,0 +1,3 @@
+LATENCY_VALIDATE A_n4096_p1 iree_stable
+LATENCY_VALIDATE A_n4096_p1 torch_compile
+LATENCY_DONE A_n4096_p1 {'iree_stable': 44.807, 'torch_compile': 14.896}

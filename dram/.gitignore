@@ -1,0 +1,7 @@
+cache/
+runs/
+results*/
+__pycache__/
+*.pyc
+*.tar.gz
+assets/model/model/

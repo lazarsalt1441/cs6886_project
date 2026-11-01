@@ -1,0 +1,8 @@
+model/
+compiler/toolchain/
+compiler/build/
+*.irpa
+*.vmfb
+*.pt2
+__pycache__/
+*.irpa.*

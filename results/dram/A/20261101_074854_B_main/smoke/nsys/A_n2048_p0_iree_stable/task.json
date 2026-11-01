@@ -1,0 +1,15 @@
+{
+  "case": {
+    "id": "A_n2048_p0",
+    "kind": "model",
+    "set": "A",
+    "context": 2048,
+    "prompt": 0
+  },
+  "backend": "iree_stable",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "cache": "warm",
+  "calls": 3,
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/smoke/nsys/A_n2048_p0_iree_stable/worker.json"
+}

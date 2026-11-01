@@ -1,0 +1,11 @@
+test_calibration_count (test_gpu_selection.SelectionTest.test_calibration_count) ... ok
+test_choose_gain (test_gpu_selection.SelectionTest.test_choose_gain) ... ok
+test_invalid_latency (test_gpu_selection.SelectionTest.test_invalid_latency) ... ok
+test_missing_base (test_gpu_selection.SelectionTest.test_missing_base) ... ok
+test_noise_margin (test_gpu_selection.SelectionTest.test_noise_margin) ... ok
+test_reject_regression (test_gpu_selection.SelectionTest.test_reject_regression) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK

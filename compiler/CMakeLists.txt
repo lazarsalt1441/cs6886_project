@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(GQAHeadReuse LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(MLIR REQUIRED CONFIG)
+include_directories(SYSTEM ${MLIR_INCLUDE_DIRS} ${LLVM_INCLUDE_DIRS})
+add_definitions(${LLVM_DEFINITIONS})
+add_executable(gqa-opt src/GQAHeadReuse.cpp src/StableTrig.cpp src/AttentionProjection.cpp src/OnlineAttentionGuard.cpp src/CacheReadForwarding.cpp src/GatherIndexProjection.cpp src/CacheGatherForwarding.cpp src/CacheCommitFactoring.cpp src/CacheUpdateCoalescing.cpp src/CacheSnapshotProtection.cpp)
+target_link_libraries(gqa-opt PRIVATE MLIR LLVM)

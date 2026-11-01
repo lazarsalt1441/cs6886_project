@@ -1,0 +1,211 @@
+{
+  "case": {
+    "id": "cache_large",
+    "kind": "synthetic"
+  },
+  "completed": true,
+  "valid": true,
+  "scope": "Resident outputs; synchronized host call; setup and compilation excluded",
+  "telemetry": [
+    {
+      "repetition": 0,
+      "before": "2026/11/01 08:06:29.173, Tesla T4, P0, 585 MHz, 5000 MHz, 41, 26.62 W",
+      "after": "2026/11/01 08:06:29.264, Tesla T4, P0, 585 MHz, 5000 MHz, 41, 27.51 W"
+    }
+  ],
+  "rows": [
+    {
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 1.26666,
+      "p95_ms": 2.0726425,
+      "samples_ms": [
+        1.26666,
+        2.116547,
+        1.980329,
+        1.19548,
+        2.028738,
+        2.014341,
+        0.974129,
+        1.108117,
+        0.972599,
+        2.006881,
+        1.182708
+      ],
+      "valid": true
+    },
+    {
+      "backend": "iree_forwarded",
+      "repetition": 0,
+      "median_ms": 1.252768,
+      "p95_ms": 1.5199915000000002,
+      "samples_ms": [
+        1.754242,
+        1.285741,
+        0.206388,
+        0.220691,
+        1.252768,
+        0.214707,
+        1.260989,
+        1.267627,
+        1.269995,
+        0.220755,
+        0.214286
+      ],
+      "valid": true
+    },
+    {
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 1.203235,
+      "p95_ms": 1.5478475,
+      "samples_ms": [
+        0.689204,
+        0.70517,
+        1.370761,
+        1.18315,
+        0.648874,
+        1.203235,
+        1.423313,
+        1.672382,
+        0.674222,
+        1.423127,
+        1.206035
+      ],
+      "valid": true
+    }
+  ],
+  "validation": {
+    "iree_stable": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 1.780415365207344e-07
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.784597049782406e-08
+            }
+          ],
+          "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+        }
+      },
+      "setup_and_first_validation_s": 0.39637603399978616,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 1.780415365207344e-07
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.784597049782406e-08
+          }
+        ],
+        "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+      },
+      "input_unchanged": true,
+      "valid": true
+    },
+    "iree_forwarded": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 1.780415365207344e-07
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.784597049782406e-08
+            }
+          ],
+          "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+        }
+      },
+      "setup_and_first_validation_s": 0.17151802899979884,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 1.780415365207344e-07
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.784597049782406e-08
+          }
+        ],
+        "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+      },
+      "input_unchanged": true,
+      "valid": true
+    },
+    "torch_compile": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.121279404527115e-08
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 7.167107773931036e-08
+            }
+          ],
+          "sha256": "901f95e2af18096f65afb2bed94ef93b6af37a0e3245edeb8c662dedd98284aa"
+        }
+      },
+      "setup_and_first_validation_s": 12.71324675599999,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.121279404527115e-08
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 7.167107773931036e-08
+          }
+        ],
+        "sha256": "901f95e2af18096f65afb2bed94ef93b6af37a0e3245edeb8c662dedd98284aa"
+      },
+      "input_unchanged": true,
+      "valid": true
+    }
+  },
+  "errors": {},
+  "missing_backends": []
+}

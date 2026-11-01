@@ -1,0 +1,7 @@
+==WARNING== Note: Running with uncontrolled GPU caches. Profiling results may be inconsistent.
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 23633 (/usr/bin/python3.13)
+==PROF== Profiling "range" - 0: Application replay pass 1
+PROFILE_WINDOW_OK cache_dense iree_stable warm 3
+==PROF== Disconnected from process 23633
+==PROF== Report: /content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/cache_dense_iree_stable_warm_app-range_r1/profile.ncu-rep

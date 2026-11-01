@@ -1,0 +1,24 @@
+PREPARE cache_large
+PREPARE B_n2048_p0
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:01,  4.00it/s]Fetching 6 files:  50%|█████     | 3/6 [00:02<00:02,  1.09it/s]Fetching 6 files: 100%|██████████| 6/6 [00:02<00:00,  2.34it/s]
+PINNED CHECKPOINT VERIFIED 12fd25f77366fa6b3b4b768ec3050bf629380bac
+BUILD cache_large iree_stable
+BUILD cache_large iree_forwarded
+BUILD B_n2048_p0 iree_stable
+BUILD B_n2048_p0 iree_commit
+LATENCY_SAVED cache_large
+LATENCY_SAVED B_n2048_p0
+PROFILE 1/7 cache_large iree_stable app-range valid=True recent_rate_remaining_min=0.6
+PROFILE 2/7 cache_large iree_forwarded app-range valid=True recent_rate_remaining_min=0.5
+PROFILE 3/7 stream_control torch_stream app-range valid=True recent_rate_remaining_min=0.4
+PROFILE 4/7 cache_large torch_compile app-range valid=True recent_rate_remaining_min=0.3
+PROFILE 5/7 B_n2048_p0 iree_commit app-range valid=True recent_rate_remaining_min=0.2
+PROFILE 6/7 B_n2048_p0 iree_stable app-range valid=True recent_rate_remaining_min=0.1
+PROFILE 7/7 B_n2048_p0 torch_compile app-range valid=True recent_rate_remaining_min=0.0
+NSYS cache_large iree_stable
+NSYS cache_large iree_forwarded
+NSYS cache_large torch_compile
+NSYS B_n2048_p0 iree_stable
+NSYS B_n2048_p0 iree_commit
+NSYS B_n2048_p0 torch_compile
+FINISHED /content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke

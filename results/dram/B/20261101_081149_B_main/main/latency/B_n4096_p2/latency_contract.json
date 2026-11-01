@@ -1,0 +1,317 @@
+{
+  "case": {
+    "id": "B_n4096_p2",
+    "kind": "model",
+    "set": "B",
+    "context": 4096,
+    "prompt": 2
+  },
+  "fixture": "2a9f521f406c28eb42cae84fba75f4954c32171e82e5bf1685649c385377c922",
+  "builds": {
+    "cache_small_iree_stable": {
+      "contract": {
+        "source_sha256": "2be99ab728e5c97e46f582ebb467ba34b00a56412cb347c5dcaf335b3a4cefeb",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_small/baseline.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_small_iree_stable/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_small_iree_stable/module.vmfb"
+      ],
+      "seconds": 1.0460619909999878,
+      "vmfb_sha256": "7c1b4739270dd799c84fc7ff8c47929fb789d153311040427fad5f3a5c62aa9c"
+    },
+    "cache_small_iree_forwarded": {
+      "contract": {
+        "source_sha256": "1cadd09b99974d8b57724f2d0f352e5deef11ccc6c9cbb63dc3a67927ebf5cfa",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_small/forwarded.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_small_iree_forwarded/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_small_iree_forwarded/module.vmfb"
+      ],
+      "seconds": 1.6281424570001946,
+      "vmfb_sha256": "640737b856e6774579231fac5bc9b57985942c4c5320d1abd8e1c22436e374d7"
+    },
+    "cache_large_iree_stable": {
+      "contract": {
+        "source_sha256": "4c099c7863b4cd6755179651bc383965e2c836bbf3337a6472b7a32b4ce59ac7",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_large/baseline.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_large_iree_stable/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_large_iree_stable/module.vmfb"
+      ],
+      "seconds": 0.9922739500000262,
+      "vmfb_sha256": "d552b3e7eb5a8153405f6d4c376efd0b7a8fa1d6463b199e5b983529c935da16"
+    },
+    "cache_large_iree_forwarded": {
+      "contract": {
+        "source_sha256": "06db58a41fa4a5bfa4bf80551e6771b2162adedc4c9bc47752983bb8ee8469c4",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_large/forwarded.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_large_iree_forwarded/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_large_iree_forwarded/module.vmfb"
+      ],
+      "seconds": 1.6326086349999969,
+      "vmfb_sha256": "76a9fc2022d9c026a955b820a795ccbfc300d83faf9d3c3f31fcd7646a3bde99"
+    },
+    "cache_dense_iree_stable": {
+      "contract": {
+        "source_sha256": "78891e45d311db8bddd488415fa408aeb1303a899cc12dc49ace6389f1411896",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_dense/baseline.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_dense_iree_stable/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_dense_iree_stable/module.vmfb"
+      ],
+      "seconds": 1.503001816999813,
+      "vmfb_sha256": "2aafd62ef96c75c2fc61897419bdccfe463d6c15e1b9589cb4c5d628930a26cb"
+    },
+    "cache_dense_iree_forwarded": {
+      "contract": {
+        "source_sha256": "bfbfb4419c761a510e66b0a31fe9f5157900956d0ce1914752a3fb1609bb5f8c",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/synthetic/cache_dense/forwarded.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_dense_iree_forwarded/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/cache_dense_iree_forwarded/module.vmfb"
+      ],
+      "seconds": 1.1114874919999238,
+      "vmfb_sha256": "7f282faaee0d3a6c54c59d3d3146d059d214575e250ef5bc2038943150826195"
+    },
+    "B_iree_stable": {
+      "contract": {
+        "source_sha256": "07a9c231cb0d3e4347fbee034a05f7820160506d71bea197e66be9d4cc9b8f50",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/model/prepared/B_stable.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/B_iree_stable/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/B_iree_stable/module.vmfb"
+      ],
+      "seconds": 14.994322651000061,
+      "vmfb_sha256": "76cf03b43f23538050081c0aa3ce24caa6b81743a55c39b1159aaacf50b35426"
+    },
+    "B_iree_commit": {
+      "contract": {
+        "source_sha256": "a8c325f96c4f638a4026c9ff925133a69ea6c749797b919d25d0cac2699c8ad3",
+        "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+        "flags": [
+          "--iree-opt-level=O3",
+          "--iree-opt-generalize-matmul",
+          "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+          "--iree-input-demote-f64-to-f32=false",
+          "--iree-opt-numeric-precision-reduction=false",
+          "--iree-hal-target-backends=cuda",
+          "--iree-cuda-target=sm_75",
+          "--iree-dispatch-creation-enable-split-reduction",
+          "--iree-dispatch-creation-split-argmax-threshold=1024",
+          "--iree-dispatch-creation-split-argmax-tile-size=256"
+        ]
+      },
+      "command": [
+        "iree-compile",
+        "/content/Attention_DRAM_Tests/assets/model/prepared/B_stable_commit.mlir",
+        "--iree-opt-level=O3",
+        "--iree-opt-generalize-matmul",
+        "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+        "--iree-input-demote-f64-to-f32=false",
+        "--iree-opt-numeric-precision-reduction=false",
+        "--iree-hal-target-backends=cuda",
+        "--iree-cuda-target=sm_75",
+        "--iree-dispatch-creation-enable-split-reduction",
+        "--iree-dispatch-creation-split-argmax-threshold=1024",
+        "--iree-dispatch-creation-split-argmax-tile-size=256",
+        "--iree-hal-dump-executable-files-to=/content/Attention_DRAM_Tests/cache/compiled/cuda/B_iree_commit/codegen",
+        "-o",
+        "/content/Attention_DRAM_Tests/cache/compiled/cuda/B_iree_commit/module.vmfb"
+      ],
+      "seconds": 15.41561273100001,
+      "vmfb_sha256": "9b4ce40f00b8eaad68bbf8615c91b11ceb1c15a5d4288b0d78e95cd33b803942"
+    }
+  },
+  "environment": {
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "gpu_identity": "GPU-2d2b0603-b4ee-f620-5a47-37e5b9a2f7c3, 580.82.07\n",
+    "iree": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+    "assets_manifest_sha256": "95b91153158cd0779aef6358e30021409dc9a95ac9b5b306ece7b25aec3032b5"
+  },
+  "plan": "main",
+  "extra_torch": false
+}

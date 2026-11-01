@@ -1,0 +1,15 @@
+COMPILING iree_baseline
+COMPILING iree_optimized
+COMPILING iree_stable
+COMPILING iree_stable_commit
+COMPILING iree_stable_commit_aggressive
+VALIDATION 2048 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 2048 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 2048 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 3072 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 3072 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 3072 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 4096 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 4096 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+VALIDATION 4096 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True, 'iree_stable': True, 'iree_stable_commit': True, 'iree_stable_commit_aggressive': True} opt_base_equal True
+FINISHED /content/attention_real_llm/repair_results_B

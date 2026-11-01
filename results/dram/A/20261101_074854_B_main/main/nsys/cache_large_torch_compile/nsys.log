@@ -1,0 +1,8 @@
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-report-f790.qdstrm'
+[1/1] [0%                          ] trace.nsys-repProcessing events...
+[1/1] [0%                          ] trace.nsys-rep[1/1] [8%                          ] trace.nsys-rep[1/1] [=16%                        ] trace.nsys-rep[1/1] [9%                          ] trace.nsys-rep[1/1] [======33%                   ] trace.nsys-rep[1/1] [============57%             ] trace.nsys-rep[1/1] [====================83%     ] trace.nsys-rep[1/1] [====================84%     ] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep
+PROFILE_WINDOW_OK cache_large torch_compile warm 3
+Generated:
+	/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/nsys/cache_large_torch_compile/trace.nsys-rep

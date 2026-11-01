@@ -1,0 +1,16 @@
+[
+  "/usr/local/bin/nsys",
+  "profile",
+  "--trace=cuda,nvtx",
+  "--sample=none",
+  "--cpuctxsw=none",
+  "--capture-range=nvtx",
+  "--nvtx-capture=ATTENTION_MEASURED_STEP",
+  "--capture-range-end=stop",
+  "--force-overwrite=true",
+  "--output=/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke/nsys/cache_large_iree_stable/trace",
+  "/usr/bin/python3",
+  "/content/Attention_DRAM_Tests/worker.py",
+  "--task",
+  "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke/nsys/cache_large_iree_stable/task.json"
+]

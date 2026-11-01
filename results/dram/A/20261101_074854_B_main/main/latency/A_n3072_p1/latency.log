@@ -1,0 +1,3 @@
+LATENCY_VALIDATE A_n3072_p1 iree_stable
+LATENCY_VALIDATE A_n3072_p1 torch_compile
+LATENCY_DONE A_n3072_p1 {'iree_stable': 32.921, 'torch_compile': 13.958}

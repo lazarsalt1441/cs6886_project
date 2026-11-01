@@ -1,0 +1,7 @@
+{
+  "id": "B_n2048_p1",
+  "kind": "model",
+  "set": "B",
+  "context": 2048,
+  "prompt": 1
+}

@@ -1,0 +1,10 @@
+attention p4096_n128_h2_g4_d32_m1_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p4096_n128_h1_g8_d32_m1_f4_o0_t1 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p8192_n256_h2_g2_d64_m1_f8_o8190_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p65536_n128_h2_g4_d32_m1_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p1024_n512_h2_g4_d32_m1_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p4096_n128_h4_g1_d64_m16_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p1009_n65_h3_g2_d24_m3_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': False}
+attention p4096_n128_h2_g4_d32_m1_f1_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+attention p256_n256_h2_g2_d32_m1_f2_o37_t2 {'strong': True, 'aggressive': True, 'lifted-aggressive': True, 'lifted-normalized': True, 'forwarded': True, 'patch-forwarded': True}
+Completed 9

@@ -1,0 +1,4 @@
+LATENCY_VALIDATE A_n4096_p0 iree_stable
+LATENCY_VALIDATE A_n4096_p0 torch_compile
+W1101 08:19:58.972000 19155 torch/_inductor/utils.py:1731] [0/0] Not enough SMs to use max_autotune_gemm mode
+LATENCY_DONE A_n4096_p0 {'iree_stable': 44.584, 'torch_compile': 14.673}

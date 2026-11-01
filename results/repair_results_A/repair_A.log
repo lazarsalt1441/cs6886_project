@@ -1,0 +1,12 @@
+COMPILING iree_baseline
+COMPILING iree_stable
+VALIDATION 2048 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_stable': True} opt_base_equal None
+VALIDATION 2048 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_stable': True} opt_base_equal None
+VALIDATION 2048 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_stable': True} opt_base_equal None
+VALIDATION 3072 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_stable': True} opt_base_equal None
+VALIDATION 3072 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_stable': True} opt_base_equal None
+VALIDATION 3072 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_stable': True} opt_base_equal None
+VALIDATION 4096 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_stable': True} opt_base_equal None
+VALIDATION 4096 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_stable': True} opt_base_equal None
+VALIDATION 4096 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_stable': True} opt_base_equal None
+FINISHED /content/attention_real_llm/repair_results_A

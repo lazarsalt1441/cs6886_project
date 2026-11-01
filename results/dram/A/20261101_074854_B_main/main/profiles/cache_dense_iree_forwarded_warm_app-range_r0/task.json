@@ -1,0 +1,17 @@
+{
+  "case": {
+    "id": "cache_dense",
+    "kind": "synthetic"
+  },
+  "backend": "iree_forwarded",
+  "rep": 0,
+  "cache": "warm",
+  "calls": 3,
+  "replay": "app-range",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/cache_dense_iree_forwarded_warm_app-range_r0/worker.json",
+  "environment_sha256": "0dac62c72ed11d7d892657feab4899d3bc386c8fe0ac03f479b136383b0c09eb",
+  "fixture_sha256": "1293360de33496465cc71ba86619831ae12fbd6b9822387185addaf226c42946",
+  "build_sha256": "23023a6dcae6940a28fcbd0f9de46f5ab831b5f6c986dbfb597db8f64cd5f86c"
+}

@@ -1,0 +1,5 @@
+// CHECK: linalg.generic
+// CHECK: arith.select
+// CHECK: tensor<1x2x1x4xf32>
+// CHECK: tensor.concat
+// CHECK-SAME: attention.concat_commit_factored

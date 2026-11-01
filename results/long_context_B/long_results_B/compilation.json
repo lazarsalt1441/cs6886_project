@@ -1,0 +1,10 @@
+{
+  "baseline": {
+    "reused": true,
+    "path": "/content/attention_real_llm/results_B/iree_baseline/module.vmfb"
+  },
+  "optimized": {
+    "reused": true,
+    "path": "/content/attention_real_llm/results_B/iree_optimized/module.vmfb"
+  }
+}

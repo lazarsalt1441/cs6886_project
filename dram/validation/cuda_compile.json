@@ -1,0 +1,86 @@
+[
+  {
+    "case": {
+      "kind": "model",
+      "set": "A",
+      "id": "A_n2048_p0"
+    },
+    "backend": "iree_stable",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "model",
+      "set": "B",
+      "id": "B_n2048_p0"
+    },
+    "backend": "iree_stable",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "model",
+      "set": "B",
+      "id": "B_n2048_p0"
+    },
+    "backend": "iree_commit",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_small"
+    },
+    "backend": "iree_stable",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_small"
+    },
+    "backend": "iree_forwarded",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_large"
+    },
+    "backend": "iree_stable",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_large"
+    },
+    "backend": "iree_forwarded",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_dense"
+    },
+    "backend": "iree_stable",
+    "compiled": true,
+    "gpu_execution_tested": false
+  },
+  {
+    "case": {
+      "kind": "synthetic",
+      "id": "cache_dense"
+    },
+    "backend": "iree_forwarded",
+    "compiled": true,
+    "gpu_execution_tested": false
+  }
+]

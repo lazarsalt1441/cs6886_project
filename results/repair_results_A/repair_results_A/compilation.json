@@ -1,0 +1,24 @@
+{
+  "iree_baseline": {
+    "seconds": 7.869351629000448,
+    "source": "/content/attention_real_llm/prepared/A/baseline.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  },
+  "iree_stable": {
+    "seconds": 7.622012335000363,
+    "source": "/content/attention_real_llm/repair_extension/prepared/A_stable.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "task": {
+    "case": {
+      "id": "A_n4096_p0",
+      "kind": "model",
+      "set": "A",
+      "context": 4096,
+      "prompt": 0
+    },
+    "backend": "torch_compile",
+    "rep": 1,
+    "cache": "warm",
+    "calls": 3,
+    "replay": "app-range",
+    "cache_dir": "/content/Attention_DRAM_Tests/cache",
+    "warmup": 5,
+    "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/A_n4096_p0_torch_compile_warm_app-range_r1/worker.json",
+    "environment_sha256": "0dac62c72ed11d7d892657feab4899d3bc386c8fe0ac03f479b136383b0c09eb",
+    "fixture_sha256": "df1f1df6eb877322b4d369a8a2ac65c91972d66ec413220526e9cb43cecde131"
+  },
+  "valid": true,
+  "capture_reused": false,
+  "metrics": {
+    "read_bytes_per_call": 1767430378.6666667,
+    "write_bytes_per_call": 867999338.6666666,
+    "total_bytes_per_call": 2635429717.3333335,
+    "profiled_actions": 1,
+    "replay": "app-range",
+    "calls": 3,
+    "l2_requested_sectors": {},
+    "csv_format": "wide",
+    "scope": "range hardware DRAM counters"
+  },
+  "seconds": 34.475921623999966
+}

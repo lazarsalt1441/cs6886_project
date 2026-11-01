@@ -1,0 +1,59 @@
+RUN /content/attention_real_env/bin/python /content/attention_real_llm/scripts/download_model.py
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:01,  2.70it/s]Fetching 6 files:  50%|█████     | 3/6 [00:02<00:02,  1.17it/s]Fetching 6 files: 100%|██████████| 6/6 [00:02<00:00,  2.49it/s]
+PINNED CHECKPOINT VERIFIED 12fd25f77366fa6b3b4b768ec3050bf629380bac
+RUN /content/attention_real_env/bin/python /content/attention_real_llm/benchmark.py --set A --output results_A --torch-compile
+Creating parameter archive
+Compiling full model: baseline sm_75
+W1031 19:38:44.683000 6573 torch/_inductor/utils.py:1731] [0/0] Not enough SMs to use max_autotune_gemm mode
+TIMED A 128 0 resident_outputs 0 {'torch_eager': 35.639, 'torch_sdpa': 32.773, 'iree_baseline': 7.692, 'torch_compile': 12.726}
+TIMED A 128 0 resident_outputs 1 {'torch_eager': 35.495, 'torch_sdpa': 33.006, 'iree_baseline': 7.986, 'torch_compile': 12.546}
+TIMED A 128 0 resident_outputs 2 {'torch_eager': 35.338, 'torch_sdpa': 32.119, 'iree_baseline': 8.108, 'torch_compile': 12.367}
+TIMED A 128 0 logits_to_host 0 {'torch_eager': 35.111, 'torch_sdpa': 32.881, 'iree_baseline': 8.793, 'torch_compile': 12.531}
+TIMED A 128 0 logits_to_host 1 {'torch_eager': 35.64, 'torch_sdpa': 32.527, 'iree_baseline': 8.906, 'torch_compile': 12.816}
+TIMED A 128 0 logits_to_host 2 {'torch_eager': 35.607, 'torch_sdpa': 32.739, 'iree_baseline': 8.911, 'torch_compile': 12.61}
+TIMED A 128 1 resident_outputs 0 {'torch_eager': 34.965, 'torch_sdpa': 31.909, 'iree_baseline': 7.097, 'torch_compile': 12.302}
+TIMED A 128 1 resident_outputs 1 {'torch_eager': 35.193, 'torch_sdpa': 32.771, 'iree_baseline': 7.9, 'torch_compile': 12.646}
+TIMED A 128 1 resident_outputs 2 {'torch_eager': 35.293, 'torch_sdpa': 32.103, 'iree_baseline': 8.028, 'torch_compile': 12.691}
+TIMED A 128 1 logits_to_host 0 {'torch_eager': 35.616, 'torch_sdpa': 32.927, 'iree_baseline': 8.763, 'torch_compile': 12.719}
+TIMED A 128 1 logits_to_host 1 {'torch_eager': 35.391, 'torch_sdpa': 32.703, 'iree_baseline': 8.802, 'torch_compile': 12.787}
+TIMED A 128 1 logits_to_host 2 {'torch_eager': 35.804, 'torch_sdpa': 32.529, 'iree_baseline': 8.906, 'torch_compile': 12.615}
+TIMED A 512 0 resident_outputs 0 {'torch_eager': 36.29, 'torch_sdpa': 33.966, 'iree_baseline': 11.015, 'torch_compile': 12.947}
+TIMED A 512 0 resident_outputs 1 {'torch_eager': 36.119, 'torch_sdpa': 33.026, 'iree_baseline': 10.906, 'torch_compile': 12.685}
+TIMED A 512 0 resident_outputs 2 {'torch_eager': 35.507, 'torch_sdpa': 33.271, 'iree_baseline': 10.858, 'torch_compile': 12.595}
+TIMED A 512 0 logits_to_host 0 {'torch_eager': 36.989, 'torch_sdpa': 33.169, 'iree_baseline': 12.694, 'torch_compile': 13.005}
+TIMED A 512 0 logits_to_host 1 {'torch_eager': 36.479, 'torch_sdpa': 32.993, 'iree_baseline': 13.185, 'torch_compile': 12.73}
+TIMED A 512 0 logits_to_host 2 {'torch_eager': 36.3, 'torch_sdpa': 33.167, 'iree_baseline': 12.935, 'torch_compile': 13.047}
+TIMED A 512 1 resident_outputs 0 {'torch_eager': 36.852, 'torch_sdpa': 33.703, 'iree_baseline': 9.006, 'torch_compile': 13.179}
+TIMED A 512 1 resident_outputs 1 {'torch_eager': 35.886, 'torch_sdpa': 32.988, 'iree_baseline': 10.563, 'torch_compile': 12.814}
+TIMED A 512 1 resident_outputs 2 {'torch_eager': 36.862, 'torch_sdpa': 33.497, 'iree_baseline': 10.962, 'torch_compile': 12.895}
+TIMED A 512 1 logits_to_host 0 {'torch_eager': 36.162, 'torch_sdpa': 33.514, 'iree_baseline': 12.96, 'torch_compile': 12.912}
+TIMED A 512 1 logits_to_host 1 {'torch_eager': 36.35, 'torch_sdpa': 33.001, 'iree_baseline': 12.578, 'torch_compile': 12.636}
+TIMED A 512 1 logits_to_host 2 {'torch_eager': 35.958, 'torch_sdpa': 33.02, 'iree_baseline': 12.781, 'torch_compile': 12.547}
+TIMED A 2048 0 resident_outputs 0 {'torch_eager': 36.717, 'torch_sdpa': 33.64, 'iree_baseline': 21.216, 'torch_compile': 13.05}
+TIMED A 2048 0 resident_outputs 1 {'torch_eager': 37.374, 'torch_sdpa': 34.027, 'iree_baseline': 21.333, 'torch_compile': 13.782}
+TIMED A 2048 0 resident_outputs 2 {'torch_eager': 36.973, 'torch_sdpa': 33.749, 'iree_baseline': 21.196, 'torch_compile': 13.268}
+TIMED A 2048 0 logits_to_host 0 {'torch_eager': 37.197, 'torch_sdpa': 34.17, 'iree_baseline': 22.401, 'torch_compile': 13.378}
+TIMED A 2048 0 logits_to_host 1 {'torch_eager': 37.551, 'torch_sdpa': 34.495, 'iree_baseline': 22.725, 'torch_compile': 13.695}
+TIMED A 2048 0 logits_to_host 2 {'torch_eager': 36.659, 'torch_sdpa': 34.422, 'iree_baseline': 22.561, 'torch_compile': 13.475}
+Traceback (most recent call last):
+  File "/content/attention_real_llm/benchmark.py", line 167, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/content/attention_real_llm/benchmark.py", line 118, in main
+    for name,result in outputs.items():correctness.append(dict(context=n,prompt=prompt,backend=name,phase='before',checks=check_outputs(gold,result,name)))
+                                                                                                                          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/content/attention_real_llm/benchmark.py", line 57, in check_outputs
+    if not ok:raise AssertionError(f'{name} numerical failure: {row}')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: iree_baseline numerical failure: {'index': 35, 'max_abs': 0.0007621049880981445, 'rms': 2.5474613847408864e-06, 'pass_': False}
+Traceback (most recent call last):
+  File "/content/attention_real_llm/scripts/run_colab_set.py", line 10, in <module>
+    run(cmd);run([sys.executable,str(ROOT/'analyze.py'),str(ROOT/('results_'+a.set))]);print('ALL TASKS COMPLETED',flush=True)
+    ~~~^^^^^
+  File "/content/attention_real_llm/scripts/run_colab_set.py", line 5, in run
+    def run(cmd):print('RUN',*cmd,flush=True);subprocess.run(cmd,cwd=ROOT,check=True)
+                                              ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/content/attention_real_env/bin/python', '/content/attention_real_llm/benchmark.py', '--set', 'A', '--output', 'results_A', '--torch-compile']' returned non-zero exit status 1.

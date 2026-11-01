@@ -1,0 +1,225 @@
+{
+  "counter_summaries": [
+    {
+      "case": "A_n2048_p0",
+      "backend": "iree_stable",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 876022048.0,
+      "read_bytes_per_call_min": 876022048.0,
+      "read_bytes_per_call_max": 876022048.0,
+      "write_bytes_per_call": 536201120.0,
+      "write_bytes_per_call_min": 536201120.0,
+      "write_bytes_per_call_max": 536201120.0,
+      "total_bytes_per_call": 1412223168.0,
+      "total_bytes_per_call_min": 1412223168.0,
+      "total_bytes_per_call_max": 1412223168.0
+    },
+    {
+      "case": "A_n2048_p0",
+      "backend": "torch_compile",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 1026561834.6666666,
+      "read_bytes_per_call_min": 1026561834.6666666,
+      "read_bytes_per_call_max": 1026561834.6666666,
+      "write_bytes_per_call": 441050133.3333333,
+      "write_bytes_per_call_min": 441050133.3333333,
+      "write_bytes_per_call_max": 441050133.3333333,
+      "total_bytes_per_call": 1467611968.0,
+      "total_bytes_per_call_min": 1467611968.0,
+      "total_bytes_per_call_max": 1467611968.0
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 70176.0,
+      "read_bytes_per_call_min": 70176.0,
+      "read_bytes_per_call_max": 70176.0,
+      "write_bytes_per_call": 55616.0,
+      "write_bytes_per_call_min": 55616.0,
+      "write_bytes_per_call_max": 55616.0,
+      "total_bytes_per_call": 125792.0,
+      "total_bytes_per_call_min": 125792.0,
+      "total_bytes_per_call_max": 125792.0
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 73704586.66666667,
+      "read_bytes_per_call_min": 73704586.66666667,
+      "read_bytes_per_call_max": 73704586.66666667,
+      "write_bytes_per_call": 105555530.66666667,
+      "write_bytes_per_call_min": 105555530.66666667,
+      "write_bytes_per_call_max": 105555530.66666667,
+      "total_bytes_per_call": 179260117.33333334,
+      "total_bytes_per_call_min": 179260117.33333334,
+      "total_bytes_per_call_max": 179260117.33333334
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 285472.0,
+      "read_bytes_per_call_min": 285472.0,
+      "read_bytes_per_call_max": 285472.0,
+      "write_bytes_per_call": 33098.666666666664,
+      "write_bytes_per_call_min": 33098.666666666664,
+      "write_bytes_per_call_max": 33098.666666666664,
+      "total_bytes_per_call": 318570.6666666667,
+      "total_bytes_per_call_min": 318570.6666666667,
+      "total_bytes_per_call_max": 318570.6666666667
+    },
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 76283776.0,
+      "read_bytes_per_call_min": 76283776.0,
+      "read_bytes_per_call_max": 76283776.0,
+      "write_bytes_per_call": 75783242.66666667,
+      "write_bytes_per_call_min": 75783242.66666667,
+      "write_bytes_per_call_max": 75783242.66666667,
+      "total_bytes_per_call": 152067018.6666667,
+      "total_bytes_per_call_min": 152067018.6666667,
+      "total_bytes_per_call_max": 152067018.6666667
+    }
+  ],
+  "matched_iree_comparisons": [
+    {
+      "case": "cache_large",
+      "cache": "warm",
+      "replay": "app-range",
+      "baseline_dram_bytes": 179260117.33333334,
+      "optimized_dram_bytes": 125792.0,
+      "dram_reduction_percent": 99.92982711276146
+    }
+  ],
+  "failed_profiles": [],
+  "valid_latency_rows": [
+    {
+      "case": "A_n2048_p0",
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 23.306843,
+      "p95_ms": 38.672216,
+      "samples_ms": [
+        38.168582,
+        37.813526,
+        37.891476,
+        39.17585,
+        23.306843,
+        24.158547,
+        23.103446,
+        23.07035,
+        23.035526,
+        21.063876,
+        20.858041
+      ],
+      "valid": true
+    },
+    {
+      "case": "A_n2048_p0",
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 12.184415,
+      "p95_ms": 14.566690999999999,
+      "samples_ms": [
+        12.812573,
+        11.951892,
+        14.74228,
+        14.391102,
+        11.337281,
+        13.94756,
+        11.149721,
+        12.184415,
+        12.071437,
+        11.792547,
+        12.726511
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 1.26666,
+      "p95_ms": 2.0726425,
+      "samples_ms": [
+        1.26666,
+        2.116547,
+        1.980329,
+        1.19548,
+        2.028738,
+        2.014341,
+        0.974129,
+        1.108117,
+        0.972599,
+        2.006881,
+        1.182708
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "repetition": 0,
+      "median_ms": 1.252768,
+      "p95_ms": 1.5199915000000002,
+      "samples_ms": [
+        1.754242,
+        1.285741,
+        0.206388,
+        0.220691,
+        1.252768,
+        0.214707,
+        1.260989,
+        1.267627,
+        1.269995,
+        0.220755,
+        0.214286
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 1.203235,
+      "p95_ms": 1.5478475,
+      "samples_ms": [
+        0.689204,
+        0.70517,
+        1.370761,
+        1.18315,
+        0.648874,
+        1.203235,
+        1.423313,
+        1.672382,
+        0.674222,
+        1.423127,
+        1.206035
+      ],
+      "valid": true
+    }
+  ],
+  "limitations": [
+    "Profiler data collection changes execution; latency is from separate unprofiled runs",
+    "Range counters measure DRAM during the marked window, not all cache-line writebacks after it",
+    "Application kernel sums and application-range totals have different coverage and are never pooled",
+    "Repeated fixed-input steps do not measure sustained autoregressive generation",
+    "No cross-session confidence interval is inferred from three same-session profiles"
+  ]
+}

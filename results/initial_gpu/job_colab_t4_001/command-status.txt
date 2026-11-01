@@ -1,0 +1,7 @@
+1	python research2/gpu_suite.py --arch sm_75 --family attention --trials 101
+0	python research2/gpu_suite.py --arch sm_75 --family attention --trials 101
+0	python research2/gpu_suite.py --arch sm_75 --family block --trials 101
+0	python research2/gpu_suite.py --arch sm_75 --family winner --trials 101
+0	python research2/extension_gpu_suite.py --arch sm_75 --skip-root-cow --trials 101
+0	python research/gpu_research_suite.py --arch sm_75 --full --trials 101
+1	python pbs_gpu/validate.py --arch sm_75 --family all --seeds 10 --output /content/attention_gpu/pbs_results/job_colab_t4_001/validation.json

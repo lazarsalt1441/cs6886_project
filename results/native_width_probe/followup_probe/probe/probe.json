@@ -1,0 +1,950 @@
+[
+  {
+    "case": "d64-v64",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 7.761189002586377e-08
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.02055772300514e-08
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 8.141499174829647e-08
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 6.419138465219021e-08
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.057641232371509e-07
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 6.419365883303385e-08
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 8.456373556953167e-08
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 8.47893284472434e-08
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 7.307080041041303e-08
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.1927838339254038e-07
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 8.852747451770782e-08
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 4.990073565469544e-08
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.2023116241488552e-07
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.6001616720551226e-07
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.435382460668322e-07
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 7.376124533386985e-08
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 5.8625824306268726e-08
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 7.052280337482841e-08
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 5.8819459525238926e-08
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.1900493679384283e-07
+      }
+    ],
+    "sha256": "96a0b4ebf1c175681ed9b1154dd72ea9f8232f846f751a957485804433491caa",
+    "status": "PASS"
+  },
+  {
+    "case": "d128-v128",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.699502572560796e-07
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 5.420196916294806e-08
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 2.1277713124767672e-07
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 6.915266420604027e-08
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.1645025238538054e-07
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 5.9133005270162187e-08
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 7.313030531141962e-08
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.012893187332338e-08
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 6.146990541577857e-08
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.1650381492867012e-07
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.091082382220776e-07
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 5.25658743200097e-08
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.169503935916083e-07
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.76613184766606e-08
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.1576542363611608e-07
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.743794748828805e-08
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.611462401296393e-07
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.8796462464276686e-07
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 6.231857768712601e-08
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 8.928553718590138e-08
+      }
+    ],
+    "sha256": "a806be29849cf505471d7107c5ff371fa0c4d5490a8910881fb54d8800c3ded6",
+    "status": "PASS"
+  },
+  {
+    "case": "d256-v128",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 0.9369724480491095
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.8538848183001122
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.4265483106718473
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.3221697088319893
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.4339947168866252
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.9530901121699396
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.4844810591330204
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.8976857175538824
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.4207885589145661
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.3688683128917658
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.7396904658121677
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.8602848384918251
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.01555498428457
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.603212485641258
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.6636712581461948
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.4231990881744887
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.840540424127735
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.3167111523490242
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.7767572376345473
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.7320964475046619
+      }
+    ],
+    "sha256": "7374aad639ac469f2e75e602e3e957529ac589ca39e54f6e80bc1a516b1098de",
+    "status": "FAIL"
+  },
+  {
+    "case": "d512-v128",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.8493248812194134
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.0964085902036347
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.6818567990920312
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.8698590093550909
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.3342245417454162
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.4355936765608681
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.6715734098052637
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.5502191754546735
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.6385414351866034
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.7217622863545972
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.4275111253765416
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.9060874147387703
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.845155076233946
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.6974681871862634
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.6725936721668666
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.7581931662303498
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.1305556615961363
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.4995746827622884
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.1975015674618095
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.9563708793065857
+      }
+    ],
+    "sha256": "bca0febcbc89975aa05ee03ac951837833a50532015816d1ccf65c41bbf6122a",
+    "status": "FAIL"
+  },
+  {
+    "case": "d128-v512",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.9340811741042074e-07
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.8094197662410494e-07
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 2.1117090254207938e-07
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.0546383144571791e-07
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.5828379625049127e-07
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 6.80392659296869e-08
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.1517027359575494e-07
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.119743084920799e-07
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 7.758503772770098e-08
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.430328029580437e-08
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.3211690369496765e-07
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 9.700628178510584e-08
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.4579376639289876e-07
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.6077572206896207e-07
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.5012255654214823e-07
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 7.178011823816277e-08
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.4138414072828454e-07
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.0990147075728984e-07
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": true,
+        "max_abs": 1.3998906978063275e-07
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": true,
+        "max_abs": 1.2390680070861748e-07
+      }
+    ],
+    "sha256": "271b63f06a4b286fe64aa51950872add71f25b50ebee4c64ec602e859cd09648",
+    "status": "PASS"
+  },
+  {
+    "case": "d512-v512",
+    "device": "cuda",
+    "arch": "sm_75",
+    "checks": [
+      {
+        "seed": 101,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.5415833380967072
+      },
+      {
+        "seed": 101,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.3733772868709475
+      },
+      {
+        "seed": 102,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.7175092720185998
+      },
+      {
+        "seed": 102,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.8081444282659014
+      },
+      {
+        "seed": 103,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.096866321500527
+      },
+      {
+        "seed": 103,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.0589811062745045
+      },
+      {
+        "seed": 104,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.124371722266543
+      },
+      {
+        "seed": 104,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.6508844681862007
+      },
+      {
+        "seed": 105,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.68970757130092
+      },
+      {
+        "seed": 105,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.6547147794996286
+      },
+      {
+        "seed": 106,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.3153017723604763
+      },
+      {
+        "seed": 106,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.119215977701265
+      },
+      {
+        "seed": 107,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.379308984966927
+      },
+      {
+        "seed": 107,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.475717246797564
+      },
+      {
+        "seed": 108,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.932446064523713
+      },
+      {
+        "seed": 108,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.956757043382542
+      },
+      {
+        "seed": 109,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 2.207915843545481
+      },
+      {
+        "seed": 109,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 2.3865697006032947
+      },
+      {
+        "seed": 110,
+        "mode": "random",
+        "ok": false,
+        "max_abs": 1.585279566136241
+      },
+      {
+        "seed": 110,
+        "mode": "tail-only",
+        "ok": false,
+        "max_abs": 1.6846452960328835
+      }
+    ],
+    "sha256": "e321d3328c9a65e50654c6880b8a94bb0909d93b6e89165722da29185797c0ad",
+    "status": "FAIL"
+  },
+  {
+    "case": "h8_m1_n2048_l512_d128_v128_s1",
+    "variant": "baseline",
+    "checks": [
+      {
+        "seed": 101,
+        "ok": true,
+        "max_abs": 9.183957694336442e-08
+      },
+      {
+        "seed": 102,
+        "ok": true,
+        "max_abs": 1.1257633555916691e-07
+      },
+      {
+        "seed": 103,
+        "ok": true,
+        "max_abs": 9.560180479206704e-08
+      },
+      {
+        "seed": 104,
+        "ok": true,
+        "max_abs": 9.238144253742586e-08
+      },
+      {
+        "seed": 105,
+        "ok": true,
+        "max_abs": 9.462071848959086e-08
+      },
+      {
+        "seed": 106,
+        "ok": true,
+        "max_abs": 9.422029995098669e-08
+      },
+      {
+        "seed": 107,
+        "ok": true,
+        "max_abs": 6.863644066643082e-08
+      },
+      {
+        "seed": 108,
+        "ok": true,
+        "max_abs": 9.424884592212912e-08
+      },
+      {
+        "seed": 109,
+        "ok": true,
+        "max_abs": 8.71210717318105e-08
+      },
+      {
+        "seed": 110,
+        "ok": true,
+        "max_abs": 8.063363671206858e-08
+      }
+    ],
+    "sha256": "945b4d55b71965f839d01e8eb6702aebda98e7d7a47e8962d90d644977f70218",
+    "status": "PASS"
+  },
+  {
+    "case": "h8_m1_n2048_l512_d128_v128_s1",
+    "variant": "optimized",
+    "checks": [
+      {
+        "seed": 101,
+        "ok": false,
+        "max_abs": 0.43846145794443053
+      },
+      {
+        "seed": 102,
+        "ok": false,
+        "max_abs": 0.3596863605807721
+      },
+      {
+        "seed": 103,
+        "ok": false,
+        "max_abs": 0.35802936909137884
+      },
+      {
+        "seed": 104,
+        "ok": false,
+        "max_abs": 0.38668933798064786
+      },
+      {
+        "seed": 105,
+        "ok": false,
+        "max_abs": 0.27032485771501535
+      },
+      {
+        "seed": 106,
+        "ok": false,
+        "max_abs": 0.3523989487733096
+      },
+      {
+        "seed": 107,
+        "ok": false,
+        "max_abs": 0.32692976811336744
+      },
+      {
+        "seed": 108,
+        "ok": false,
+        "max_abs": 0.32556428317869796
+      },
+      {
+        "seed": 109,
+        "ok": false,
+        "max_abs": 0.4631616081170609
+      },
+      {
+        "seed": 110,
+        "ok": false,
+        "max_abs": 0.32948116735222976
+      }
+    ],
+    "sha256": "3ded1a7973a870bfa8aeff7f6d63058342f008db107f5122892d44a91461a788",
+    "status": "FAIL"
+  },
+  {
+    "case": "h8_m1_n2048_l512_d128_v128_s1",
+    "variant": "decomposed-fallback",
+    "checks": [
+      {
+        "seed": 101,
+        "ok": true,
+        "max_abs": 2.578978153975828e-07
+      },
+      {
+        "seed": 102,
+        "ok": true,
+        "max_abs": 4.3069238797599496e-07
+      },
+      {
+        "seed": 103,
+        "ok": true,
+        "max_abs": 1.8941736493194306e-07
+      },
+      {
+        "seed": 104,
+        "ok": true,
+        "max_abs": 2.340121662489092e-07
+      },
+      {
+        "seed": 105,
+        "ok": true,
+        "max_abs": 1.7858507740664553e-07
+      },
+      {
+        "seed": 106,
+        "ok": true,
+        "max_abs": 1.6523881893326653e-07
+      },
+      {
+        "seed": 107,
+        "ok": true,
+        "max_abs": 1.807117570363538e-07
+      },
+      {
+        "seed": 108,
+        "ok": true,
+        "max_abs": 1.6828701262551482e-07
+      },
+      {
+        "seed": 109,
+        "ok": true,
+        "max_abs": 1.768899973719762e-07
+      },
+      {
+        "seed": 110,
+        "ok": true,
+        "max_abs": 2.2397302705187694e-07
+      }
+    ],
+    "sha256": "2251e8dc328b840846a88e8ce1be9fe13da8f4e682a1225a2393bd18b416f229",
+    "status": "PASS"
+  }
+]

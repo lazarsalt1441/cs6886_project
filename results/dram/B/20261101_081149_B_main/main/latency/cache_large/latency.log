@@ -1,0 +1,4 @@
+LATENCY_VALIDATE cache_large iree_stable
+LATENCY_VALIDATE cache_large iree_forwarded
+LATENCY_VALIDATE cache_large torch_compile
+LATENCY_DONE cache_large {'iree_stable': 1.777, 'iree_forwarded': 1.23, 'torch_compile': 1.326}

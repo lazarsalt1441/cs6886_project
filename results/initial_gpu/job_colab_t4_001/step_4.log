@@ -1,0 +1,6 @@
+chain 1 {'baseline': True, 'fused': True, 'conditional': True, 'masked': True}
+chain 4 {'baseline': True, 'fused': True, 'conditional': True, 'masked': True}
+chain 8 {'baseline': True, 'fused': True, 'conditional': True, 'masked': True}
+chain 16 {'baseline': True, 'fused': True, 'conditional': True, 'masked': True}
+snapshot 1 {'baseline': True, 'fused': True, 'conditional': True, 'masked': True}
+Completed 5

@@ -1,0 +1,25 @@
+VALIDATION 2048 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True} opt_base_equal True
+VALIDATION 2048 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False} opt_base_equal True
+VALIDATION 2048 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True} opt_base_equal True
+W1031 20:10:14.310000 15945 torch/_inductor/utils.py:1731] [0/1] Not enough SMs to use max_autotune_gemm mode
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+VALIDATION 3072 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True} opt_base_equal True
+VALIDATION 3072 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False} opt_base_equal True
+VALIDATION 3072 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True} opt_base_equal True
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+VALIDATION 4096 0 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False} opt_base_equal True
+VALIDATION 4096 1 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': False, 'iree_optimized': False} opt_base_equal True
+VALIDATION 4096 2 {'torch_eager': True, 'torch_sdpa': True, 'torch_compile': True, 'iree_baseline': True, 'iree_optimized': True} opt_base_equal True
+FINISHED /content/attention_real_llm/long_results_B

@@ -1,0 +1,23 @@
+[
+  "/usr/local/cuda/bin/ncu",
+  "--clock-control",
+  "none",
+  "--cache-control",
+  "none",
+  "--replay-mode",
+  "app-range",
+  "--nvtx",
+  "--nvtx-include",
+  "ATTENTION_MEASURED_STEP",
+  "--target-processes",
+  "application-only",
+  "--metrics",
+  "dram__bytes_read.sum,dram__bytes_write.sum",
+  "--force-overwrite",
+  "-o",
+  "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/B_n3072_p0_iree_stable_warm_app-range_r1/profile",
+  "/usr/bin/python3",
+  "/content/Attention_DRAM_Tests/worker.py",
+  "--task",
+  "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/B_n3072_p0_iree_stable_warm_app-range_r1/task.json"
+]

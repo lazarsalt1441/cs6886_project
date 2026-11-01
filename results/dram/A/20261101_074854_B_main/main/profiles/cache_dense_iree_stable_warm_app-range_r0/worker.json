@@ -1,0 +1,86 @@
+{
+  "task": {
+    "case": {
+      "id": "cache_dense",
+      "kind": "synthetic"
+    },
+    "backend": "iree_stable",
+    "rep": 0,
+    "cache": "warm",
+    "calls": 3,
+    "replay": "app-range",
+    "cache_dir": "/content/Attention_DRAM_Tests/cache",
+    "warmup": 5,
+    "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/cache_dense_iree_stable_warm_app-range_r0/worker.json",
+    "environment_sha256": "0dac62c72ed11d7d892657feab4899d3bc386c8fe0ac03f479b136383b0c09eb",
+    "fixture_sha256": "1293360de33496465cc71ba86619831ae12fbd6b9822387185addaf226c42946",
+    "build_sha256": "497e9095ebec0c7bd3b01b5e28b2e3e7358a4be9240f45a5576ce5b5329a293c"
+  },
+  "completed": true,
+  "valid": true,
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "gpu": "Tesla T4",
+  "capability": [
+    7,
+    5
+  ],
+  "scope": "Independent immutable-input inference calls; profiler wall time is not latency",
+  "load_s": 0.23783763899973565,
+  "before": {
+    "natural": {
+      "pass_": true,
+      "outputs": [
+        {
+          "output": 0,
+          "pass_": true,
+          "prefix_exact": true,
+          "max_abs": 5.608363154441243e-08
+        },
+        {
+          "output": 1,
+          "pass_": true,
+          "prefix_exact": true,
+          "max_abs": 1.4062654962732068e-07
+        }
+      ],
+      "sha256": "23ad034bcd230aec47cc3a1130ec2583b0de7046f1c84a1b2289ff7746a56570"
+    }
+  },
+  "context_pointer": 419249504,
+  "allocator_before": {
+    "host_bytes_peak": 0,
+    "host_bytes_allocated": 0,
+    "host_bytes_freed": 0,
+    "device_bytes_peak": 404480,
+    "device_bytes_allocated": 1579008,
+    "device_bytes_freed": 1579008
+  },
+  "allocator_after": {
+    "host_bytes_peak": 0,
+    "host_bytes_allocated": 0,
+    "host_bytes_freed": 0,
+    "device_bytes_peak": 407552,
+    "device_bytes_allocated": 2368512,
+    "device_bytes_freed": 2367488
+  },
+  "after": {
+    "pass_": true,
+    "outputs": [
+      {
+        "output": 0,
+        "pass_": true,
+        "prefix_exact": true,
+        "max_abs": 5.608363154441243e-08
+      },
+      {
+        "output": 1,
+        "pass_": true,
+        "prefix_exact": true,
+        "max_abs": 1.4062654962732068e-07
+      }
+    ],
+    "sha256": "23ad034bcd230aec47cc3a1130ec2583b0de7046f1c84a1b2289ff7746a56570"
+  },
+  "input_unchanged": true
+}

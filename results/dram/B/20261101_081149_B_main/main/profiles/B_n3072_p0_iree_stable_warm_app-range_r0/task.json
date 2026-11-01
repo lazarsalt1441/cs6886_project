@@ -1,0 +1,20 @@
+{
+  "case": {
+    "id": "B_n3072_p0",
+    "kind": "model",
+    "set": "B",
+    "context": 3072,
+    "prompt": 0
+  },
+  "backend": "iree_stable",
+  "rep": 0,
+  "cache": "warm",
+  "calls": 3,
+  "replay": "app-range",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/B_n3072_p0_iree_stable_warm_app-range_r0/worker.json",
+  "environment_sha256": "50d4c1b0c2bf882edbec7b0299e31c305cfcb51c7ad8aca0e0cd3622d1fb3cca",
+  "fixture_sha256": "d37a1d3abc9ce92b9c2b82eb639772debdcaa780edc85d8d8bb4677f6646ecaf",
+  "build_sha256": "a7fa1ac78f45f9ca21955864e7e484e2adb9f9ba65ad9447cf2329d3c3dede8e"
+}

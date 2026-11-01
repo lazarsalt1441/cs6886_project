@@ -1,0 +1,81 @@
+RUN /content/attention_real_env/bin/python /content/attention_real_llm/scripts/download_model.py
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:01,  3.11it/s]Fetching 6 files:  50%|█████     | 3/6 [00:02<00:03,  1.06s/it]Fetching 6 files: 100%|██████████| 6/6 [00:02<00:00,  2.03it/s]
+PINNED CHECKPOINT VERIFIED 12fd25f77366fa6b3b4b768ec3050bf629380bac
+RUN /content/attention_real_env/bin/python /content/attention_real_llm/benchmark.py --set B --output results_B --torch-compile
+Creating parameter archive
+Compiling full model: baseline sm_75
+Compiling full model: optimized sm_75
+W1031 19:38:21.680000 8256 torch/_inductor/utils.py:1731] [0/0] Not enough SMs to use max_autotune_gemm mode
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+TIMED B 128 0 resident_outputs 0 {'torch_eager': 67.627, 'torch_sdpa': 62.388, 'iree_baseline': 10.88, 'iree_optimized': 10.909, 'torch_compile': 21.867}
+TIMED B 128 0 resident_outputs 1 {'torch_eager': 68.2, 'torch_sdpa': 62.088, 'iree_baseline': 11.382, 'iree_optimized': 11.494, 'torch_compile': 21.915}
+TIMED B 128 0 resident_outputs 2 {'torch_eager': 66.748, 'torch_sdpa': 61.247, 'iree_baseline': 10.944, 'iree_optimized': 10.985, 'torch_compile': 21.523}
+TIMED B 128 0 logits_to_host 0 {'torch_eager': 67.917, 'torch_sdpa': 62.0, 'iree_baseline': 12.684, 'iree_optimized': 12.858, 'torch_compile': 22.016}
+TIMED B 128 0 logits_to_host 1 {'torch_eager': 68.148, 'torch_sdpa': 62.161, 'iree_baseline': 12.029, 'iree_optimized': 12.195, 'torch_compile': 21.952}
+TIMED B 128 0 logits_to_host 2 {'torch_eager': 67.565, 'torch_sdpa': 62.713, 'iree_baseline': 12.258, 'iree_optimized': 12.257, 'torch_compile': 21.726}
+TIMED B 128 1 resident_outputs 0 {'torch_eager': 67.569, 'torch_sdpa': 62.624, 'iree_baseline': 10.872, 'iree_optimized': 10.96, 'torch_compile': 21.863}
+TIMED B 128 1 resident_outputs 1 {'torch_eager': 67.976, 'torch_sdpa': 62.659, 'iree_baseline': 11.662, 'iree_optimized': 11.964, 'torch_compile': 21.69}
+TIMED B 128 1 resident_outputs 2 {'torch_eager': 67.482, 'torch_sdpa': 62.359, 'iree_baseline': 11.368, 'iree_optimized': 11.51, 'torch_compile': 21.652}
+TIMED B 128 1 logits_to_host 0 {'torch_eager': 67.69, 'torch_sdpa': 62.496, 'iree_baseline': 12.37, 'iree_optimized': 12.43, 'torch_compile': 21.894}
+TIMED B 128 1 logits_to_host 1 {'torch_eager': 69.101, 'torch_sdpa': 63.687, 'iree_baseline': 12.821, 'iree_optimized': 12.901, 'torch_compile': 21.95}
+TIMED B 128 1 logits_to_host 2 {'torch_eager': 68.696, 'torch_sdpa': 62.98, 'iree_baseline': 12.303, 'iree_optimized': 12.448, 'torch_compile': 22.076}
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+TIMED B 512 0 resident_outputs 0 {'torch_eager': 68.995, 'torch_sdpa': 62.687, 'iree_baseline': 14.47, 'iree_optimized': 13.524, 'torch_compile': 22.291}
+TIMED B 512 0 resident_outputs 1 {'torch_eager': 68.711, 'torch_sdpa': 62.231, 'iree_baseline': 14.476, 'iree_optimized': 13.481, 'torch_compile': 22.279}
+TIMED B 512 0 resident_outputs 2 {'torch_eager': 68.542, 'torch_sdpa': 62.553, 'iree_baseline': 14.665, 'iree_optimized': 13.74, 'torch_compile': 22.226}
+TIMED B 512 0 logits_to_host 0 {'torch_eager': 68.647, 'torch_sdpa': 63.123, 'iree_baseline': 16.216, 'iree_optimized': 15.092, 'torch_compile': 22.312}
+TIMED B 512 0 logits_to_host 1 {'torch_eager': 68.841, 'torch_sdpa': 63.377, 'iree_baseline': 16.606, 'iree_optimized': 15.351, 'torch_compile': 22.715}
+TIMED B 512 0 logits_to_host 2 {'torch_eager': 69.267, 'torch_sdpa': 63.573, 'iree_baseline': 16.834, 'iree_optimized': 15.484, 'torch_compile': 22.621}
+TIMED B 512 1 resident_outputs 0 {'torch_eager': 68.379, 'torch_sdpa': 62.715, 'iree_baseline': 14.39, 'iree_optimized': 13.472, 'torch_compile': 22.293}
+TIMED B 512 1 resident_outputs 1 {'torch_eager': 68.493, 'torch_sdpa': 62.847, 'iree_baseline': 14.896, 'iree_optimized': 13.793, 'torch_compile': 22.218}
+TIMED B 512 1 resident_outputs 2 {'torch_eager': 68.5, 'torch_sdpa': 62.785, 'iree_baseline': 15.195, 'iree_optimized': 14.045, 'torch_compile': 22.191}
+TIMED B 512 1 logits_to_host 0 {'torch_eager': 69.574, 'torch_sdpa': 63.262, 'iree_baseline': 16.027, 'iree_optimized': 15.048, 'torch_compile': 22.582}
+TIMED B 512 1 logits_to_host 1 {'torch_eager': 69.176, 'torch_sdpa': 62.992, 'iree_baseline': 16.581, 'iree_optimized': 15.259, 'torch_compile': 22.415}
+TIMED B 512 1 logits_to_host 2 {'torch_eager': 68.525, 'torch_sdpa': 63.753, 'iree_baseline': 16.76, 'iree_optimized': 15.828, 'torch_compile': 22.682}
+/usr/local/lib/python3.13/dist-packages/torch/_inductor/lowering.py:7836: UserWarning: 
+Online softmax is disabled on the fly since Inductor decides to
+split the reduction. Cut an issue to PyTorch if this is an
+important use case and you want to speed it up with online
+softmax.
+
+  warnings.warn(
+TIMED B 2048 0 resident_outputs 0 {'torch_eager': 71.079, 'torch_sdpa': 65.359, 'iree_baseline': 42.674, 'iree_optimized': 31.188, 'torch_compile': 24.067}
+TIMED B 2048 0 resident_outputs 1 {'torch_eager': 71.694, 'torch_sdpa': 66.027, 'iree_baseline': 42.641, 'iree_optimized': 31.291, 'torch_compile': 23.827}
+TIMED B 2048 0 resident_outputs 2 {'torch_eager': 69.475, 'torch_sdpa': 64.119, 'iree_baseline': 42.623, 'iree_optimized': 31.097, 'torch_compile': 22.977}
+TIMED B 2048 0 logits_to_host 0 {'torch_eager': 70.435, 'torch_sdpa': 64.796, 'iree_baseline': 44.165, 'iree_optimized': 32.681, 'torch_compile': 23.685}
+TIMED B 2048 0 logits_to_host 1 {'torch_eager': 70.73, 'torch_sdpa': 64.87, 'iree_baseline': 44.064, 'iree_optimized': 32.893, 'torch_compile': 23.405}
+TIMED B 2048 0 logits_to_host 2 {'torch_eager': 70.75, 'torch_sdpa': 64.752, 'iree_baseline': 44.356, 'iree_optimized': 32.741, 'torch_compile': 23.851}
+Traceback (most recent call last):
+  File "/content/attention_real_llm/benchmark.py", line 167, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/content/attention_real_llm/benchmark.py", line 118, in main
+    for name,result in outputs.items():correctness.append(dict(context=n,prompt=prompt,backend=name,phase='before',checks=check_outputs(gold,result,name)))
+                                                                                                                          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/content/attention_real_llm/benchmark.py", line 57, in check_outputs
+    if not ok:raise AssertionError(f'{name} numerical failure: {row}')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: iree_baseline numerical failure: {'index': 36, 'max_abs': 0.0007621049880981445, 'rms': 2.5474613847408864e-06, 'pass_': False}
+Traceback (most recent call last):
+  File "/content/attention_real_llm/scripts/run_colab_set.py", line 10, in <module>
+    run(cmd);run([sys.executable,str(ROOT/'analyze.py'),str(ROOT/('results_'+a.set))]);print('ALL TASKS COMPLETED',flush=True)
+    ~~~^^^^^
+  File "/content/attention_real_llm/scripts/run_colab_set.py", line 5, in run
+    def run(cmd):print('RUN',*cmd,flush=True);subprocess.run(cmd,cwd=ROOT,check=True)
+                                              ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/content/attention_real_env/bin/python', '/content/attention_real_llm/benchmark.py', '--set', 'B', '--output', 'results_B', '--torch-compile']' returned non-zero exit status 1.

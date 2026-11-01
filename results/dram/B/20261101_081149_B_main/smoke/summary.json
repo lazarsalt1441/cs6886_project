@@ -1,0 +1,270 @@
+{
+  "counter_summaries": [
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 1670112853.3333333,
+      "read_bytes_per_call_min": 1670112853.3333333,
+      "read_bytes_per_call_max": 1670112853.3333333,
+      "write_bytes_per_call": 645523925.3333334,
+      "write_bytes_per_call_min": 645523925.3333334,
+      "write_bytes_per_call_max": 645523925.3333334,
+      "total_bytes_per_call": 2315636778.6666665,
+      "total_bytes_per_call_min": 2315636778.6666665,
+      "total_bytes_per_call_max": 2315636778.6666665
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 1655619285.3333333,
+      "read_bytes_per_call_min": 1655619285.3333333,
+      "read_bytes_per_call_max": 1655619285.3333333,
+      "write_bytes_per_call": 759636458.6666666,
+      "write_bytes_per_call_min": 759636458.6666666,
+      "write_bytes_per_call_max": 759636458.6666666,
+      "total_bytes_per_call": 2415255744.0,
+      "total_bytes_per_call_min": 2415255744.0,
+      "total_bytes_per_call_max": 2415255744.0
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "torch_compile",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 2238984181.3333335,
+      "read_bytes_per_call_min": 2238984181.3333335,
+      "read_bytes_per_call_max": 2238984181.3333335,
+      "write_bytes_per_call": 877508341.3333334,
+      "write_bytes_per_call_min": 877508341.3333334,
+      "write_bytes_per_call_max": 877508341.3333334,
+      "total_bytes_per_call": 3116492522.666667,
+      "total_bytes_per_call_min": 3116492522.666667,
+      "total_bytes_per_call_max": 3116492522.666667
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 61813.333333333336,
+      "read_bytes_per_call_min": 61813.333333333336,
+      "read_bytes_per_call_max": 61813.333333333336,
+      "write_bytes_per_call": 47605.333333333336,
+      "write_bytes_per_call_min": 47605.333333333336,
+      "write_bytes_per_call_max": 47605.333333333336,
+      "total_bytes_per_call": 109418.66666666667,
+      "total_bytes_per_call_min": 109418.66666666667,
+      "total_bytes_per_call_max": 109418.66666666667
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 73635445.33333333,
+      "read_bytes_per_call_min": 73635445.33333333,
+      "read_bytes_per_call_max": 73635445.33333333,
+      "write_bytes_per_call": 109283093.33333333,
+      "write_bytes_per_call_min": 109283093.33333333,
+      "write_bytes_per_call_max": 109283093.33333333,
+      "total_bytes_per_call": 182918538.66666666,
+      "total_bytes_per_call_min": 182918538.66666666,
+      "total_bytes_per_call_max": 182918538.66666666
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 49472.0,
+      "read_bytes_per_call_min": 49472.0,
+      "read_bytes_per_call_max": 49472.0,
+      "write_bytes_per_call": 32501.333333333332,
+      "write_bytes_per_call_min": 32501.333333333332,
+      "write_bytes_per_call_max": 32501.333333333332,
+      "total_bytes_per_call": 81973.33333333333,
+      "total_bytes_per_call_min": 81973.33333333333,
+      "total_bytes_per_call_max": 81973.33333333333
+    },
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "cache": "warm",
+      "replay": "app-range",
+      "profile_repetitions": 1,
+      "read_bytes_per_call": 76258794.66666667,
+      "read_bytes_per_call_min": 76258794.66666667,
+      "read_bytes_per_call_max": 76258794.66666667,
+      "write_bytes_per_call": 75717333.33333333,
+      "write_bytes_per_call_min": 75717333.33333333,
+      "write_bytes_per_call_max": 75717333.33333333,
+      "total_bytes_per_call": 151976128.0,
+      "total_bytes_per_call_min": 151976128.0,
+      "total_bytes_per_call_max": 151976128.0
+    }
+  ],
+  "matched_iree_comparisons": [
+    {
+      "case": "B_n2048_p0",
+      "cache": "warm",
+      "replay": "app-range",
+      "baseline_dram_bytes": 2415255744.0,
+      "optimized_dram_bytes": 2315636778.6666665,
+      "dram_reduction_percent": 4.124572131990901
+    },
+    {
+      "case": "cache_large",
+      "cache": "warm",
+      "replay": "app-range",
+      "baseline_dram_bytes": 182918538.66666666,
+      "optimized_dram_bytes": 109418.66666666667,
+      "dram_reduction_percent": 99.9401817511422
+    }
+  ],
+  "failed_profiles": [],
+  "valid_latency_rows": [
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 44.777768,
+      "p95_ms": 65.26490150000001,
+      "samples_ms": [
+        74.863498,
+        55.666305,
+        51.167745,
+        44.883787,
+        42.438609,
+        42.45113,
+        43.881173,
+        45.44443,
+        43.323879,
+        42.284794,
+        44.777768
+      ],
+      "valid": true
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "repetition": 0,
+      "median_ms": 31.780909,
+      "p95_ms": 44.874922999999995,
+      "samples_ms": [
+        45.903959,
+        43.845887,
+        31.872453,
+        32.296319,
+        31.002569,
+        31.780909,
+        31.034458,
+        31.00948,
+        31.175257,
+        31.830211,
+        31.726378
+      ],
+      "valid": true
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 25.08094,
+      "p95_ms": 27.65474,
+      "samples_ms": [
+        26.736239,
+        24.939105,
+        24.771128,
+        27.839852,
+        24.288804,
+        25.57919,
+        27.469628,
+        24.7195,
+        25.079418,
+        25.08094,
+        26.514748
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 1.38323,
+      "p95_ms": 2.0521915,
+      "samples_ms": [
+        1.38323,
+        2.035168,
+        2.029431,
+        1.214906,
+        2.026813,
+        2.014375,
+        1.057041,
+        1.094286,
+        0.989253,
+        2.069215,
+        1.220029
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "repetition": 0,
+      "median_ms": 0.261562,
+      "p95_ms": 1.2672439999999998,
+      "samples_ms": [
+        0.261562,
+        1.267302,
+        0.239194,
+        0.255361,
+        1.254103,
+        0.203479,
+        1.256565,
+        1.255403,
+        1.267186,
+        0.233558,
+        0.18513
+      ],
+      "valid": true
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 1.262497,
+      "p95_ms": 1.6283165,
+      "samples_ms": [
+        1.252741,
+        0.757113,
+        1.478661,
+        1.218365,
+        0.712068,
+        1.262497,
+        1.476287,
+        1.777972,
+        0.676414,
+        1.463392,
+        1.286338
+      ],
+      "valid": true
+    }
+  ],
+  "limitations": [
+    "Profiler data collection changes execution; latency is from separate unprofiled runs",
+    "Range counters measure DRAM during the marked window, not all cache-line writebacks after it",
+    "Application kernel sums and application-range totals have different coverage and are never pooled",
+    "Repeated fixed-input steps do not measure sustained autoregressive generation",
+    "No cross-session confidence interval is inferred from three same-session profiles"
+  ]
+}

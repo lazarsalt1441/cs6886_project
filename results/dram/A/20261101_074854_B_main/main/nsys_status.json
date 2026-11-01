@@ -1,0 +1,85 @@
+[
+  {
+    "case": "cache_large",
+    "backend": "iree_stable",
+    "result": {
+      "calls": 3,
+      "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+      "memcpy_by_kind": [
+        {
+          "copy_kind": 8,
+          "count": 24,
+          "logical_bytes_per_call": 67110912.0
+        }
+      ],
+      "logical_memcpy_bytes_per_call": 67110912.0,
+      "kernel_count_per_call": 6.0,
+      "valid": true
+    }
+  },
+  {
+    "case": "cache_large",
+    "backend": "iree_forwarded",
+    "result": {
+      "calls": 3,
+      "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+      "memcpy_table": "absent; no logical-copy total asserted",
+      "kernel_count_per_call": 6.0,
+      "valid": true
+    }
+  },
+  {
+    "case": "cache_large",
+    "backend": "torch_compile",
+    "result": {
+      "calls": 3,
+      "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+      "memcpy_by_kind": [
+        {
+          "copy_kind": 8,
+          "count": 12,
+          "logical_bytes_per_call": 10240.0
+        }
+      ],
+      "logical_memcpy_bytes_per_call": 10240.0,
+      "kernel_count_per_call": 10.0,
+      "valid": true
+    }
+  },
+  {
+    "case": "A_n2048_p0",
+    "backend": "iree_stable",
+    "result": {
+      "calls": 3,
+      "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+      "memcpy_by_kind": [
+        {
+          "copy_kind": 8,
+          "count": 186,
+          "logical_bytes_per_call": 94372096.0
+        }
+      ],
+      "logical_memcpy_bytes_per_call": 94372096.0,
+      "kernel_count_per_call": 547.0,
+      "valid": true
+    }
+  },
+  {
+    "case": "A_n2048_p0",
+    "backend": "torch_compile",
+    "result": {
+      "calls": 3,
+      "scope": "CUDA memcpy logical payload bytes; do not add to hardware DRAM counters",
+      "memcpy_by_kind": [
+        {
+          "copy_kind": 8,
+          "count": 90,
+          "logical_bytes_per_call": 69120.0
+        }
+      ],
+      "logical_memcpy_bytes_per_call": 69120.0,
+      "kernel_count_per_call": 574.0,
+      "valid": true
+    }
+  }
+]

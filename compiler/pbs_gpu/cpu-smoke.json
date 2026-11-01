@@ -1,0 +1,53 @@
+{
+  "arch": "cpu-smoke",
+  "seeds": 2,
+  "device": "local-sync",
+  "rows": [
+    {
+      "family": "winner",
+      "case": "winner",
+      "variant": "forwarded",
+      "sha256": "f544e3207512b11b1526f39ffb4e393670a843a6d565c1c7113d2a02e2defeaa",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 3.083947363036188e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8521792
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 3.3069090360493547e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8521792
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "winner",
+      "case": "winner",
+      "variant": "strong",
+      "sha256": "3b912d83981f399568a398dc19858ccae10aa6f7c9890b0e8035a9fbbd36d18c",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 3.083947363036188e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 25233472
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 3.3069090360493547e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 25233472
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

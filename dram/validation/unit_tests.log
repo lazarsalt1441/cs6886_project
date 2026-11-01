@@ -1,0 +1,29 @@
+test_current_ncu_export_options (test_study.Counters.test_current_ncu_export_options) ... ok
+test_duplicate_not_double_counted (test_study.Counters.test_duplicate_not_double_counted) ... ok
+test_empty_profile_rejected (test_study.Counters.test_empty_profile_rejected) ... ok
+test_error_after_valid_csv_rejected (test_study.Counters.test_error_after_valid_csv_rejected) ... ok
+test_kernel_sum_separately_labelled (test_study.Counters.test_kernel_sum_separately_labelled) ... ok
+test_missing_counter_rejected (test_study.Counters.test_missing_counter_rejected) ... ok
+test_multiple_ranges_rejected (test_study.Counters.test_multiple_ranges_rejected) ... ok
+test_na_rejected (test_study.Counters.test_na_rejected) ... ok
+test_range_units_normalization (test_study.Counters.test_range_units_normalization) ... ok
+test_unknown_unit_rejected (test_study.Counters.test_unknown_unit_rejected) ... ok
+test_wide_duplicate_rejected (test_study.Counters.test_wide_duplicate_rejected) ... ok
+test_wide_kernel_rows_summed (test_study.Counters.test_wide_kernel_rows_summed) ... ok
+test_wide_raw_csv_with_units (test_study.Counters.test_wide_raw_csv_with_units) ... ok
+test_wide_requires_units (test_study.Counters.test_wide_requires_units) ... ok
+test_asset_integrity (test_study.GatesAndPlanning.test_asset_integrity) ... ok
+test_decode_no_fake_commit (test_study.GatesAndPlanning.test_decode_no_fake_commit) ... ok
+test_exact_prefix_contract (test_study.GatesAndPlanning.test_exact_prefix_contract) ... ok
+test_extended_has_conditioning_and_three_prompts (test_study.GatesAndPlanning.test_extended_has_conditioning_and_three_prompts) ... ok
+test_failed_forced_winner_blocks_profile (test_study.GatesAndPlanning.test_failed_forced_winner_blocks_profile) ... ok
+test_forced_winners_all_torch_backends (test_study.GatesAndPlanning.test_forced_winners_all_torch_backends) ... ok
+test_main_profile_prompts_vs_latency_prompts (test_study.GatesAndPlanning.test_main_profile_prompts_vs_latency_prompts) ... ok
+test_nsys_copy_payload_not_dram_sum (test_study.GatesAndPlanning.test_nsys_copy_payload_not_dram_sum) ... ok
+test_profile_orchestration_builds_real_task (test_study.GatesAndPlanning.test_profile_orchestration_builds_real_task) ... ok
+test_recover_capture_after_failed_export (test_study.GatesAndPlanning.test_recover_capture_after_failed_export) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.046s
+
+OK

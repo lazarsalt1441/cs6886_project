@@ -1,0 +1,18 @@
+[
+  "iree-compile",
+  "/content/attention_real_llm/repair_extension/prepared/B_stable_commit.mlir",
+  "--iree-hal-target-backends=cuda",
+  "--iree-cuda-target=sm_75",
+  "--iree-dispatch-creation-enable-split-reduction",
+  "--iree-dispatch-creation-split-argmax-threshold=1024",
+  "--iree-dispatch-creation-split-argmax-tile-size=256",
+  "--iree-opt-level=O3",
+  "--iree-opt-generalize-matmul",
+  "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+  "--iree-input-demote-f64-to-f32=false",
+  "--iree-opt-numeric-precision-reduction=false",
+  "--iree-dispatch-creation-enable-aggressive-fusion",
+  "--iree-hal-dump-executable-files-to=/content/attention_real_llm/repair_results_B/iree_stable_commit_aggressive/codegen",
+  "-o",
+  "/content/attention_real_llm/repair_results_B/iree_stable_commit_aggressive/module.vmfb"
+]

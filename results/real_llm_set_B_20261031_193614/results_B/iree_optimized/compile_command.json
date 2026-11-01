@@ -1,0 +1,15 @@
+[
+  "iree-compile",
+  "/content/attention_real_llm/prepared/B/optimized.mlir",
+  "--iree-hal-target-backends=cuda",
+  "--iree-cuda-target=sm_75",
+  "--iree-dispatch-creation-enable-split-reduction",
+  "--iree-dispatch-creation-split-argmax-threshold=1024",
+  "--iree-dispatch-creation-split-argmax-tile-size=256",
+  "--iree-opt-level=O3",
+  "--iree-opt-generalize-matmul",
+  "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+  "--iree-hal-dump-executable-files-to=/content/attention_real_llm/results_B/iree_optimized/codegen",
+  "-o",
+  "/content/attention_real_llm/results_B/iree_optimized/module.vmfb"
+]

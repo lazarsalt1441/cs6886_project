@@ -1,0 +1,10 @@
+[
+  "/usr/local/cuda/bin/ncu",
+  "--import",
+  "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/B_n2048_p0_iree_commit_warm_app-range_r0/profile.ncu-rep",
+  "--page",
+  "raw",
+  "--csv",
+  "--print-units",
+  "base"
+]

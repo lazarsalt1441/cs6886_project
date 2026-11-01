@@ -1,0 +1,211 @@
+{
+  "case": {
+    "id": "cache_large",
+    "kind": "synthetic"
+  },
+  "completed": true,
+  "valid": true,
+  "scope": "Resident outputs; synchronized host call; setup and compilation excluded",
+  "telemetry": [
+    {
+      "repetition": 0,
+      "before": "2026/11/01 08:13:57.423, Tesla T4, P0, 585 MHz, 5000 MHz, 46, 26.94 W",
+      "after": "2026/11/01 08:13:57.501, Tesla T4, P0, 585 MHz, 5000 MHz, 47, 33.45 W"
+    }
+  ],
+  "rows": [
+    {
+      "backend": "iree_stable",
+      "repetition": 0,
+      "median_ms": 1.38323,
+      "p95_ms": 2.0521915,
+      "samples_ms": [
+        1.38323,
+        2.035168,
+        2.029431,
+        1.214906,
+        2.026813,
+        2.014375,
+        1.057041,
+        1.094286,
+        0.989253,
+        2.069215,
+        1.220029
+      ],
+      "valid": true
+    },
+    {
+      "backend": "iree_forwarded",
+      "repetition": 0,
+      "median_ms": 0.261562,
+      "p95_ms": 1.2672439999999998,
+      "samples_ms": [
+        0.261562,
+        1.267302,
+        0.239194,
+        0.255361,
+        1.254103,
+        0.203479,
+        1.256565,
+        1.255403,
+        1.267186,
+        0.233558,
+        0.18513
+      ],
+      "valid": true
+    },
+    {
+      "backend": "torch_compile",
+      "repetition": 0,
+      "median_ms": 1.262497,
+      "p95_ms": 1.6283165,
+      "samples_ms": [
+        1.252741,
+        0.757113,
+        1.478661,
+        1.218365,
+        0.712068,
+        1.262497,
+        1.476287,
+        1.777972,
+        0.676414,
+        1.463392,
+        1.286338
+      ],
+      "valid": true
+    }
+  ],
+  "validation": {
+    "iree_stable": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 1.780415365207344e-07
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.784597049782406e-08
+            }
+          ],
+          "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+        }
+      },
+      "setup_and_first_validation_s": 0.4260058410000056,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 1.780415365207344e-07
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.784597049782406e-08
+          }
+        ],
+        "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+      },
+      "input_unchanged": true,
+      "valid": true
+    },
+    "iree_forwarded": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 1.780415365207344e-07
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.784597049782406e-08
+            }
+          ],
+          "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+        }
+      },
+      "setup_and_first_validation_s": 0.19371097999999165,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 1.780415365207344e-07
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.784597049782406e-08
+          }
+        ],
+        "sha256": "9129f5b50c8a55afe8d8f226cd9dd65daa6807707bf02863d274690893a1b721"
+      },
+      "input_unchanged": true,
+      "valid": true
+    },
+    "torch_compile": {
+      "before": {
+        "natural": {
+          "pass_": true,
+          "outputs": [
+            {
+              "output": 0,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 8.121279404527115e-08
+            },
+            {
+              "output": 1,
+              "pass_": true,
+              "prefix_exact": true,
+              "max_abs": 7.167107773931036e-08
+            }
+          ],
+          "sha256": "901f95e2af18096f65afb2bed94ef93b6af37a0e3245edeb8c662dedd98284aa"
+        }
+      },
+      "setup_and_first_validation_s": 15.951884970999913,
+      "after": {
+        "pass_": true,
+        "outputs": [
+          {
+            "output": 0,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 8.121279404527115e-08
+          },
+          {
+            "output": 1,
+            "pass_": true,
+            "prefix_exact": true,
+            "max_abs": 7.167107773931036e-08
+          }
+        ],
+        "sha256": "901f95e2af18096f65afb2bed94ef93b6af37a0e3245edeb8c662dedd98284aa"
+      },
+      "input_unchanged": true,
+      "valid": true
+    }
+  },
+  "errors": {},
+  "missing_backends": []
+}

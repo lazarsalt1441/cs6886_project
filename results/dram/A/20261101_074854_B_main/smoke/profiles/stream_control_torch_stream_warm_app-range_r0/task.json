@@ -1,0 +1,17 @@
+{
+  "case": {
+    "id": "stream_control",
+    "kind": "control",
+    "size_mib": 64
+  },
+  "backend": "torch_stream",
+  "rep": 0,
+  "cache": "warm",
+  "calls": 3,
+  "replay": "app-range",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/smoke/profiles/stream_control_torch_stream_warm_app-range_r0/worker.json",
+  "environment_sha256": "0dac62c72ed11d7d892657feab4899d3bc386c8fe0ac03f479b136383b0c09eb",
+  "fixture_sha256": "d66e37221a86160896a94a393e190cff05531739e36054ffaad1474b84b4c9b0"
+}

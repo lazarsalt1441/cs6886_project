@@ -1,0 +1,13 @@
+==WARNING== Note: Running with uncontrolled GPU caches. Profiling results may be inconsistent.
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 23702 (/usr/bin/python3.13)
+==PROF== Profiling "main_dispatch_0_elementwise_b..." - 0: Application replay pass 1
+==PROF== Profiling "main_dispatch_0_elementwise_b..." - 1: Application replay pass 1
+==PROF== Profiling "main_dispatch_2_attention_2x4..." - 2: Application replay pass 1
+==PROF== Profiling "main_dispatch_3_elementwise_b..." - 3: Application replay pass 1
+==PROF== Profiling "main_dispatch_3_elementwise_b..." - 4: Application replay pass 1
+==PROF== Profiling "main_dispatch_5_attention_2x4..." - 5: Application replay pass 1
+PROFILE_WINDOW_OK cache_large iree_forwarded warm 1
+==PROF== Disconnected from process 23702
+==PROF== Creating report from application replay data: 0%........100%
+==PROF== Report: /content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/cache_large_iree_forwarded_warm_application_r0/profile.ncu-rep

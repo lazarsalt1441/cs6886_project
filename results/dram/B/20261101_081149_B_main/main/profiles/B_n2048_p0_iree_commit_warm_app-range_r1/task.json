@@ -1,0 +1,20 @@
+{
+  "case": {
+    "id": "B_n2048_p0",
+    "kind": "model",
+    "set": "B",
+    "context": 2048,
+    "prompt": 0
+  },
+  "backend": "iree_commit",
+  "rep": 1,
+  "cache": "warm",
+  "calls": 3,
+  "replay": "app-range",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/main/profiles/B_n2048_p0_iree_commit_warm_app-range_r1/worker.json",
+  "environment_sha256": "50d4c1b0c2bf882edbec7b0299e31c305cfcb51c7ad8aca0e0cd3622d1fb3cca",
+  "fixture_sha256": "fc1c7510063d83746fd7af91e3c5ae4907c485822240fc11a1bddf2fae270f2f",
+  "build_sha256": "33f2312aeb8274d8ad4d2b58ff9f2a0c716172ba0ce46b340b1bcb33a1e7c197"
+}

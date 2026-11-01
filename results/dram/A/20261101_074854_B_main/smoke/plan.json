@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "track": "A",
+  "plan": "smoke",
+  "cases": [
+    {
+      "id": "stream_control",
+      "kind": "control",
+      "size_mib": 64
+    },
+    {
+      "id": "cache_large",
+      "kind": "synthetic"
+    },
+    {
+      "id": "A_n2048_p0",
+      "kind": "model",
+      "set": "A",
+      "context": 2048,
+      "prompt": 0
+    }
+  ],
+  "profiles": [
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "A_n2048_p0",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "A_n2048_p0",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    }
+  ],
+  "note": "Fixed immutable inputs; repeated one-step calls, not an autoregressive generation loop"
+}

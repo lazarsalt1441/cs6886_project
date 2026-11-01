@@ -1,0 +1,33 @@
+{
+  "task": {
+    "case": {
+      "id": "stream_control",
+      "kind": "control",
+      "size_mib": 64
+    },
+    "backend": "torch_stream",
+    "rep": 0,
+    "cache": "warm",
+    "calls": 3,
+    "replay": "app-range",
+    "cache_dir": "/content/Attention_DRAM_Tests/cache",
+    "warmup": 5,
+    "result": "/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke/profiles/stream_control_torch_stream_warm_app-range_r0/worker.json",
+    "environment_sha256": "50d4c1b0c2bf882edbec7b0299e31c305cfcb51c7ad8aca0e0cd3622d1fb3cca",
+    "fixture_sha256": "d66e37221a86160896a94a393e190cff05531739e36054ffaad1474b84b4c9b0"
+  },
+  "valid": true,
+  "capture_reused": false,
+  "metrics": {
+    "read_bytes_per_call": 76258794.66666667,
+    "write_bytes_per_call": 75717333.33333333,
+    "total_bytes_per_call": 151976128.0,
+    "profiled_actions": 1,
+    "replay": "app-range",
+    "calls": 3,
+    "l2_requested_sectors": {},
+    "csv_format": "wide",
+    "scope": "range hardware DRAM counters"
+  },
+  "seconds": 7.041229385000008
+}

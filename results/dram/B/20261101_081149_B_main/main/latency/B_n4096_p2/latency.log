@@ -1,0 +1,4 @@
+LATENCY_VALIDATE B_n4096_p2 iree_stable
+LATENCY_VALIDATE B_n4096_p2 iree_commit
+LATENCY_VALIDATE B_n4096_p2 torch_compile
+LATENCY_DONE B_n4096_p2 {'iree_stable': 82.409, 'iree_commit': 77.834, 'torch_compile': 28.255}

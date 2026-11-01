@@ -1,0 +1,58 @@
+{
+  "iree_baseline": {
+    "seconds": 11.920984684999894,
+    "source": "/content/attention_real_llm/prepared/B/baseline.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  },
+  "iree_optimized": {
+    "seconds": 12.400894809999954,
+    "source": "/content/attention_real_llm/prepared/B/optimized.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  },
+  "iree_stable": {
+    "seconds": 11.949841476000074,
+    "source": "/content/attention_real_llm/repair_extension/prepared/B_stable.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  },
+  "iree_stable_commit": {
+    "seconds": 12.31913681199967,
+    "source": "/content/attention_real_llm/repair_extension/prepared/B_stable_commit.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false"
+    ]
+  },
+  "iree_stable_commit_aggressive": {
+    "seconds": 12.026371533000201,
+    "source": "/content/attention_real_llm/repair_extension/prepared/B_stable_commit.mlir",
+    "flags": [
+      "--iree-opt-level=O3",
+      "--iree-opt-generalize-matmul",
+      "--iree-dispatch-creation-enable-aggressive-reshape-movement",
+      "--iree-input-demote-f64-to-f32=false",
+      "--iree-opt-numeric-precision-reduction=false",
+      "--iree-dispatch-creation-enable-aggressive-fusion"
+    ]
+  }
+}

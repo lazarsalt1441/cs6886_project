@@ -1,0 +1,5 @@
+LATENCY_VALIDATE cache_small iree_stable
+LATENCY_VALIDATE cache_small iree_forwarded
+LATENCY_VALIDATE cache_small torch_compile
+W1101 08:27:57.102000 7842 torch/_inductor/utils.py:1731] [0/0] Not enough SMs to use max_autotune_gemm mode
+LATENCY_DONE cache_small {'iree_stable': 0.288, 'iree_forwarded': 0.246, 'torch_compile': 0.828}

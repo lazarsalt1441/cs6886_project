@@ -1,0 +1,21 @@
+{
+  "markers": {
+    "attention.concat_commit_factored": 0,
+    "attention.commit_factored": 0,
+    "attention.cache_read_forwarded": 0,
+    "attention.cache_updates_coalesced": 0
+  },
+  "baseline_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+  "optimized_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+  "identical_ir": true,
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+  "set": "A",
+  "tiny": false,
+  "dynamic": true,
+  "symbolic_min_range_proofs": 60,
+  "attention_implementation": "eager",
+  "layers": 30,
+  "scope": "Full pretrained model",
+  "any_rewrite": false
+}

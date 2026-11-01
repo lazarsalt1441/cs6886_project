@@ -1,0 +1,7 @@
+==WARNING== Note: Running with uncontrolled GPU caches. Profiling results may be inconsistent.
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 4080 (/usr/bin/python3.13)
+==PROF== Profiling "range" - 0: Application replay pass 1
+PROFILE_WINDOW_OK B_n2048_p0 iree_commit warm 3
+==PROF== Disconnected from process 4080
+==PROF== Report: /content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke/profiles/B_n2048_p0_iree_commit_warm_app-range_r0/profile.ncu-rep

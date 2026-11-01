@@ -1,0 +1,26 @@
+diff --git a/compiler/src/iree/compiler/Codegen/Interfaces/VectorizableOpInterface.cpp b/compiler/src/iree/compiler/Codegen/Interfaces/VectorizableOpInterface.cpp
+index ac79fbb..a7363b1 100644
+--- a/compiler/src/iree/compiler/Codegen/Interfaces/VectorizableOpInterface.cpp
++++ b/compiler/src/iree/compiler/Codegen/Interfaces/VectorizableOpInterface.cpp
+@@ -166,10 +166,20 @@ struct GatherOpVectorizationModel
+     Value indicesMask = vector::CreateMaskOp::create(
+         rewriter, loc, indicesMaskType,
+         ArrayRef(gatherDims).take_front(gatherOp.getBatchRank()));
++    // Index vectors vary over the leading batch axes. With an explicit
++    // trailing index-component dimension (e.g. Nx1), minor identity would read
++    // that unit dimension instead and introduce poison in the other lanes.
++    SmallVector<AffineExpr> indicesReadExprs;
++    for (int64_t i = 0; i < batchRank; ++i) {
++      indicesReadExprs.push_back(getAffineDimExpr(i, rewriter.getContext()));
++    }
++    AffineMap indicesReadMap =
++        AffineMap::get(indicesTy.getRank(), 0, indicesReadExprs,
++                       rewriter.getContext());
+     auto indicesVecRead = vector::TransferReadOp::create(
+         rewriter, loc, indicesVecTy.clone(indicesTy.getElementType()),
+         gatherOp.getIndices(), llvm::Repeated<Value>(indicesTy.getRank(), zero),
+-        std::nullopt);
++        std::nullopt, indicesReadMap, std::nullopt);
+     rewriter.modifyOpInPlace(indicesVecRead, [&] {
+       indicesVecRead.getMaskMutable().assign(indicesMask);
+     });

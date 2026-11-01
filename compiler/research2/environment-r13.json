@@ -1,0 +1,17 @@
+{
+  "python": "3.12.14",
+  "packages": {
+    "torch": "2.14.1+cpu",
+    "iree-base-compiler": "3.13.0",
+    "iree-base-runtime": "3.13.0",
+    "iree-turbine": "3.9.0",
+    "numpy": "2.3.5",
+    "ml_dtypes": "0.6.0",
+    "cmake": "4.4.4",
+    "ninja": "1.13.2"
+  },
+  "compiler": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build",
+  "source_commit": "89ece87b89852100c0a4ac3d515e14842d090967",
+  "gpu_execution": false,
+  "phase": "R13 final source/IR bridge validation; main14 and extension5 timings are separate isolated runs"
+}

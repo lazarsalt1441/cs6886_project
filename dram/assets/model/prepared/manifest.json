@@ -1,0 +1,23 @@
+[
+  {
+    "set": "A",
+    "label": "A_stable",
+    "sha256": "600582914b8abe98826f28959e8dade2e16e0723466648bf0e432ff34621670f",
+    "stable_trig_markers": 2,
+    "commit_markers": 0
+  },
+  {
+    "set": "B",
+    "label": "B_stable",
+    "sha256": "07a9c231cb0d3e4347fbee034a05f7820160506d71bea197e66be9d4cc9b8f50",
+    "stable_trig_markers": 2,
+    "commit_markers": 0
+  },
+  {
+    "set": "B",
+    "label": "B_stable_commit",
+    "sha256": "a8c325f96c4f638a4026c9ff925133a69ea6c749797b919d25d0cac2699c8ad3",
+    "stable_trig_markers": 2,
+    "commit_markers": 60
+  }
+]

@@ -1,0 +1,8 @@
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-report-64db.qdstrm'
+[1/1] [0%                          ] trace.nsys-repProcessing events...
+[1/1] [0%                          ] trace.nsys-rep[1/1] [==19%                       ] trace.nsys-rep[1/1] [========40%                 ] trace.nsys-rep[1/1] [========41%                 ] trace.nsys-rep[1/1] [=============60%            ] trace.nsys-rep[1/1] [=================72%        ] trace.nsys-rep[1/1] [====================85%     ] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep[1/1] [========================100%] trace.nsys-rep
+PROFILE_WINDOW_OK cache_large iree_forwarded warm 3
+Generated:
+	/content/Attention_DRAM_Tests/runs/20261101_081149_B_main/smoke/nsys/cache_large_iree_forwarded/trace.nsys-rep

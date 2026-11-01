@@ -1,0 +1,4 @@
+/content/attention_real_llm/prepared/B/baseline.mlir:23:1: remark: Executable benchmarks were requested but none were generated. Run with --debug-only=iree-dump-executable-benchmarks for more details.
+
+module @module {
+^

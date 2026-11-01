@@ -1,0 +1,19 @@
+{
+  "case": {
+    "id": "A_n3072_p0",
+    "kind": "model",
+    "set": "A",
+    "context": 3072,
+    "prompt": 0
+  },
+  "backend": "torch_compile",
+  "rep": 1,
+  "cache": "warm",
+  "calls": 3,
+  "replay": "app-range",
+  "cache_dir": "/content/Attention_DRAM_Tests/cache",
+  "warmup": 5,
+  "result": "/content/Attention_DRAM_Tests/runs/20261101_074854_B_main/main/profiles/A_n3072_p0_torch_compile_warm_app-range_r1/worker.json",
+  "environment_sha256": "0dac62c72ed11d7d892657feab4899d3bc386c8fe0ac03f479b136383b0c09eb",
+  "fixture_sha256": "b1513de5241b62d6c71ff10148ecb9d82fa1df92151d1e5e81a867b599b7d4ff"
+}

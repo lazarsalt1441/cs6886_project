@@ -1,0 +1,48 @@
+{
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "gpu": "Tesla T4",
+  "arch": "sm_75",
+  "config": {
+    "set": "A",
+    "device": "cuda",
+    "contexts": [
+      128,
+      512,
+      2048
+    ],
+    "prompts": 2,
+    "trials": 31,
+    "repetitions": 3,
+    "warmup": 5,
+    "steps": 16,
+    "torch_compile": true,
+    "tiny": false,
+    "output": "results_A"
+  },
+  "audit": {
+    "markers": {
+      "attention.concat_commit_factored": 0,
+      "attention.commit_factored": 0,
+      "attention.cache_read_forwarded": 0,
+      "attention.cache_updates_coalesced": 0
+    },
+    "baseline_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+    "optimized_sha256": "0cbc2a31666d83956adf25321a3642d230cc03b8f63c0cebc54063eb23cde22e",
+    "identical_ir": true,
+    "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+    "set": "A",
+    "tiny": false,
+    "dynamic": true,
+    "symbolic_min_range_proofs": 60,
+    "attention_implementation": "eager",
+    "layers": 30,
+    "scope": "Full pretrained model",
+    "any_rewrite": false
+  },
+  "iree_version": "IREE (https://iree.dev):\n  IREE compiler version 3.13.0rc20261016 @ 89ece87b89852100c0a4ac3d515e14842d090967\n  LLVM version 24.0.0git\n  Optimized build\n",
+  "nvidia_smi": "Sat Oct 31 19:37:23 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n| N/A   39C    P8              9W /   70W |       3MiB /  15360MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n"
+}

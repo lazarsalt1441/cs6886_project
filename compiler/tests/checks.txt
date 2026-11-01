@@ -1,0 +1,13 @@
+// FileCheck tests apply to the actual exported fixture ir/linalg.mlir.
+// REUSE: affine_map<(d0, d1, d2, d3, d4) -> (d0, d3, d4)>
+// REUSE: affine_map<(d0, d1, d2, d3, d4) -> (d0, d4, d3)>
+// REUSE-LABEL: func.func @main
+// REUSE-NOT: linalg.batch_matmul
+// REUSE-NOT: tensor<1x2x4x128x32xf32>
+// REUSE: tensor<2x128x32xf32>
+// REUSE-NOT: linalg.batch_matmul
+// REUSE: return
+// NEG-COUNT-2: linalg.batch_matmul
+// SHARED: tensor<1x2x4x128x32xf32>
+// SHARED-NOT: linalg.batch_matmul
+// SHARED: return

@@ -1,0 +1,12 @@
+build/
+vendor/
+__pycache__/
+*.vmfb
+*.so
+
+toolchain/
+.venv/
+*.tmp
+*.aux
+*.out
+*.toc

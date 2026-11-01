@@ -1,0 +1,5142 @@
+{
+  "arch": "sm_75",
+  "seeds": 10,
+  "device": "cuda",
+  "rows": [
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "a41b0a7268aaf2c85f1e0e74e8a6d7eb9a89c0b0e477daf5c53f7ea181a4a6ae",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "4ce5f9d3298e2c9dc52c173804f20608d6b245cd3f344ce56f7ab66814f182af",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "8f6d36283def4cab03d6a3c3af36cb9ecfa6686a650292160ca84884f561324a",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "815e8ed5d3294a261eac077f618d5b63b6fc33aaeaf2bdfd9dbabd44569e08f1",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3147776
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "c53f3f4f2d3723fafd3e93462a17f28e299bf451bf2c575e3f98661affbd7782",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "54f5561625e9905d2a1666bbb7e06ce9748af31f40a75e65124aee7bbe046046",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.7215343184329157e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1743488112503364e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.707788220514324e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.8455595912625355e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.256834969987075e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.433189784072475e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.0910046494005954e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4475913873445165e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.51112974542545e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.912359276107672e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2164736
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "aggressive",
+      "sha256": "06f061ad2bd15898b7d3fbe76055ee5996f1c5a9323fd782a3332bb206ca0f95",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "forwarded",
+      "sha256": "d9bf748cb4679f0c43f9647516c3ebf1de65f749701a45299f8b9da99e3f632d",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 299008
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "lifted-aggressive",
+      "sha256": "842fca6c72831111883fc15133ada127fff0486817af7970cb971de107809461",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "lifted-normalized",
+      "sha256": "f38a6d3ab3d5e6c17ca10463c9d449dbc496f3796422f2863289764d5cced098",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1314816
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "patch-forwarded",
+      "sha256": "e1ea715e5769cf63dc548cf30f7b357fc658bc42c02fbbe4df5d1c5092c0beb9",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 529536
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h1_g8_d32_m1_f4_o0_t1",
+      "variant": "strong",
+      "sha256": "b017d70acec55a2a2f50ab98ea743eb0fb33cac659cefd86bfe6f4669b791eb6",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.4260752112527086e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.4412328069868252e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.0036955716840055e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2700738180604354e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.3195681947131277e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 3.1213899620574637e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.7446775341101173e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.4833838829785293e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.9663348566067995e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.5879864233292462e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1347584
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "aggressive",
+      "sha256": "1a16ed80d3da05ea3ea708b67ceaaa830492a9fd378da285d9980770f6900755",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "forwarded",
+      "sha256": "d607cf2722e06c3f4c7c710d77ba470af68451c704a9cdb5ce0c968ea6a8924d",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 532480
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "a6a10d8b7e762f7f0cf23797edbf6f54ef6ba042455f2a0ff55ca7bbf1288425",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "lifted-normalized",
+      "sha256": "1963b2d5e1affd739c5cf80c810b866761abce665bfa8a99dc793d65f731d595",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12591104
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "patch-forwarded",
+      "sha256": "d5fe6832023aef97b735dad0097cd349af7242ef67a380591574cab4875af29a",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 10496
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p8192_n256_h2_g2_d64_m1_f8_o8190_t2",
+      "variant": "strong",
+      "sha256": "2af4eee343d56f2fb5691327ea4c4d410144a979bc86de4fdcc388e6f5896ff6",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.1336669158978907e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.1386185755357658e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5623008886578305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4643539886227686e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.585161243885754e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1154716808570164e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.422770813386265e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.0792111946808514e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 7.626378839553638e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 2.059083692995678e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8658944
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "9897ed3069d53c60460145bf4693175fc9cf9c83f2e1ce5bed0d7101a723ff4d",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "d19327fa6a2c97b3eb0b27aaa195554779cc8ac11b61f4d1cc428be43fbe07aa",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 133120
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "376b3ae3e6947410f8af3b6aa1e234eee6ea4af99c696c08d2b8b6cf10c889ac",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "1fb10debca792e20e7e6f4ce558272f98ff7a5a132d8d0db0f06e601ebd6523b",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 50333696
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "c5eab7aae0770da4037eb7085228b7445687022f89f61657a456e0fa67d5d3a5",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 3200
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p65536_n128_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "1cd92b224170cc7930b23a878bbf00fba02a37946fea74fbde8d79438d449258",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.9334802736636902e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.2526241664062576e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.0700037594846279e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.2822245831767276e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9742386120347177e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 1.1933844973333052e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.2749059902515967e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.6594378854948317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0997889632324842e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.2458853770880296e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33622016
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "d5da24653d0c0515507785fa7f322de415a23fcc282b93af8110dff9f0b91a3e",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "c18440b5e6c6ded880f90f61dcf1e64595bca7952396f42847d8548924653721",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 526336
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "b7824d69d9de1927214ca4f336045cd7f717b9249439cf4841e9868c7a5283ba",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "93c445e796bf37acdc906799c7abdfe735b61837b94f36f9bbab0ebf5bac191a",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "fb436dcfa76e5d9aacf80ee003d421d791f3be48ca5211f59c86fdfb56b53cea",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6656
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1024_n512_h2_g4_d32_m1_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "1ef4b9273d3abfece2f96de04520f006f0c6d7ae19f4ae71c2b5a757c85dc606",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.0887042123375323e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.919985111128682e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.39937557943482e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 5.8557397986103155e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 5.361964105360384e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.285716693838928e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 6.269074021014731e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.8010402824675253e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 5.4396401542866624e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.1093480312140969e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 788480
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "d3b8c20024c3e3989d255554c2d8c460353ad819e13eb0105fcf414da4f9bfaa",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "174b7367cd691e484e983bc9a728c4dc1847389f13ba92567fbbc1e1e7d6a121",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 557056
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "b56d9a0580fc83cb8e2a7381b7a9be6dfbb92307a2de81f41c74393cbdb4031b",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "d25540e06ffe1eb341712d3d10465fe410a41f9c495eab01149f4052adb688d8",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 12615680
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "961e0a07b0644bbcff25635498e402636a21e62b1465d1a0eba2c3c0d15cbab7",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 33920
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h4_g1_d64_m16_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "538fb4130e44a0a471db7be92c72233de8bffb65ffc8c11ae0be117d533e69cd",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.5429758360173693e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.9128811618029928e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.5692076210948045e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.85918445697142e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.6436736116620665e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 2.3988590897028317e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.666231616570535e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 2.393167296554921e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 2.4777222945582267e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.854123000133434e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8683520
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1009_n65_h3_g2_d24_m3_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "ea762951e45706d63db7a1a2dd4c44f4a3742b6211038e67df87348539c29b12",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.8925271633450933e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 2.1197076338630438e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.678625181107286e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.429218379229603e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9687147378988357e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 4.119716828787645e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.934325383785463e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.748575523321307e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 3.174749925727305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 3.065641541732944e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1009_n65_h3_g2_d24_m3_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "95e2b8b333bc293363a76c4c70fb3ec789531b785d6ab6f4dcb3d9b426285fd6",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.8925271633450933e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 2.1197076338630438e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.678625181107286e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.429218379229603e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9687147378988357e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 4.119716828787645e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.934325383785463e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.748575523321307e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 3.174749925727305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 3.065641541732944e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 78464
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1009_n65_h3_g2_d24_m3_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "a1c310fecdb27ff197f31c0f80b7299289772f4f5e1707477c6e8b07b923c63e",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.8925271633450933e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 2.1197076338630438e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.678625181107286e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.429218379229603e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9687147378988357e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 4.119716828787645e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.934325383785463e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.748575523321307e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 3.174749925727305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 3.065641541732944e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1009_n65_h3_g2_d24_m3_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "1aca32f0624d0d0416593ecf2d1ed0e44c987bf6839fd34764982c472c4d8735",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.8925271633450933e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 2.1197076338630438e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.678625181107286e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.429218379229603e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9687147378988357e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 4.119716828787645e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.934325383785463e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.748575523321307e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 3.174749925727305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 3.065641541732944e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 875328
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p1009_n65_h3_g2_d24_m3_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "25c85b914198012c2e79b17deaae57524608ad2d0ddfcad7f984b5f66aeab4fe",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 2.8925271633450933e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 2.1197076338630438e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 2.678625181107286e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 2.429218379229603e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 1.9687147378988357e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 4.119716828787645e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 2.934325383785463e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.748575523321307e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 3.174749925727305e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 3.065641541732944e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 622208
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "aggressive",
+      "sha256": "a9d54d4738382eb1c492b2200a50b954c1ca3ebf6841b32f0ec5216d229b7604",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "forwarded",
+      "sha256": "70d4b498d94f200010273489f9e980c9e47bed581019ac052046b857b1eafda0",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "6f507c678ff97f8321f16f54ab9bb772f754f54f2c596e34d64685aae44b70a7",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "af493ec616c7408350c741901eba0f0d96f0b030f8650583edd3e1e6cac4c84f",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "2db0e4296939fd396d3e5dee3c2e8ed88f17357e76b26fd5c350bd6d0c803a7d",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 1024
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p4096_n128_h2_g4_d32_m1_f1_o37_t2",
+      "variant": "strong",
+      "sha256": "454f84a82d3bddf77a9a18d58695d37dfd007410aeb96135a487a1be52f60f0a",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 1.8297621172391754e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 1.674506658611019e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 8.96390770777078e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.4545261178833258e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 2.141596173454996e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.674916061017889e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.2766588625146014e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 1.303840836408554e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0902309234561702e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.3343139361986223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 66560
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "aggressive",
+      "sha256": "441b3a0b49b607899a67cd2a762661f73d3950b1434bf0798910cfa343cb7115",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "forwarded",
+      "sha256": "995b28caa7659b0d036e30abeedf6d84a717a5ad69ed9780850a7952e19c354d",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "lifted-aggressive",
+      "sha256": "6d5ae67dcf06a3cbb2dc7855e9cee960b8e3850897bf586cb9254ae8a80b4cf5",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "lifted-normalized",
+      "sha256": "29e146e84a23c69c140d3afc6a8d8fe3104d0dc5f48f6c74f850830b069abd41",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "patch-forwarded",
+      "sha256": "2daccc532c6f24b971d7cb6e00d4b8a1331d10a15a9ba207a45065cb1768c4dd",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 197632
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "cache",
+      "case": "p256_n256_h2_g2_d32_m1_f2_o37_t2",
+      "variant": "strong",
+      "sha256": "54dd03b44979c0120d029f21d38aa7e60bccf6bde1574580ac5478c93dd8c7a0",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.614108900657392e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 9.946463136456529e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 1.5182827764470552e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 1.3071346673110273e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.570196884967075e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 9.779316373359492e-08,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 1.347520439537453e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 3.1982782122685904e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 1.0028674660850223e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 1.8544662572228532e-07,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 263168
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "aggressive",
+      "sha256": "2f0cdd96527208bf5affd9f177b08bdc50564e4a98898aa289d1d10daa578a49",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "forwarded",
+      "sha256": "5c6206215b73ab64d92af9f447129422da56e779cbe29414dea36a9ce1312a64",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 71680
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "lifted-aggressive",
+      "sha256": "95ce0a597002299129b3601ff4aa22aa39dd0a224ad738bc144929d7ffdd242a",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "lifted-normalized",
+      "sha256": "1002bdfd0753f64bf30dcf89c3c6b2177fcaf4fbbe77e5f6ca493dc839d51147",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2103296
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "patch-forwarded",
+      "sha256": "0b9601ced64223c6b7ccd5d0075aa360badd54362f3ea681c77be5e8b6ff12e0",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 6784
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f2-p4096",
+      "variant": "strong",
+      "sha256": "23c357b8e08a5eb29a5dbc0778dcb6e49aaf2befd3969b78f890e3a81aea6ac3",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.079166748104939e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010164498509546149,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 7.787092457312017e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 8.225602660627551e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.375578031955989e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 0.00010790867540022564,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.747039500200948e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 9.497080662712598e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 8.54285001246069e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 7.656932337907207e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 2168832
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "aggressive",
+      "sha256": "66f61bd62e5cabc0b946141f272fe8cc7d2935d366bfb408fb02b171470d249e",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "forwarded",
+      "sha256": "0ed541d765664b8ea182cdeb0193f047bacc7aca53b03a97254930726637764f",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 75776
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "lifted-aggressive",
+      "sha256": "a259f7739d4ef75552195c0ed11be16bfa4b5c843e574c60902d68b228023295",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "lifted-normalized",
+      "sha256": "e29f1d307c642847576db22fcdc2e0b9a3d95d03ce3edf137a1bf3736585f5ca",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8399872
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "patch-forwarded",
+      "sha256": "33ce7e82c53a37dbd9a6c983eb861c77fa86c238a6000d0fe2bcf6457f26a860",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 11264
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "family": "block",
+      "case": "f4-p16384",
+      "variant": "strong",
+      "sha256": "92396dfe65da313ff92706ed956457e38b6ce018d802b0bb1ac9cbcaa5f2f937",
+      "checks": [
+        {
+          "seed": 101,
+          "ok": true,
+          "max_abs": 9.427664350147857e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 102,
+          "ok": true,
+          "max_abs": 0.00010718626541983411,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 103,
+          "ok": true,
+          "max_abs": 9.810530706366727e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 104,
+          "ok": true,
+          "max_abs": 0.00012470919982554562,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 105,
+          "ok": true,
+          "max_abs": 9.730909592287063e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 106,
+          "ok": true,
+          "max_abs": 7.824437531045447e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 107,
+          "ok": true,
+          "max_abs": 8.278623913482441e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 108,
+          "ok": true,
+          "max_abs": 0.00012306990964106035,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 109,
+          "ok": true,
+          "max_abs": 9.014698111231567e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        },
+        {
+          "seed": 110,
+          "ok": true,
+          "max_abs": 9.925132505156364e-05,
+          "exact_cache_checks": true,
+          "invocation_alloc_bytes": 8465408
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

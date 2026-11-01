@@ -1,0 +1,578 @@
+{
+  "version": 1,
+  "track": "B",
+  "plan": "main",
+  "cases": [
+    {
+      "id": "stream_control",
+      "kind": "control",
+      "size_mib": 64
+    },
+    {
+      "id": "cache_small",
+      "kind": "synthetic"
+    },
+    {
+      "id": "cache_large",
+      "kind": "synthetic"
+    },
+    {
+      "id": "cache_dense",
+      "kind": "synthetic"
+    },
+    {
+      "id": "B_n2048_p0",
+      "kind": "model",
+      "set": "B",
+      "context": 2048,
+      "prompt": 0
+    },
+    {
+      "id": "B_n2048_p1",
+      "kind": "model",
+      "set": "B",
+      "context": 2048,
+      "prompt": 1
+    },
+    {
+      "id": "B_n2048_p2",
+      "kind": "model",
+      "set": "B",
+      "context": 2048,
+      "prompt": 2
+    },
+    {
+      "id": "B_n3072_p0",
+      "kind": "model",
+      "set": "B",
+      "context": 3072,
+      "prompt": 0
+    },
+    {
+      "id": "B_n3072_p1",
+      "kind": "model",
+      "set": "B",
+      "context": 3072,
+      "prompt": 1
+    },
+    {
+      "id": "B_n3072_p2",
+      "kind": "model",
+      "set": "B",
+      "context": 3072,
+      "prompt": 2
+    },
+    {
+      "id": "B_n4096_p0",
+      "kind": "model",
+      "set": "B",
+      "context": 4096,
+      "prompt": 0
+    },
+    {
+      "id": "B_n4096_p1",
+      "kind": "model",
+      "set": "B",
+      "context": 4096,
+      "prompt": 1
+    },
+    {
+      "id": "B_n4096_p2",
+      "kind": "model",
+      "set": "B",
+      "context": 4096,
+      "prompt": 2
+    }
+  ],
+  "profiles": [
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "stream_control",
+      "backend": "torch_stream",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_forwarded",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_forwarded",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "iree_forwarded",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_small",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 1,
+      "replay": "application"
+    },
+    {
+      "case": "cache_large",
+      "backend": "iree_forwarded",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 1,
+      "replay": "application"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_forwarded",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_forwarded",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "iree_forwarded",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "cache_dense",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 1,
+      "replay": "application"
+    },
+    {
+      "case": "B_n2048_p0",
+      "backend": "iree_commit",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 1,
+      "replay": "application"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_commit",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_commit",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "iree_commit",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n3072_p0",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_stable",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_stable",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_stable",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_commit",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_commit",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "iree_commit",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "torch_compile",
+      "rep": 0,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "torch_compile",
+      "rep": 1,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    },
+    {
+      "case": "B_n4096_p0",
+      "backend": "torch_compile",
+      "rep": 2,
+      "cache": "warm",
+      "calls": 3,
+      "replay": "app-range"
+    }
+  ],
+  "note": "Fixed immutable inputs; repeated one-step calls, not an autoregressive generation loop"
+}

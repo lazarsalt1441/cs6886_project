@@ -1,0 +1,6 @@
+ebb5371 M5 two Colab suites, reproducibility guide and evidence-scoped technical report
+0f16f01 M4 offline T4 codegen and validated real-model GPU benchmark protocol with SDPA reference
+de095d8 M3 real checkpoint numerical integration and dynamic autoregressive CPU validation
+a19dc44 M1 confirm zero ordinary-decode matches and 60 pretrained lookahead cache commits
+6626381 M2 compiled C++ concat factoring with verified structural and bitwise cases
+c0cf3a0 M0 recovery checkpoint: pinned model adapters and compiler extension
