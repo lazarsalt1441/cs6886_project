@@ -62,6 +62,52 @@
 {\small\projectauthors\par}
 
 
+\section{Problem, background and approach}
+\begin{resultbox}
+\textbf{Project goal.} Reduce unnecessary attention computation and KV-cache movement in IREE using C++ compiler passes. The strongest model result is \textbf{26.46\% lower latency} for a custom two-candidate SmolLM2 step at context 2048. A separate synthetic forwarding test reduces DRAM traffic by \textbf{99.92\%}. The two numbers describe different experiments.
+\end{resultbox}
+
+\subsection*{What attention and the KV cache do}
+For each new token, attention forms a \emph{query} Q, compares it with earlier tokens' \emph{keys} K, and uses those scores to mix their \emph{values} V. Softmax turns the scores into weights that sum to one. A KV cache saves earlier K/V vectors so they need not be recomputed for every generated token:
+\begin{lstlisting}
+# One decoder layer, schematic single-token step:
+k_new, v_new = key_projection(token), value_projection(token)
+K_next = concat(K_history, k_new)
+V_next = concat(V_history, v_new)
+out = softmax(Q @ K_next.T / sqrt(head_width)) @ V_next
+\end{lstlisting}
+A head is one attention channel. GQA lets several query heads share a smaller set of K/V heads~\cite{gqa,mqa}. FP32 and FP64 mean 32-bit and 64-bit floating-point numbers. Cache size grows with the number of stored tokens, layers and KV heads. Avoiding repeated K/V computation and moving fewer history bytes can therefore matter during decoding.
+
+\subsection*{A new tensor value does not always mean a new allocation}
+The code above describes the values a program must produce. It does not decide how buffers are allocated. A compiler may reuse a buffer, fuse operations or avoid a temporary entirely. Appending one token is not automatically a full-cache copy. Our investigation checks the lowered program before claiming that a copy exists.
+
+Branching creates a useful harder case: two candidate tokens share one history, but each proposes different new rows. Both candidates are evaluated and one is selected. In the model test we take the two most likely next tokens, evaluate each with the shared history, then choose using its likelihood together with that of its best following token (the sum of their log probabilities). The compiler must preserve the shared history while deciding which temporary versions and selections are actually needed. Ordinary greedy decode has no such winner selection.
+
+\subsection*{Where our implementation runs}
+\begin{center}
+\begin{tikzpicture}[node distance=3mm,box/.style={draw=accent,fill=pale,rounded corners=1pt,minimum height=6mm,font=\footnotesize,inner xsep=4pt},>=Latex]
+\node[box](a){PyTorch / Turbine};
+\node[box,right=of a](b){Tensor MLIR};
+\node[box,right=of b](c){C++ \code{gqa-opt}};
+\node[box,right=of c](d){IREE compiler};
+\node[box,right=of d](e){CPU / CUDA};
+\draw[->](a)--(b);\draw[->](b)--(c);\draw[->](c)--(d);\draw[->](d)--(e);
+\end{tikzpicture}
+\end{center}
+MLIR is a structured intermediate form of the program; a \emph{pass} rewrites that form. Our C++ patterns inspect operation types, shapes, indices and users, then build equivalent operations. Unsupported patterns are left unchanged. The standalone driver uses MLIR 19; IREE 3.13 consumes its output and produces CPU/GPU executables~\cite{mlir,project}. This is compiler rewriting, not a hand-written replacement GPU kernel.
+
+\subsection*{What the measurements mean}
+{\small\begin{tabularx}{\linewidth}{@{}P{31mm}Y@{}}\toprule
+\textbf{Claim} & \textbf{Evidence needed}\\\midrule
+Logical expansion removed & The intermediate program no longer creates the repeated/full temporary tensor.\\
+Allocation removed & Runtime allocation measurements show fewer or smaller buffers.\\
+DRAM traffic reduced & GPU hardware counters show fewer bytes read/written to device memory.\\
+Execution faster & Separate unprofiled timing shows lower latency; compilation is excluded.\\\bottomrule
+\end{tabularx}}
+
+\textbf{Prior work and scope.} GQA/MQA establish head sharing~\cite{gqa,mqa}; read-after-write identities come from classical array reasoning~\cite{mccarthy,arrays}; PagedAttention studies KV sharing and copy-on-write~\cite{paged}; DeepSeek-V2 describes latent projection absorption and separated rotary coordinates~\cite{deepseek}. Our work implements guarded recognition, tests upstream coverage and evaluates these transformations through IREE. Finding that existing flags solve the original repeat pattern led us to investigate cache versions and projection placement instead.
+
+\newpage
 \section{Why the two IREE flags remove the original GQA repeat}
 \textbf{Starting graph.} GQA shares $H_{kv}$ key/value heads among $H_q$ query heads~\cite{gqa,mqa}. For 8 query heads and 2 KV heads, $g=4$: query heads 0--3 use KV head 0 and heads 4--7 use KV head 1. With batch omitted, $Q:[8,M,D]$ and $K,V:[2,N,D]$:
 \begin{lstlisting}
@@ -71,23 +117,23 @@ Vr = repeat_interleave(V, 4, dim=0)
 P  = softmax((Q @ Kr.transpose(-2, -1)) / sqrt(D), dim=-1)
 O  = P @ Vr
 \end{lstlisting}
-The saved Linalg IR first broadcasts K/V to $[2,4,N,D]$, collapses the two head axes to 8, then feeds named \code{linalg.batch\_matmul} operations. The broadcast is a tensor-producing operation; reshaping alone is not evidence of a copy.
+The saved Linalg IR first repeats K/V across a new sharing axis, giving $[2,4,N,D]$. It then flattens the two head axes to 8 and calls \code{linalg.batch\_matmul}. A reshape changes how dimensions are viewed; by itself it does not prove that data was copied.
 
 \subsection*{Flag 1: expose matmul as a generic contraction}
 {\footnotesize\ttfamily --iree-opt-generalize-matmul\par}
-The \code{GeneralizeLinalgNamedOps} pass rewrites named matmuls as \code{linalg.generic}, exposing parallel/reduction loops, operand indexing maps and multiply-add arithmetic~\cite{ireesource,ireedocs}. A reduction sums many feature products into one output:
+The \code{GeneralizeLinalgNamedOps} pass replaces the named matrix-multiply operation with \code{linalg.generic}: an explicit description of its loops and array accesses~\cite{ireesource,ireedocs}. The arithmetic is unchanged. A \emph{reduction} adds several products to form one score:
 \begin{lstlisting}
 # Schematic loop meaning of linalg.batch_matmul(Q, Kr.T):
 for h, m, n:                    # parallel output indices
     S[h,m,n] = sum_d(Q[h,m,d] * Kr[h,n,d])
 \end{lstlisting}
-\textbf{Why needed:} the reshape pass has rules for generic operations; the pinned implementation excludes propagation through named Linalg operations. Generalization exposes the structure those rules need. It does not itself guarantee fusion or a faster kernel.
+\textbf{Why needed:} the tested reshape rules can work through generic operations, but skip named Linalg operations. This flag exposes the loops so later rules can act. It does not remove the repeat by itself.
 
 \subsection*{Flag 2: propagate reshapes through reductions}
 {\footnotesize\ttfamily --iree-dispatch-creation-enable-aggressive-reshape-movement\par}
-The reduction-crossing option in \code{BubbleUpExpandShapes} permits expand/collapse propagation through eligible generic reductions, rather than restricting it to all-parallel operations~\cite{ireesource,ireedocs}.
+The \code{BubbleUpExpandShapes} pass moves reshapes through operations. This flag lets it move through supported loops that sum values, rather than only loops whose outputs are independent~\cite{ireesource,ireedocs}.
 
-\textbf{Effect here:} the flattened head axis can be split into \emph{KV head}$\times$\emph{sharing group}. Existing elementwise fusion can then combine the broadcast with the contraction and compose its indexing map. The resulting loop meaning is:
+\textbf{Effect here:} the flat head number becomes two indices: \emph{KV head} and \emph{query within its sharing group}. Existing fusion then combines the repeated-data producer with the matrix multiply. Its array accesses can read the original K directly:
 \begin{lstlisting}
 for hk in range(2):
   for j in range(4):
@@ -95,21 +141,21 @@ for hk in range(2):
     S[h,m,n] = sum_d(Q[h,m,d] * K[hk,n,d])  # no Kr
 # The probability-times-V contraction analogously reads V[hk].
 \end{lstlisting}
-This equals $h_{kv}=\lfloor h_q/4\rfloor$, but the compiler can retain separate \code{hk,j} loops without emitting an explicit integer divide. This changes loop shapes/indexing while preserving the complete dot product. The documentation is therefore under general Linalg/shape-fusion passes, rather than a GQA-specific rule.
+The result is the proposed rule $h_{kv}=\lfloor h_q/4\rfloor$. Keeping separate \code{hk,j} loops may even avoid an integer divide. The full dot product is preserved. These are general loop/reshape/fusion rules, which explains why a search for a GQA-specific optimization did not reveal them.
 
 \subsection*{Evidence and implication for our original pass}
 {\small\begin{tabularx}{\linewidth}{@{}YYrr@{}}\toprule
 Generalize matmul & Aggressive reshape & Broadcast calls & All dispatch calls\\\midrule
 Off&Off&2&5\\On&Off&2&5\\Off&On&2&5\\On&On&0&3\\\bottomrule\end{tabularx}}
-\smallnote{Fresh O3 CPU compile-to-Flow check: $H_q=8,H_{kv}=2$. Observed order: generalization, reshape movement, then elementwise fusion. Final contractions consume compact $[2,N,D]$ K/V. Earlier ablation: 20 fixtures, 160 compilations and 96 numerical checks.}
+\smallnote{O3 CPU compile-to-Flow check: $H_q=8,H_{kv}=2$. Pass order: generalization, reshape movement, then fusion. The final dot products read compact $[2,N,D]$ K/V. Saved IR and a broader head-ratio/shape ablation are in the repository.}
 
-\textbf{What becomes redundant?} Our pass manually constructs grouped contractions; these flags plus fusion already eliminate the tested repeats. The original 1.86$\times$ default CPU gain therefore does not show an additional capability over strong IREE. O3 alone is insufficient. This is not all-graph coverage: MQA can need fewer flags, and extra or escaping users can retain expanded tensors.
+\textbf{Why we changed direction.} Our original pass builds grouped matrix multiplies directly. Both flags plus fusion already remove the tested repeats, so its 1.86$\times$ gain over default CPU lowering is not an extra gain over strong IREE. O3 alone was insufficient. We therefore moved to cache forwarding, commit placement and projection placement. This flag study does not cover every GQA graph: other users of a repeated tensor may still require it.
 
 \newpage
 \section{Functional-cache transformations: what changes and why}
-\smallnote{Examples are explanatory pseudocode. \code{update(C,p,U)} returns a functional tensor value with U replacing rows $p:p+t$; it does not mean every backend must allocate/copy the whole C. Let $C:[P,H,D]$ and $U:[t,H,D]$.}
+\smallnote{Examples are pseudocode, not a replacement model implementation. \code{update(C,p,U)} means ``C with rows $p:p+t$ replaced by U. C has P cache rows, H KV heads and D values per head; U has t new rows. The old C must remain valid if the program still uses it.}
 
-\subsection*{2.1 Conditional read forwarding: avoid building an unused full version}
+\subsection*{3.1 Conditional read forwarding: avoid building an unused full version}
 \textbf{Before:} each candidate forms an updated cache, but downstream sparse attention only gathers a few rows.
 \begin{lstlisting}
 T = update(C, p, U)             # logical full updated version
@@ -117,9 +163,9 @@ R = gather(T, ids)
 # After: conditional loads from original history or the patch.
 R = stack([U[i-p] if p <= i < p+t else C[i] for i in ids])
 \end{lstlisting}
-Example: $P=10000,p=9000,t=1$, \code{ids=[0,9000,9999]} returns \code{[C[0],U[0],C[9999]]}. If T has only supported read consumers, its full materialization can disappear. \textbf{Use case:} several branches share a large pool but each reads a small subset. \textbf{Limits:} required full-cache outputs remain; supported types, indices, slices and uses are checked. Read-over-write is classical array algebra~\cite{mccarthy,arrays}, not a new identity.
+Example: with 10000 cached rows and a one-row update at 9000, reading \code{[0,9000,9999]} gives \code{[C[0],U[0],C[9999]]}. If every user of T is a supported read, T may never need a full buffer. \textbf{Use case:} branches read small subsets of a large shared pool. \textbf{Limit:} a required full-cache output still has to exist. Ordinary dense attention reads the new row too; forwarding does not remove that attention work. The read-after-write identity is established array algebra~\cite{mccarthy,arrays}.
 
-\subsection*{2.2 Masked gather forwarding: a different implementation of the same law}
+\subsection*{3.2 Masked gather forwarding: a different implementation of the same law}
 Instead of per-element conditional control flow, gather a compact base and patch and select their elements. The implemented masked variant uses a safe patch index even outside the update:
 \begin{lstlisting}
 inside = (p <= ids) & (ids < p+t)
@@ -128,9 +174,9 @@ base   = gather(C, ids)
 patch  = gather(U, safe)
 R      = where(expand_mask(inside), patch, base)
 \end{lstlisting}
-\textbf{Why the safe index matters:} a select may evaluate both operands; an out-of-bounds patch read cannot be justified by a later mask. \textbf{Tradeoff:} masks, two gathers and selection add work. A demand/capacity cost gate rejects dense cases; the masked form also has an irregular-shape CUDA compile failure with a conditional fallback. It is not universally faster.
+\textbf{Why the safe index matters:} both sides of a selection may be evaluated. Even a value later discarded must be loaded from a valid address. \textbf{Tradeoff:} two gathers and a mask add work, so a cost check rejects dense demand. An irregular-shape CUDA case fails to compile in the masked form and uses the conditional fallback. The two forms are alternatives, not gains to add together.
 
-\subsection*{2.3 Winner-cache factoring: select the small update before commit}
+\subsection*{3.3 Winner-cache factoring: select the small update before commit}
 Two candidates share the same history but propose different new rows. The final choice is a scalar Boolean:
 \begin{lstlisting}
 # Before: selection consumes two full appended cache values.
@@ -139,9 +185,9 @@ committed = select(winner_is_a, Ta, Tb)
 # After: move the same selection to the small appended rows.
 committed = concat(C, select(winner_is_a, a, b))
 \end{lstlisting}
-Example: with 4096 cached rows and one new row, selection moves from 4097-row tensors to one-row tensors. The pass also supports equal-region insert-slice forms. It checks a common base, axis/region, types and scalar condition; different histories or elementwise conditions reject. \textbf{Use case:} branching inference commit. The pretrained driver has 60 concat matches; ordinary decode has zero. Both candidate attention computations still need their inputs, so this does not prove all candidate caches or copies disappear.
+With 4096 old rows, this selects between one-row updates instead of two 4097-row versions. Equal-region overwrite forms are also supported. The pass requires the same history, append axis, compatible shapes/types and one Boolean decision for the entire cache. Different histories or per-element decisions are rejected. \textbf{Use case:} committing the winning branch. The model has 60 matches (K and V in 30 layers); ordinary decode has none. Both candidates still run attention, so their cache work is not all eliminated.
 
-\subsection*{2.4 Adjacent-update coalescing: build one small patch}
+\subsection*{3.4 Adjacent-update coalescing: build one small patch}
 \begin{lstlisting}
 # Before: intermediate versions are not observed elsewhere.
 C1 = update(C, 100, a)           # a has 1 row
@@ -149,20 +195,20 @@ C2 = update(C1, 101, b)          # b has 1 row
 # After:
 C2 = update(C, 100, concat(a, b))
 \end{lstlisting}
-\textbf{Use case:} supported multi-token update chains before forwarding. Adjacent regions become one small patch; fewer intermediate updates can expose later elimination. Guards require compatible slices, positive sizes, unit strides, no gap/overlap, a single-use intermediate and a sufficiently small patch. The implementation targets copy-prone shared bases; an already-in-place single-use update may not benefit. Earlier CPU chains improve 2.17--2.34$\times$; this is not an established general GPU gain.
+\textbf{Use case:} several adjacent token updates. Combining them can expose a single update that the forwarding pass understands. Updates must touch neighboring, non-overlapping rows, use compatible types and have no other reader of the intermediate version. Large patches are rejected. Coalescing alone was slightly slower in the tested CPU chains; the 2.17--2.34$\times$ gains require coalescing \emph{plus forwarding}.
 
-\subsection*{2.5 Gather-index normalization: preserve the right batch coordinates}
-For source $C:[P,H,D]$ and indices $[F,N,1]$, the last1 is an index-component axis, not another batch axis. The required read is $R[f,n,h,d]=C[\mathrm{ids}[f,n,0],h,d]$.
+\subsection*{3.5 Gather-index normalization: preserve the right batch coordinates}
+For source $C:[P,H,D]$ and indices $[F,N,1]$ (F forks, N reads each), the last1 is an index-component axis, not another batch axis. The required read is $R[f,n,h,d]=C[\mathrm{ids}[f,n,0],h,d]$.
 \begin{lstlisting}
 ids2 = reshape(ids, [F, N])      # remove ONLY the unit component
 R    = gather(C, ids2)           # preserve f and n coordinates
 \end{lstlisting}
-This normalizes a supported depth-one gather before vectorization, avoiding the diagnosed index-projection defect. It checks the gather dimension map and matching batch/output shapes. It is a correctness repair, not head sharing; arbitrary index depth/layouts are outside this rewrite.
+The final size-one axis stores one coordinate, not another batch. Removing only that axis keeps the fork and selected-row coordinates correct. The pass checks this exact depth-one layout and its output shape. It repairs wrong indexing before vectorization; it is not a separate head-sharing speedup.
 
 \newpage
 \section{Ownership, projection and numerical transformations}
 
-\subsection*{3.1 Snapshot protection and borrowed-buffer copy-on-write}
+\subsection*{4.1 Snapshot protection and borrowed-buffer copy-on-write}
 \begin{lstlisting}
 # Tensor contract: return the OLD C alongside an updated-cache result.
 T = update(C, p, U)
@@ -171,9 +217,9 @@ return attention(T), C
 T_buf = clone(C_buf); T_buf[p:p+t] = U
 return attention(T_buf), C_buf
 \end{lstlisting}
-An in-place update through the same buffer would corrupt the returned snapshot. The early tensor pass preserves the old observation using an optimization barrier; the phase-local Stream repair follows casts to non-consuming imports and clones the update target in the supported ownership pattern. The code above illustrates that ownership requirement, not a promise to clone every update. If forwarding makes T unnecessary, a full copy can be avoided. Incorrect stock outputs are excluded from speedup baselines. Cache sharing/COW has earlier systems precedents~\cite{paged,forkkv}.
+A \emph{snapshot} is the old cache value that must remain unchanged. Updating its buffer in place would corrupt that result. Before buffer allocation we mark the old observation so it cannot be discarded; at the supported Stream lowering stage we detect borrowed input buffers and copy before writing when needed. If forwarding removes T, that copy may become unnecessary. This is a correctness requirement, not a reason to copy every cache. Incorrect stock results are excluded from speedup baselines. KV sharing/copy-on-write has systems precedents~\cite{paged,forkkv}.
 
-\subsection*{3.2 Latent projection placement: project the query instead of every key}
+\subsection*{4.2 Latent projection placement: project the query instead of every key}
 Let $C:[N,r]$ be an already-compressed cache, $W_K:[r,d]$, and $q:[1,d]$.
 \begin{lstlisting}
 # Before: project all N cached vectors, then compare with q.
@@ -182,36 +228,38 @@ scores = q @ K.T
 # After: one query projection and a latent-width comparison.
 scores = (q @ Wk.T) @ C.T        # [1, r] @ [r, N]
 \end{lstlisting}
-For $N=10000,r=64,d=512$, this avoids forming 10000 full-width keys and replaces their up-projections with one query projection. The value-side identity is $A(CW_V)=(AC)W_V$. \textbf{Use case:} latent-attention decode, not arbitrary standard KV caches. The pass uses shape/use and cost checks and an explicit reassociation contract: real-number equivalence does not imply bitwise FP equality. It can regress for long queries. MLA absorption is established prior work~\cite{deepseek}.
+For 10000 cached vectors, latent width 64 and key width 512, the first version projects every old vector from 64 to 512. The second projects the current query from 512 to 64 once, then compares in the smaller space. Values similarly use $A(CW_V)=(AC)W_V$: mix compressed vectors first, then project the result. \textbf{Use case:} an already-compressed cache, not arbitrary ordinary KV caches. Shape/use and cost checks reject unsupported or expensive cases. Floating-point rounding can change, so reassociation needs a numerical contract. MLA absorption is established prior work~\cite{deepseek}.
 
-\subsection*{3.3 Partial-RoPE factoring: absorb content while retaining rotation}
-Rotary position transforms generally cannot commute through $W_K$. For an explicit content/rotary split, preserve the rotary contribution and transform only the content term~\cite{deepseek,rope}:
+\subsection*{4.3 Partial-RoPE factoring: absorb content while retaining rotation}
+RoPE encodes position by rotating pairs of coordinates~\cite{rope}. Moving a projection across that rotation is generally wrong. When the graph explicitly separates content and rotary coordinates, transform the content part and leave the positional part intact~\cite{deepseek}:
 \begin{lstlisting}
-# qC:512 content dims, qR:32 rotary dims; C:64 latent dims.
+# Before: qC has 512 content coordinates, qR has 32 rotary ones.
+s = concat(qC, qR) @ concat(C @ Wk, kR).T
+# After: C has 64 latent coordinates; rotate/retain kR as before.
 s = (qC @ Wk.T) @ C.T + qR @ kR.T
-P = softmax(s / sqrt(512 + 32))  # preserve ORIGINAL scale
+P = softmax(s / sqrt(512 + 32))  # same scale in both forms
 \end{lstlisting}
-This equals $[q_C,q_R][CW_K,k_R]^T$. The rewritten content width 64 does not justify changing the denominator to $\sqrt{64+32}$. The pass matches supported split/concat graphs, retains rotary data and explicit scale, and does not claim arbitrary RoPE recognition. \textbf{Use case:} MLA-like decoupled rotary layouts.
+A dot product of two concatenated vectors is the sum of their two dot products. The original 544-coordinate score still needs the original scale $\sqrt{512+32}$; the smaller internal latent width does not change it. The pass recognizes supported split/concat graphs, not arbitrary position encodings. The reported gains include projection placement; they do not isolate a RoPE-only speedup.
 
-\subsection*{3.4 Native-attention phase guard and decomposed fallback}
-Online softmax may merge \emph{token} blocks after each score's full feature sum; it must not treat feature partial sums as extra tokens~\cite{online,flash}. In the seed-free 256-feature case, one 16-wide tile contributes scores $[\log9,0]$; the other 15 contribute $[0,0]$, with values $[1,0]$:
+\subsection*{4.4 Native-attention phase guard and decomposed fallback}
+Online softmax processes tokens in blocks without storing all scores. Each score still needs its full feature sum; partial feature sums are not extra tokens~\cite{online,flash}. In the 256-feature example, one 16-wide tile contributes scores $[\log9,0]$; the other 15 contribute $[0,0]$, with values $[1,0]$:
 \[
 \text{correct}=\frac9{9+1}=0.9,\qquad
 \text{wrong feature-as-token merge}=\frac{9+15}{9+1+30}=0.6.
 \]
-The C++ configured-IR guard protects the feature reduction under the supported CPU schedule and resource constraints; a standard-contraction fallback offers another correct route. The later audit also finds an existing upstream early-decomposition route on CPU. This is a bounded correctness safeguard, not a new attention algorithm or a proven general GPU scheduling repair.
+The guard prevents the supported CPU schedule from splitting this feature sum incorrectly. The fallback instead uses ordinary matrix multiplies and softmax. An existing upstream early-decomposition option also works on the tested CPU cases. The guard repairs supported schedules; it does not establish a new attention algorithm or a general GPU fix.
 
-\subsection*{3.5 Bounded trig argument reduction: keep large-phase RoPE accurate}
+\subsection*{4.5 Bounded trig argument reduction: keep large-phase RoPE accurate}
 \begin{lstlisting}
 # Conceptual repaired path, for 32 < abs(x) <= 8192:
 xd = f64(x)
 r  = xd - floor(xd/(2*pi) + 0.5) * (2*pi)
 y  = sin_f32(f32(r))             # analogously for cos
 \end{lstlisting}
-Higher-precision reduction limits cancellation before the existing FP32 trig evaluation. The pass retains the already-computed FP32 phase, supports static unencoded small kernels ($\leq4096$ elements) and falls back outside the guard. It is a bounded scheme, not full Payne--Hanek or an all-input accuracy proof~\cite{payne}. Unmodified model validation passed 5/9 natural cases; repair enabled 9/9 under the same tolerances. Both IREE timing variants use the repair and f64-preservation flags, isolating the cache transformation.
+Sine/cosine repeat every $2\pi$. First reducing a large angle to a small one in FP64 avoids some FP32 cancellation, then the existing FP32 trig operation is used. The original FP32 phase is retained. This guarded repair supports small static kernels ($\leq4096$ elements) and leaves other inputs on the original path; it is not full Payne--Hanek reduction~\cite{payne}. It raises model correctness from 5/9 to 9/9 natural cases at the same tolerance. Both timed IREE variants use the same repair, so its accuracy benefit is not counted as the cache transformation speedup.
 \newpage
 \section{Evaluation protocol}
-\smallnote{Standalone C++ MLIR 19 rewriting precedes IREE 3.13/LLVM 24 compilation (\code{89ece87b8985})~\cite{mlir}. GPU: Tesla T4, driver 580.82.07, FP32, TF32 off. SmolLM2-135M-Instruct~\cite{model}, checkpoint \code{12fd25f77366}: 30 layers, 9Q/3KV heads, width 64. Both IREE variants use O3, both GQA flags, identical split-argmax settings, trig repair and f64-preservation flags. Timing excludes compilation, prefill and upload: resident outputs, context synchronization, randomized order, 31 samples/repetition; median of nine repetition medians (three prompts, three repetitions). Nsight Compute 2025.3.1 app-range counters~\cite{ncu} use prompt 0, three independent processes and three calls/range, separately from timing. All 112 final counter exports were rechecked.}
+\smallnote{Standalone C++ MLIR 19 rewriting precedes IREE 3.13/LLVM 24 compilation (\code{89ece87b8985})~\cite{mlir}. Context means the number of cached tokens. GPU: Tesla T4, driver 580.82.07, FP32, TF32 off. SmolLM2-135M-Instruct~\cite{model}, checkpoint \code{12fd25f77366}: 30 layers, 9Q/3KV heads, width 64. Both IREE variants use O3, both GQA flags, identical split-argmax settings, trig repair and f64-preservation flags. Timing excludes compilation, prefill and upload: resident outputs, context synchronization, randomized order, 31 samples/repetition; median of nine repetition medians (three prompts, three repetitions). Nsight Compute 2025.3.1 app-range counters~\cite{ncu} use prompt 0, three independent processes and three calls/range, separately from timing. All 112 final counter exports were rechecked.}
 
 \section{Winner factoring: pretrained two-candidate step}
 {\small
@@ -227,7 +275,7 @@ Higher-precision reduction limits cancellation before the existing FP32 trig eva
 \smallnote{This comparison isolates concat winner factoring within the repaired IREE pipeline. All natural and forced-winner cases pass, with exact cache prefixes and unchanged inputs. Worst absolute error: $5.05\!\times\!10^{-5}$ (atol$=5\!\times\!10^{-4}$, rtol$=3\!\times\!10^{-3}$). Ordinary decode has no matches. Writes fall but reads rise: full-model DRAM reduction is inconsistent. At context 2048, kernels increase 987$\to$1047/call and logical memcpy remains 188.8\,MB/call.}
 
 \section{Per-transformation operator results}
-\smallnote{Speedup $=$ baseline time / optimized time; below 1 means slower. CPU rows are separate synthetic studies, not full-model gains. Suite figures are geometric means. Earlier T4 projection timings include output downloads; final model timings leave outputs resident. Combined gains are not additive. Full per-case times, variant names and source paths: \code{report/study\_results/}.}
+\smallnote{Speedup $=$ baseline time / optimized time: 2$\times$ halves latency, while below 1 means slower. CPU rows are separate synthetic studies, not full-model gains. Suite figures use a geometric mean, averaging the ratios on a multiplicative scale. Earlier T4 projection timings include output downloads; final model timings leave outputs resident. Combined gains are not additive. Full per-case times, variant names and source paths: \code{report/study\_results/}.}
 {\small
 \begin{tabularx}{\linewidth}{@{}P{40mm}P{29mm}Y@{}}
 \toprule
@@ -239,7 +287,7 @@ Masked gather forwarding &2.52$\times$ CPU&Same A1: 187.10$\to$74.36\,$\mu$s; al
 Winner factoring alone &1.38$\times$ CPU&2607.34$\to$1885.37\,$\mu$s; with masked forwarding: 723.42\,$\mu$s, \textbf{3.60$\times$ combined}.\\
 Adjacent-update coalescing &0.94--0.96$\times$ alone&4--16-token CPU chains. \textbf{2.17--2.34$\times$ combined} with masked forwarding; merging enables a later match.\\
 Snapshot protection / COW &2.58$\times$ combined&109.01$\to$42.27\,$\mu$s CPU: protection \emph{plus} masked forwarding vs fastest correct baseline; not protection alone.\\
-Key/value projection placement &3.93$\times$ CPU; 1.20$\times$ T4&16 cases per platform vs strong unabsorbed contractions. One decode ablation: key-only 1.92$\times$, value-only 1.95$\times$.\\
+Key/value projection placement &3.93$\times$ CPU; 1.20$\times$ T4&16 cases per platform vs strong IREE before projection absorption. One decode ablation: key-only 1.92$\times$, value-only 1.95$\times$.\\
 Partial RoPE + projection &11.40$\times$ CPU; 1.50$\times$ T4&Four cases per platform; combined pipeline, no isolated RoPE gain. MLA absorption is prior art.\\
 Correct contraction fallback &10.63$\times$ CPU&One wide-head case: 131.11$\to$12.33\,$\mu$s vs correct guarded fused lowering; not a gain from the guard itself.\\
 Gather normalization / native guard &Correctness enablers&No independent valid speedup established. Wrong stock outputs are excluded from performance baselines.\\
@@ -261,14 +309,14 @@ Dense no-rewrite control&0.545&1.268&\textbf{0.43$\times$}&0.285$\to$0.275 (smal
 \end{tabularx}}
 \smallnote{Conditional forwarding, separate from the model factoring result. Track A large fixture: 1.14$\times$, 178.228$\to$0.132\,MB in a second T4 session. Synthetic checks use independent FP64 NumPy references (atol$=5\!\times\!10^{-5}$, rtol$=2\!\times\!10^{-3}$). The unexplained no-rewrite regression and uncontrolled clocks limit causal attribution.}
 
-\textbf{Limitations.} One FP32 small model and GPU family; custom one-step branching, not complete serving throughput. Logical tensor elimination, physical allocation, DRAM bytes and latency are distinct claims. Incorrect ownership/numerical cases and irregular masked CUDA compile failures remain recorded. No all-GQA, mixed-precision or global-novelty claim is made.
+\textbf{Limitations.} One FP32 small model and GPU family; custom one-step branching, not complete serving throughput. Removing a tensor operation, saving a buffer, reducing memory traffic and lowering latency are separate results. Incorrect ownership/numerical cases and irregular masked CUDA compile failures remain recorded. No all-GQA, mixed-precision or global-novelty claim is made.
 
 \clearpage
 \renewcommand{\refname}{References and attribution}
 \smallnote{\textbf{Prior work.} GQA, MLA absorption and decoupled RoPE have identifiable originating papers below. Read-over-write has classical foundations. For selection factoring, adjacent-update merging and this exact compiler repair, no definitive first paper is established here. Cache-sharing papers are related systems precedents, not attribution for our precise MLIR patterns.}
 \vspace{3pt}
 \begingroup
-\small
+\normalsize
 \setlength{\parskip}{1pt}
 \begin{thebibliography}{99}
 \setlength{\itemsep}{3pt}

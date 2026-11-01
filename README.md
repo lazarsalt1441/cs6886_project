@@ -2,9 +2,9 @@
 
 This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
 
-**Course submission report:** [PDF](report/CS6886_Report_Concise.pdf) · [Editable LaTeX](report/CS6886_Report_Concise.tex). **Two main pages, plus references**, covering the problem, prior work, implementation and comparison with IREE.
+**Course submission report:** [PDF](report/CS6886_Report.pdf) · [Editable LaTeX](report/CS6886_Report.tex). **Five main pages, plus references**, with plain-language background, before/after examples, implementation details and per-optimization results.
 
-The [expanded report](report/CS6886_Report.pdf) ([LaTeX](report/CS6886_Report.tex)) provides five pages of transformation examples and results. [Per-study results](report/study_results/per_study_results.md) ([CSV](report/study_results/per_study_results.csv)) map each measured effect to its pass, workload and raw source; combined effects are labelled.
+The [short version](report/CS6886_Report_Concise.pdf) ([LaTeX](report/CS6886_Report_Concise.tex)) remains available as a compact overview. [Per-study results](report/study_results/per_study_results.md) ([CSV](report/study_results/per_study_results.csv)) map each measured effect to its pass, workload and raw source; combined effects are labelled.
 
 ## What the results support
 

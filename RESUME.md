@@ -32,4 +32,4 @@ benchmarks require a CUDA compute node or Colab GPU, with profiler counter
 permission for DRAM collection. Nsight raw CSV export uses `--print-units base`
 and omits the details-only `--print-metric-name` option.
 
-Course submission report: `report/CS6886_Report_Concise.pdf` (two body pages plus references); editable source alongside it. `report/CS6886_Report.pdf` is supplementary. Current DRAM plans use IREE metrics only; historical plan files retain the original extra backends.
+Course submission report: `report/CS6886_Report.pdf` (five body pages plus references); editable source alongside it. `report/CS6886_Report_Concise.pdf` is the shorter overview. Current DRAM plans use IREE metrics only; historical plan files retain the original extra backends.

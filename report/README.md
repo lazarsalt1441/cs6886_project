@@ -1,19 +1,19 @@
 # Project report
 
-* **Course submission:** [PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex), two main pages plus a reference page. This is the report to use for the course's two-page body limit.
-* **Expanded explanation:** [PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex), five pages including references. Each transformation has an example, use case and validity limits. Page 1 traces both IREE GQA flags.
+* **Main course report:** [PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex), **five main pages plus references**. It introduces attention, KV caching and compiler terms, explains both upstream GQA flags, shows before/after examples for every transformation, and maps individual/combined effects to the measurements.
+* **Short overview:** [PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex), two main pages plus references.
 * **Per-study measurements:** [readable tables](study_results/per_study_results.md), [CSV](study_results/per_study_results.csv) and [JSON](study_results/per_study_results.json). Includes 182 IREE comparisons, individual variants, combined-pass ablations and regressions.
 
-The submission report covers the problem and baseline investigation, prior work cited alongside each method, the implementation/integration, matched-baseline evaluation and references including the repository URL. The expanded version is supplementary.
+The main report covers the problem, prior work, implementation, comparison with IREE and references including the repository URL. References are separate from the five-page body.
 
 Both LaTeX files are self-contained; no external figures or BibTeX build are required.
 
-Upload `CS6886_Report_Concise.tex` to a standard Overleaf project, or compile locally:
+Upload `CS6886_Report.tex` to a standard Overleaf project, or compile locally:
 
 ```bash
 cd report
-pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report_Concise.tex
-pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report_Concise.tex
+pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report.tex
+pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report.tex
 ```
 
 The source uses standard TeX Live packages, including Latin Modern, TikZ,

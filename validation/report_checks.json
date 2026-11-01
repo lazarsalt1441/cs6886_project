@@ -1,6 +1,6 @@
 {
-  "pages": 5,
-  "main_pages": 4,
+  "pages": 6,
+  "main_pages": 5,
   "reference_pages": 1,
   "bibliography_entries": 17,
   "external_link_targets": 19,
@@ -23,6 +23,6 @@
     5,
     3
   ],
-  "scope": "Both reports map measured effects to transformations, including combined-pass ablations, CPU and T4 projection suites, regressions and correctness-only repairs. The submission PDF has two body pages plus references. No new GPU timing.",
+  "scope": "Five-page plain-language main report plus a separate reference page. Explanations cover background, two upstream flags, cache transformations, ownership/numerical repairs, projection and per-study IREE results. No benchmark results changed.",
   "per_study_iree_comparisons": 182
 }

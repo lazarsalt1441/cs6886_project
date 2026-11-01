@@ -1,5 +1,5 @@
 {
-  "report_body_pages": 2,
+  "report_body_pages": 5,
   "report_reference_pages": 1,
   "unit_tests_passed": 25,
   "cpu_numerical_checks_passed": 18,
@@ -19,8 +19,8 @@
   "cpp_rebuild_limitation": "SDK endpoint unreachable from review environment; original build records preserved.",
   "rubric": {
     "code_and_reproduction": "README.md",
-    "report": "report/CS6886_Report_Concise.pdf",
-    "editable_report": "report/CS6886_Report_Concise.tex",
+    "report": "report/CS6886_Report.pdf",
+    "editable_report": "report/CS6886_Report.tex",
     "evaluation": "report/study_results/per_study_results.md"
   },
   "clean_staged_checkout": {
@@ -28,5 +28,6 @@
     "archive_unpack": "pass",
     "112_profile_reanalysis": "pass",
     "182_comparison_tables_byte_identical": "pass"
-  }
+  },
+  "report_revision": "Five main pages excluding references; plain-language explanations. Earlier runtime checks retained; compiler sources and raw results unchanged."
 }
