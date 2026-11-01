@@ -1,5 +1,7 @@
 # Forked attention-cache dataflow study
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 This study contains seven compiled C++ MLIR passes and actual CPU executions. It follows the earlier `research/` investigation. It does not establish global novelty, GPU speedup, or publication acceptance.
 
 The measured IREE compiler is `89ece87b89852100c0a4ac3d515e14842d090967` (3.13.0rc20261016; package3.13.0). Source checkout matches the wheel. Standalone passes use MLIR19.1.1; IREE uses LLVM24 at `32d702efa29d0fdd02cff7b79dea8fdbbcf059d4`. The bridge serializes registered IREE IR to generic syntax, runs the C++ tool, then reparses with IREE. No private C++ ABI mixing occurs.
@@ -23,7 +25,7 @@ Stock IREE returns updated values for an original-cache output in the native and
 
 ## Build and quick tests
 
-From the repository root:
+From `compiler/` in the repository checkout:
 
 ```bash
 scripts/bootstrap.sh

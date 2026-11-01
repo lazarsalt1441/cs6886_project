@@ -15,14 +15,22 @@ Default: 101 randomized-order synchronized host timings per variant, after 10 wa
 
 The initial timing suite and additional correctness suite are separate: only use a variant's timings if *all* its later validation checks pass. CPU reference tolerance is atol=5e-5, rtol=2e-3 (block atol=2e-4); report max errors, do not loosen tolerances to make failures pass. Native attention may expose previously unknown GPU defects.
 
-## Upload and run
+## Site requirements and execution
 
-1. Upload `IITM_Attention_GPU_Tests.zip` to your cluster account using your normal SCP/SFTP. On the login node only unpack/manage files:
+The legacy glibc2.17 login-node environment is incompatible with the modern
+experiment wheels. A compatible compute-node image/container and Python3.12
+are required. Compute-node Internet is also required by the default setup;
+where unavailable, prepare an approved offline wheelhouse and adapt the pip
+commands before submission. The Colab procedure in the root README is the
+validated GPU reproduction path.
+
+1. Clone the repository and restore its artifacts. On the login node, restrict activity to download/file management; compile and benchmark through PBS:
 
 ```bash
-mkdir -p "$HOME/attention_gpu"
-cd "$HOME/attention_gpu"
-unzip /path/to/IITM_Attention_GPU_Tests.zip
+git clone https://github.com/lazarsalt1441/cs6886_project.git "$HOME/cs6886_project"
+cd "$HOME/cs6886_project"
+python3 scripts/unpack_artifacts.py
+cd compiler
 qsub pbs_gpu/setup.cmd
 qstat -an
 ```
@@ -57,7 +65,7 @@ Do not execute those four commands at once in one working directory: compiled re
 
 For sm_80 the snapshot suite uses bundled phase-local COW-repaired IR. Other architectures use `--skip-root-cow` and still test tensor-level snapshot protection and both optimized forms. Regenerating the phase-local COW case on other architectures requires the C++ toolkit; it is deliberately not silently reused from sm_80.
 
-## Outputs to send back
+## Recorded outputs
 
 After each job finishes, download **`gpu_results_JOBID.tar.gz`**, plus its PBS stdout/stderr log (`attention_gpu.oJOBID` and any `.eJOBID`). The archive includes:
 
@@ -67,7 +75,7 @@ After each job finishes, download **`gpu_results_JOBID.tar.gz`**, plus its PBS s
 - timing JSON with all raw observations and compilation times for all four families;
 - generated compile logs/PTX and available repaired IR for investigation.
 
-Do not send just speedup averages or screenshots. On failure, send the partial archive and PBS logs anyway. If walltime/kill prevents archive creation, download `pbs_results/job_JOBID` and the PBS log manually. Keep generated VMFB files locally on the cluster until analysis is complete; they are excluded from the small return archive and can be requested by path/hash later. Old bundled CPU results are not new GPU evidence. Collected artifacts can include previous family runs on the same architecture; `commands.tsv` and directory job ID identify what ran in this job.
+Retain raw samples, partial archives and PBS logs, including failures. If walltime/kill prevents archive creation, download `pbs_results/job_JOBID` and the PBS log manually. Keep generated VMFB files locally on the cluster until analysis is complete; they are excluded from the small return archive and can be requested by path/hash later. Old bundled CPU results are not new GPU evidence. Collected artifacts can include previous family runs on the same architecture; `commands.tsv` and directory job ID identify what ran in this job.
 
 ## Timing, memory and optional profiling
 
@@ -75,8 +83,8 @@ Timing here includes synchronized IREE invocation + GPU execution + output downl
 
 Allocator statistics, when the runtime exposes them, measure invocation allocation requests; they are not peak GPU VRAM or hardware memory traffic. `nvidia-smi` records hardware/process context, not per-kernel DRAM bytes. No missing counter is replaced with an estimate.
 
-Optional Nsight Systems profiling should run in a separate PBS GPU job, outside timing measurements. If installed and permitted by the site, activate the same environment, enter the project directory, and run e.g. `nsys profile --trace=cuda,nvtx -o cache_profile python research2/gpu_suite.py --arch sm_80 --family attention --limit 1 --trials 5` (replace architecture). Send the `.nsys-rep`. It helps inspect launches/copies; hardware DRAM counters require a separate suitable Nsight Compute experiment and site profiling permissions. Do not claim traffic reduction from host latency alone.
+Optional Nsight Systems profiling should run in a separate PBS GPU job, outside timing measurements. If installed and permitted by the site, activate the same environment, enter the project directory, and run e.g. `nsys profile --trace=cuda,nvtx -o cache_profile python research2/gpu_suite.py --arch sm_80 --family attention --limit 1 --trials 5` (replace architecture). Retain the `.nsys-rep`. It helps inspect launches/copies; hardware DRAM counters require a separate suitable Nsight Compute experiment and site profiling permissions. Do not claim traffic reduction from host latency alone.
 
 ## Local validation of this bundle
 
-Shell syntax and Python byte-compilation are checked before delivery. No GPU is attached to the preparation environment; cluster CUDA runtime checks and performance measurements are pending. Prepared IR is used so the GPU host need not build MLIR/IREE or run the C++ passes again. Source passes and original project reports remain included for inspection. This package does not introduce a universal GQA pass and does not test the artificial scalar-read example as a natural model optimization.
+Shell syntax and Python byte-compilation checks are included in validation. No GPU is attached to the preparation environment; this site-specific PBS path is not the source of the final Colab GPU results. Prepared IR is used so the GPU host need not build MLIR/IREE or run the C++ passes again. Source passes and original project reports remain included for inspection. This package does not introduce a universal GQA pass and does not test the artificial scalar-read example as a natural model optimization.

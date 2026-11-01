@@ -1,5 +1,7 @@
 # Update chains and observable snapshots
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 These extension measurements are a separate isolated CPU run. Compilation and output downloads are excluded; wrong stock snapshot code is not timed. See README.md for calibration and holdout methodology.
 
 |Case|Best correct baseline µs|Old masked form µs|Coalescing alone µs|Combined masked µs|Speedup (95% bootstrap)|

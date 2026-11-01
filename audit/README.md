@@ -1,6 +1,6 @@
 # IREE/MLIR novelty audit - 1 November 2026
 
-Read `TECHNICAL_REPORT.md` first, then `EXECUTIVE_SUMMARY.md` for the decision.
+Read `TECHNICAL_REPORT.md` and `EXECUTIVE_SUMMARY.md` for the findings. Restore the root artifact archives before following the commands below.
 This is a bounded, source-backed audit, not a proof about every IREE target or flag combination.
 
 ## What is preserved
@@ -12,7 +12,7 @@ This is a bounded, source-backed audit, not a proof about every IREE target or f
 - `results/diagnostics/`: earlier scalar-i1 bridge compilation failures, retained separately from the corrected final reproducer.
 - `project/compiler/`: recovered project pass source, license, CMake build and hash-pinned MLIR19 SDK fetch helper. No SDK or compiler wheel is bundled.
 - `sources/`: pinned source snapshots, issue/PR responses and original evidence excerpts.
-- `manifest.json`: SHA256 of every included file except the manifest itself.
+- `manifest.json`: original audit-release inventory. The repository root `SOURCE_MANIFEST.json` covers the current checkout; generated VMFB binaries are regenerated rather than committed.
 
 ## Repeat the CPU compiler audit
 

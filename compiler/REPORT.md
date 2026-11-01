@@ -1,5 +1,7 @@
 > Research continuation correction: stronger existing IREE flags eliminate the original broadcast example. Its default-baseline speedup below does not establish novelty. The current study, independent backend counterexample, correct baselines and limitations are in [research/README.md](research/README.md) and [the manuscript](research/paper/manuscript.pdf).
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 # GQA KV head reuse: implementation and experimental report
 
 Date: 2026-10-22 (Asia/Kolkata). This is a completed CPU research prototype,

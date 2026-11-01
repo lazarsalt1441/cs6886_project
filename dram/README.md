@@ -1,98 +1,68 @@
-# Attention DRAM traffic study
+# Attention DRAM traffic evaluation
 
-This kit profiles the saved, genuine C++ MLIR transformations from the CS6886
-attention project. It adds hardware traffic evidence and separately timed
-IREE baseline/optimized comparisons. Completed GPU results are now preserved in
-`../results/dram/A` and `../results/dram/B`; see the repository root README for
-the measured improvements, traffic tradeoffs and timing limitations. The ZIP
-upload instructions below remain available; the root README also gives a direct
-Git checkout workflow using `DRAM_KIT_ROOT`.
+This study measures the C++ MLIR cache transformations using hardware counters
+and separately timed IREE baseline/optimized execution. Completed datasets are
+under `../results/dram/A` and `../results/dram/B`. The root README summarizes
+the latency improvements, DRAM tradeoffs and experimental limitations.
 
-The first counter test successfully profiled a Torch initialization kernel. That
-establishes access, not an optimization benefit. This study marks only inference.
+TrackB evaluates winner-commit factoring in a custom two-candidate pretrained
+step. TrackA is ordinary decoding with the same numerical repair and no matching
+commit rewrite. Both tracks include synthetic mechanism and no-match controls.
+Run separate sessions for independent measurements; avoid concurrent workloads
+on one GPU.
 
-### CSV export fix for the returned T4 smoke run
+The model is FP32 SmolLM2-135M-Instruct, revision
+`12fd25f77366fa6b3b4b768ec3050bf629380bac`. The workload is not a complete
+Hugging Face beam-search or speculative-generation implementation.
 
-The returned run `20261101_074854_B_main` successfully captured the streaming
-application range and passed its numerical checks. Export then failed because
-the runner used `--units`, which Nsight Compute 2025.3.1 rejects. The corrected
-command uses `--print-units base` without the details-only `--print-metric-name` option. The parser accepts both long metric-row
-CSV and wide raw CSV with a units row. A completed, matching capture can be
-re-exported without running it again. A cheap counter/export check now precedes
-model setup. No model or numerical tolerance was changed.
+## Colab reproduction
 
-Extract this updated ZIP over the existing `/content/Attention_DRAM_Tests`
-directory. Keep cache/ and runs/. For the returned B run, set
-`DRAM_RUN_ID = '20261101_074854_B_main'`, `TRACK='B'`, `PLAN='main'` and execute
-COLAB_RUN.py again. Matching model fixtures and compiler outputs are reused.
-The friend on track A can apply the same update and retain their own run ID.
+Select a CUDA GPU runtime with Torch2.11 and Nsight Compute counter permission.
+The notebooks `Colab_DRAM_A.ipynb` and `Colab_DRAM_B.ipynb` contain these steps.
 
-## What to run
-
-Use **track B** for the main result: the pretrained two-candidate workload with
-stable trig reduction, before/after winner-cache commit factoring. A friend can
-run **track A**: ordinary decode with the same repair and no matching commit
-rewrite, plus independent repeats of the synthetic mechanism tests. Both accounts
-may run B instead if cross-session confirmation is the priority. Do not run two
-studies simultaneously on one GPU.
-
-The model is pinned SmolLM2-135M-Instruct, revision
-`12fd25f77366fa6b3b4b768ec3050bf629380bac`, FP32. Track B is a custom two-candidate
-one-step driver, not complete HF beam search or speculative generation.
-
-### Colab cell 1
-
-Select a GPU runtime. Keep the original Torch 2.11 CUDA environment. Mount Drive
-for persistent backups; this cell will prompt for authorization if needed.
+Cell1:
 
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
 ```
 
-### Colab cell 2
-
-Download Attention_DRAM_Tests.zip from the chat, then upload it here.
+Cell2:
 
 ```python
-from google.colab import files
 from pathlib import Path
-import zipfile
-uploaded = files.upload()
-archives = [Path(n) for n in uploaded if n.lower().endswith('.zip')]
-assert len(archives) == 1, 'Upload only Attention_DRAM_Tests.zip'
-with zipfile.ZipFile(archives[0]) as z:
-    assert all(not Path(n).is_absolute() and '..' not in Path(n).parts
-               for n in z.namelist())
-    z.extractall('/content')
+import subprocess, sys
+repo = Path('/content/cs6886_project')
+if not (repo / '.git').is_dir():
+    subprocess.run(['git', 'clone', 'https://github.com/lazarsalt1441/cs6886_project.git', str(repo)], check=True)
+subprocess.run([sys.executable, str(repo / 'scripts/unpack_artifacts.py')], check=True)
 ```
 
-### Colab cell 3
-
-The main plan first runs its own smoke stage, then continues automatically. It
-reuses `/content/attention_real_llm/model` if that verified checkpoint is present.
-Otherwise it downloads the pinned checkpoint. It installs missing pinned IREE,
-Turbine, Transformers and numerical dependencies, leaving Torch unchanged.
+Cell3:
 
 ```python
-TRACK = 'B'        # Friend: 'A', or 'B' for an independent confirmation
-PLAN = 'main'      # 'smoke' for a shorter first attempt; 'extended' is much larger
-exec(Path('/content/Attention_DRAM_Tests/COLAB_RUN.py').read_text())
+TRACK = 'B'                 # 'A' for the ordinary-decode control
+PLAN = 'main'               # Main runs smoke first; extended adds cases
+DRAM_KIT_ROOT = str(repo / 'dram')
+exec(Path(DRAM_KIT_ROOT, 'COLAB_RUN.py').read_text())
 ```
 
-Dependencies are checked in a fresh subprocess, so a notebook kernel restart is
-not needed merely for these subprocess workers. A different Torch version is
-rejected for matched replication rather than silently changing the baseline.
+The runner checks pinned dependencies in a subprocess and rejects mismatched
+Torch for matched replication. It downloads and verifies the pinned checkpoint
+if needed; a verified existing model can be reused. Model preparation, CPU
+references and compilation occur outside the measured range. Runtime depends
+on setup and the profile plan; an extended sweep may take hours.
 
-The runner prints progress and estimates remaining time from observed profile
-durations. Expect a substantial run: model preparation, CPU references, Inductor
-compilation and separate profiler processes can take tens of minutes or longer.
-An extended run may take hours. There is no fixed runtime guarantee. Avoid
-disconnecting before a backup is saved. Colab still controls session lifetime.
+Partial backups occur every five minutes and on completion/interruption under
+`MyDrive/Attention_DRAM_Results`. A browser download is attempted at completion;
+browser permissions or abrupt runtime termination can prevent it. Colab session
+lifetime is controlled by the service. Preserve the archive and logs on failure.
+Set `DRAM_RUN_ID` only to intentionally resume an existing run; an independent
+session needs a new ID.
 
-Backups occur every five minutes and on completion/interruption. The final cell
-attempts a browser download. Browser downloads cannot be guaranteed; the Drive
-copy is the durable fallback. Return the entire `attention_dram_*.tar.gz`.
+Nsight2025.3.1 raw export uses `--print-units base`, without the details-only
+`--print-metric-name`. A streaming preflight verifies capture/export before model
+setup, and matching completed captures can be re-exported without recapture.
 
 ## Displayed IREE comparisons
 
@@ -163,7 +133,7 @@ miss. Do not add memcpy payload bytes to range DRAM counters: that can double
 count transfers and ignores cache effects. If nsys is absent, the suite records
 that limitation rather than inventing zero copies.
 
-## What is included and what remains untested
+## Implementation and validation
 
 The kit includes hash-checked before/after IR, the C++ cache/trig source, original
 model adapters, compiler flags, numerical gates, raw CSV parsing, compilation
@@ -172,12 +142,12 @@ Prepared model IR comes from the previously compiled C++ passes; it is not a new
 handwritten approximation. Python manages experiments, not the compiler rewrite.
 `iree_commit` is B's commit pass; `iree_forwarded` is the synthetic read pass.
 
-Local validation is recorded in `validation/`: unit tests, actual CPU compilation
-and execution, and sm_75 compilation. No GPU/profiler execution was available to
-the authoring environment. Your Colab run is required to validate this exact
-Nsight integration. A streaming-range preflight and real IREE-range preflight
-stop a long sweep early if range capture fails. A kernel-only diagnostic is
-attempted on IREE preflight failure, but is not promoted to a whole-step result.
+Validation records include24 unit tests,18 CPU numerical checks, six CPU
+Runner checks and nine sm_75 compilations. The final GPU runs contain51 valid
+trackA profiles and61 valid trackB profiles. All112 exported CSV totals were
+independently recomputed. A streaming-range preflight and IREE-range preflight
+stop a sweep if capture fails; a kernel-only diagnostic is not promoted to a
+whole-step result.
 
 The single-fork fixture is kept as a separate local ownership probe, not a
 performance control. Local CPU lowering agreed numerically but changed caller
@@ -185,9 +155,9 @@ K/V input buffers. It is excluded from the default measured cases; the dense
 two-fork fixture is the validated no-rewrite control. This is an observed
 contract limitation for that fixture, not proof of a universal upstream bug.
 
-## Output to return
+## Recorded outputs
 
-Send the complete archive, including failures. In particular:
+Each result archive preserves the following records, including failures:
 
 * `summary.json`, `dram_summary.csv`, `RESULTS.md` and `plan.json`;
 * `environment.json`, `compilation.json` and `completion.json`;
@@ -197,13 +167,12 @@ Send the complete archive, including failures. In particular:
   checks, raw samples and telemetry;
 * `nsys/*/trace.nsys-rep`, SQLite exports, copy summaries and logs when available.
 
-Do not send cache/weights or input fixture files: these are excluded from the
-archive to avoid gigabytes of redundant model data. Raw report files in a
+Cache/weights and input fixture files are excluded from the archive to avoid
+gigabytes of redundant model data. Raw report files in a
 periodic partial backup are included only after their collection record exists.
 
 The useful outcome is a paired table of **DRAM read bytes, write bytes, total
-bytes, and unprofiled latency** for the same correct workload. We will examine
-traffic reductions alongside regressions and no-match controls. Allocation
+bytes, and unprofiled latency** for the same correct workload. Traffic reductions are evaluated alongside regressions and no-match controls. Allocation
 reduction alone remains insufficient; persistent KV compression, serving
 throughput, mixed precision and global novelty are not established by this kit.
 
@@ -234,5 +203,5 @@ run ID. Do not count resumed cached profiles as fresh repetitions.
   metrics, replay, CSV export and cache/clock control.
 * https://docs.nvidia.com/nsight-systems/UserGuide/ — NVTX capture and trace export.
 
-The user's observed profiler is Nsight Compute 2025.3.1 on a T4. The suite saves
+The recorded profiler is Nsight Compute 2025.3.1 on a T4. The suite saves
 actual tool versions and does not require upgrading the GPU or driver.

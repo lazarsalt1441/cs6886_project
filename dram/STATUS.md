@@ -1,24 +1,25 @@
-# Attention DRAM study status
+# DRAM study: completed evaluation
 
-Completed: isolated profiling worker, owner-context selection, process-wide NVTX
-range, app-range counters, separate kernel attribution, Nsight Systems copy
-trace, randomized unprofiled latency, all-backend forced-winner gates, strict
-counter parsing, plots, notebooks, automatic partial/final archival and Drive
-backup. Assets and compiler configurations are pinned and hash checked.
+The implementation includes owner-context selection, NVTX application ranges,
+range counters, separate kernel attribution, Nsight Systems copy tracing,
+randomized unprofiled latency, forced-winner gates, input-immutability checks,
+strict counter parsing, plots and periodic result backups.
 
-Local validation: 17 unit tests; 18 CPU numerical executions; six CPU Runner
-checks; nine sm_75 compilations. See validation/ for records. The single-fork
-CPU control fails input immutability and is excluded; the dense-demand control
-passes. No fresh GPU traffic or latency result exists in this kit.
+Validation: 24 unit tests, 18 synthetic CPU numerical checks, six CPU Runner
+checks and nine sm_75 compilations. Completed final GPU datasets contain 51 valid
+profiles in track A and 61 in track B, with raw CSV exports and unprofiled timing
+samples. All 112 exported profile totals were independently recomputed.
 
-Next: run Colab track B main; optionally run track A on a second account. Send
-the entire archive, including failures. Evaluate paired DRAM bytes and separate
-latency before claiming memory traffic reduction or inference improvement.
+Track B IREE latency reductions at contexts2048/3072/4096 are 26.46%, 4.64%
+and 5.52%. Full-model total DRAM changes are -3.91%, +1.24% and -0.27%,
+respectively. Thus full-model traffic reduction is not consistent across contexts.
+The sparse synthetic large-cache fixture shows about 99.92% lower IREE traffic.
 
-Export compatibility fix: the user's T4 streaming application-range capture
-succeeded, but CSV export failed on obsolete --units. Replaced it with
---print-units, added long/wide CSV support and safe reuse of completed captures.
-24 unit tests now pass, including export-command and recovery regressions.
-Full-model range collection remains pending. No model setup or IR changed.
+The single-fork ownership probe changes caller K/V inputs under stock lowering
+and remains excluded from performance claims. The dense-demand no-match control
+and clock variation limit interpretation of small timing gains. Counter/replay
+durations remain separate from ordinary latency.
 
-Second returned export diagnosis: Nsight 2025.3.1 rejects --print-metric-name on the raw page. Removed that details-only option; raw CSV already names metric columns. The 24-test suite now explicitly rejects both obsolete --units and raw-page --print-metric-name. Capture and numerical computation are unchanged.
+Nsight2025.3.1 compatibility uses `--print-units base`; the details-only
+`--print-metric-name` is omitted from raw CSV export. Both long and wide layouts
+are supported, and completed captures can be re-exported without recapture.

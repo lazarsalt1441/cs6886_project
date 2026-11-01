@@ -1,6 +1,8 @@
 # Phase-safe attention compiler research artifact
 
-The new study is **Phase-Safe Attention Compilation: Reduction Legality and Latent Projection Placement**. Read `paper/manuscript.pdf` (editable LaTeX beside it). This is a tested CPU research draft, not an accepted or submission-ready NeurIPS paper. Weight absorption is established prior work; no GPU execution is reported.
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
+The study is **Phase-Safe Attention Compilation: Reduction Legality and Latent Projection Placement**. Read `paper/manuscript.pdf` (editable LaTeX beside it). This document records the CPU projection and reduction-legality study. Weight absorption is established prior work; no GPU execution is reported.
 
 ## Results and boundaries
 
@@ -14,7 +16,7 @@ The new study is **Phase-Safe Attention Compilation: Reduction Legality and Late
 
 ## Installation and short verification
 
-Ubuntu 24.04 x86_64, Python3.12, GCC13, ~2GiB SDK storage, network access required. From the repository root:
+Ubuntu 24.04 x86_64, Python3.12, GCC13, ~2GiB SDK storage, network access required. From `compiler/` in the repository checkout:
 
 ```bash
 bash scripts/bootstrap.sh

@@ -37,37 +37,26 @@ All nine diagnostic/candidate programs compiled to sm_75 CUDA binaries. Six sele
 
 144/145 compiled variants passed ten-seed validation. A further irregular masked form did not compile. Cache forwarding: 1.23x geometric mean across nine shapes, best 3.44x. Winner factoring: 1.57x. Update chains: only 1.01–1.07x; do not headline. Valid projection cases: 1.24x geometric mean, median 1.06x, best 6.49x; one incorrect native case excluded. These are invocation + execution + output-download timings, not kernel-only timings. Allocation counters are invocation requests, not measured DRAM traffic.
 
-## Colab: first run
+## Reproduction
 
-Keep the existing /content/attention_gpu project and working environment. Upload Attention_GPU_Followup.zip, then extract it over the project (no deleting/re-extracting the old project). Run:
+Restore artifacts from the repository root and configure the CUDA environment
+described in the root README. From `compiler/`, run:
 
-```python
-import zipfile, subprocess, os
-from google.colab import files
-uploaded = files.upload()  # choose Attention_GPU_Followup.zip
-with zipfile.ZipFile("Attention_GPU_Followup.zip") as z:
-    z.extractall("/content/attention_gpu")
-os.chdir("/content/attention_gpu")
-env = os.environ.copy()
-env["PATH"] = "/content/attention_env/bin:" + env["PATH"]
-result = subprocess.run([
-    "/content/attention_env/bin/python", "run_gpu_followup.py",
-    "--mode", "probe", "--arch", "sm_75", "--seeds", "10", "--trials", "101"
-], env=env)
-print("Exit:", result.returncode)
-files.download("/content/attention_gpu/gpu_followup_probe.tar.gz")
+```bash
+python run_gpu_followup.py --mode probe --arch sm_75 --seeds 10 --trials 101
+python run_gpu_followup.py --mode benchmarks --arch sm_75 --seeds 10 --trials 101
 ```
 
-The probe is nine compilations rather than the entire 146-variant sweep. Expected native failures are retained as findings; the command fails if the original baseline or decomposed fallback fails. Inspect probe.json for all statuses, including errors in the standalone probes. Send back gpu_followup_probe.tar.gz. Do not loosen numerical tolerances.
+The probe runs nine compilations rather than the full variant sweep. Expected
+native failures remain recorded; baseline or decomposed-fallback failures cause
+a nonzero exit. Each run writes a result archive with commands, errors,
+validation and raw samples. Recorded GPU outputs are under `../results`.
 
-## Second independent measurements
+## Interpretation
 
-After the probe, repeat the same subprocess command with `--mode benchmarks`. This runs cache/block/winner with calibration + holdout timing, eager CUDA PyTorch, and ten-seed validation. Download gpu_followup_benchmarks.tar.gz. This leaves chains out because they showed little GPU benefit; native projection diagnosis comes first. Avoid concurrent runs in the same project. Old JSON may be copied into artifacts; commands.json identifies the new commands.
-
-## Remaining research work
-
-1. Use the isolated T4 probe to establish whether Q/K width, V width, or another property triggers the native failure; obtain pass-by-pass IR before patching upstream code.
-2. Validate the decomposed fallback on T4, then integrate a guarded lowering or fix the native schedule. Do not claim root-cause repair from fallback routing.
-3. Repeat cache/winner timing with independent inputs/session and eager CUDA reference. Small <5% differences remain inconclusive.
-4. Measure device-only execution separately and profile launches/copies before claiming hardware traffic reduction.
-5. Export natural model cache-update/branch graphs and compare optimized IREE/PyTorch on end-to-end blocks. Establish prior-art position before a publication claim.
+Fallback routing is distinct from repairing the native schedule. Calibration
+and holdout measurements are per-shape observations, not a general compiler cost
+model. Timing includes synchronized invocation and output download and must not
+be equated with kernel-only latency or DRAM bytes. Small timing differences,
+clock variation and no-match controls limit performance claims. The final
+pretrained-model/DRAM evaluation uses the separate `../dram` protocol.

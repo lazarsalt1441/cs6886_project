@@ -1,5 +1,7 @@
 # Research continuation status — 22 October 2026
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 ## R0 — stronger baseline and novelty audit, committed
 
 IREE O3 + matmul generalization + aggressive reshape movement removes the original head-copy expansion. Workspace8192 bytes, same as the original custom pass. Original measured data is retained with a prominent correction; that example alone is not novel.
@@ -22,8 +24,8 @@ Compiled C++ reassociation pass, static f32 shape/use/body checks, explicit cont
 -54/54 offline CUDA sm_80 binaries compile. LLVM/PTX inventory retained; kernel counts sometimes increase. No GPU execution or hardware traffic result.
 -9 explicit-scale numerical executions pass. GPU runner supports optional eager CUDA PyTorch, but that GPU-only branch remains unexecuted.
 
-## R4 — manuscript, reproduction, handoff
+## R4 — experiment documentation and reproduction
 
 Final PDF compiled twice, all10 pages rendered and visually inspected, no overfull boxes or undefined references. Final integrity checks verified68 primary VMFB hashes and no empty IR/VMFB artifacts. Paper and generated tables/plots are in `paper/`; `make_paper.py` regenerates figures/macros from actual JSON. Research guide, upstream issue draft (not posted), claim audit and future evaluation checklist are supplied. Root README/REPORT carry the stronger-baseline correction. SDK/build/vendor are reconstructed, not packaged.
 
-Publication status: research manuscript draft, not submitted/accepted or proven NeurIPS-level. Missing GPU execution, matched upstream compiler build, independent reproduction, complete models, lower precision, broader numerical contracts and general scheduling contribution. Do not promote known absorption algebra as new.
+Scope: exploratory technical study; global research novelty is not established. Missing GPU execution, matched upstream compiler build, independent reproduction, complete models, lower precision, broader numerical contracts and general scheduling contribution. Do not promote known absorption algebra as new.

@@ -2,7 +2,7 @@
 
 1 November 2026. The strongest candidate is **demand-driven optimization of competing functional KV-cache versions**, combining read forwarding with selective commit placement. It is a candidate research direction, not an established paper contribution. The array laws are old; the contribution would have to be a general, safe and profitable compiler treatment of real branching inference graphs.
 
-I independently installed the exact experimental compiler and a newer released nightly, inspected pinned IREE/MLIR source, rebuilt the original C++ optimizer, and ran 322 program/configuration variants through four compilation stages. All final variants compiled. Of 3700 main-suite numerical checks, 3340 passed; 360 failed, all in the deliberately diagnosed wide-Q/K native-attention configurations. Failures are retained and excluded from performance comparisons. Extra snapshot/bit-pattern tests are recorded separately.
+The audit independently installed the experimental compiler and a newer released nightly, inspected pinned IREE/MLIR source, rebuilt the original C++ optimizer, and ran 322 program/configuration variants through four compilation stages. All final variants compiled. Of 3700 main-suite numerical checks, 3340 passed; 360 failed, all in the deliberately diagnosed wide-Q/K native-attention configurations. Failures are retained and excluded from performance comparisons. Extra snapshot/bit-pattern tests are recorded separately.
 
 | Area | Classification | Confidence | Upstream support / boundary | Source links | Independent evidence |
 |---|---|---|---|---|---|

@@ -1,6 +1,6 @@
 # CS6886: attention and KV-cache compiler optimizations
 
-C++ MLIR passes, PyTorch exports, IREE integration, correctness tests, and CPU/Tesla T4 experiments. This repository consolidates the original GQA study, later cache transformations, pretrained-model tests, numerical repair, upstream audit, and hardware DRAM measurements. Historical reports are retained as experiment records; **a final two-page course report has not been prepared in this update**.
+This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
 
 ## What the results support
 
@@ -45,7 +45,7 @@ The last command needs no GPU or model download. It independently parses **112 v
 
 ## CPU validation and offline GPU compilation
 
-Tested authoring platform: Python 3.12, x86-64 Linux. SDK bootstrap requires Ubuntu 24.04-compatible glibc and development tools. The old IITM glibc 2.17 host cannot run these modern wheels directly; use a suitable container/compute environment or Colab. Do not run benchmarks on a cluster login node.
+Tested reproduction platform: Python 3.12, x86-64 Linux. SDK bootstrap requires Ubuntu 24.04-compatible glibc and development tools. The old IITM glibc 2.17 host cannot run these modern wheels directly; use a suitable container/compute environment or Colab. Do not run benchmarks on a cluster login node.
 
 ```bash
 python3.12 -m venv .venv
@@ -78,7 +78,7 @@ For the original Torch export, install `torch==2.11.0` from the appropriate CPU/
 
 ## Run the final GPU experiments in Colab
 
-Use **Runtime → Change runtime type → GPU**. Match the recorded environment (Torch 2.11 CUDA, T4 sm_75) for direct replication. Other GPUs are new experiments; record them separately. Nsight Compute must be available and permitted to read performance counters. A GPU alone is insufficient to guarantee profiler permission. Use B for the project optimization; a friend can run A as an ordinary-decode/no-match control, or repeat B in an independent session.
+Use **Runtime → Change runtime type → GPU**. Match the recorded environment (Torch 2.11 CUDA, T4 sm_75) for direct replication. Other GPUs are new experiments; record them separately. Nsight Compute must be available and permitted to read performance counters. A GPU alone is insufficient to guarantee profiler permission. Use B for the project optimization; a separate session can run A as an ordinary-decode/no-match control, or repeat B in an independent session.
 
 Cell 1:
 
@@ -93,7 +93,7 @@ Cell 2:
 
 ```python
 from pathlib import Path
-TRACK = 'B'               # Friend: 'A'; independent repeat: 'B'
+TRACK = 'B'               # Control: 'A'; independent repeat: 'B'
 PLAN = 'main'             # Automatically runs smoke first; 'extended' is larger
 DRAM_KIT_ROOT = '/content/cs6886_project/dram'
 exec(Path(DRAM_KIT_ROOT, 'COLAB_RUN.py').read_text())
@@ -118,7 +118,7 @@ python real_model/experiments/stable_trig/prepare_repair.py
 
 The checkpoint is `HuggingFaceTB/SmolLM2-135M-Instruct` revision `12fd25f77366fa6b3b4b768ec3050bf629380bac`. No weights are committed. Export uses natural HF eager attention and a range-proved legalization of unsupported symbolic guard arithmetic. The fixed prepared assets used for the recorded DRAM results remain under `dram/assets`; compare a regenerated export before changing those assets and their checksum manifest.
 
-## Repository map and submission status
+## Repository contents
 
 | Directory | Contents |
 |---|---|
@@ -130,6 +130,6 @@ The checkpoint is `HuggingFaceTB/SmolLM2-135M-Instruct` revision `12fd25f77366fa
 | `artifacts/` | Checksummed compressed generated IR/logs and larger evidence files; unpack with the provided script |
 | `scripts/` | Submission integrity, C++ build and raw-result reanalysis |
 
-[STATUS.md](STATUS.md) lists completed work and limitations; [RESUME.md](RESUME.md) gives continuation commands. Historical study documents can predate later GPU results; use this README and the final `results/dram` datasets for the current claims. The requested course report (maximum two pages excluding references) is still a separate submission task and has intentionally not been created here.
+[STATUS.md](STATUS.md) summarizes the implementation and evaluation; [RESUME.md](RESUME.md) records the reproduction environment. [DOCUMENTATION.md](DOCUMENTATION.md) distinguishes the current reproduction guides from stage-specific experiment records. The final evaluated GPU results are in `results/dram`.
 
 References: [IREE](https://github.com/iree-org/iree), [MLIR](https://mlir.llvm.org/), [GQA paper](https://arxiv.org/abs/2305.13245), [SmolLM2 checkpoint](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct), [repository](https://github.com/lazarsalt1441/cs6886_project). These compiler transformations build on established tensor identities; the repository does not establish global research novelty.

@@ -1,25 +1,25 @@
 # Real pretrained LLM cache study
 
-Two complementary Colab runs using **HuggingFaceTB/SmolLM2-135M-Instruct**, checkpoint `12fd25f77366fa6b3b4b768ec3050bf629380bac`. Actual pretrained weights, original Hugging Face model forwards, 30 layers, 9 query heads, 3 KV heads, head dimension64. All comparisons use float32. Weight files are downloaded and SHA256 checked; none are included in this package.
+The original short-context protocol uses **HuggingFaceTB/SmolLM2-135M-Instruct**, checkpoint `12fd25f77366fa6b3b4b768ec3050bf629380bac`. Actual pretrained weights, original Hugging Face model forwards, 30 layers, 9 query heads, 3 KV heads, head dimension64. All comparisons use float32. Weight files are downloaded and SHA256 checked; none are included in this package.
 
-| Person | Notebook | Purpose |
+| Set | Notebook | Purpose |
 |---|---|---|
-| You | Colab_Set_A.ipynb | Ordinary greedy decode; verify applicability and inference baselines. Zero C++ rewrite matches. |
-| Friend | Colab_Set_B.ipynb | Two-candidate lookahead; test concat commit factoring. 60 C++ rewrite matches. |
+| A | Colab_Set_A.ipynb | Ordinary greedy decode; verify applicability and inference baselines. Zero C++ rewrite matches. |
+| B | Colab_Set_B.ipynb | Two-candidate lookahead; test concat commit factoring. 60 C++ rewrite matches. |
 
 Set B is a custom two-candidate, one-step lookahead driver using the pretrained model. It is not Hugging Face beam search or a speculative acceptance/rejection implementation. Set A's zero-match result is intentional; we do not manufacture an optimized timing for identical IR.
 
 ## Run in Colab
 
-1. Download `Attention_Real_LLM_Tests.zip` and the notebook for your assigned set.
+1. Open `Colab_Set_A.ipynb` or `Colab_Set_B.ipynb` from this repository. The final repaired long-context evaluation is in `../dram`; these notebooks reproduce the earlier protocol.
 2. In Colab choose **File → Upload notebook**, then upload your `.ipynb`.
 3. Choose **Runtime → Change runtime type → T4 GPU**. Prefer the same GPU type on both accounts; within-account comparisons remain primary.
-4. Run notebook cells in order. In the first cell upload the common ZIP. The environment cell retains Colab's CUDA-enabled Torch and installs pinned IREE/Turbine/Transformers versions in a virtualenv. It avoids the previous `ensurepip` failure.
-5. Mount your own Google Drive when prompted, then run the last main cell. No account sharing is needed.
+4. Run notebook cells in order. The first code cell clones the repository and restores prepared IR. The environment cell retains Colab's CUDA-enabled Torch and installs pinned IREE/Turbine/Transformers versions in a virtualenv. It avoids the previous `ensurepip` failure.
+5. Mount Google Drive when prompted, then run the last main cell.
 6. Leave `QUICK=False` for the full study. For an initial pipeline check, use `QUICK=True`; rerun with False for final measurements. Keep `SKIP_TORCH_COMPILE=False` for the stronger baseline, unless investigating a compiler failure.
-7. Send back both `real_llm_set_*.tar.gz` archives. If setup fails, send `setup.log`.
+7. Retain the complete `real_llm_set_*.tar.gz` archives. Setup failures are recorded in `setup.log`.
 
-The full run uses contexts128/512/2048, two prompt templates, 31 trials × 3 repetitions, five warmups, and16-token continuations. Prompt templates are repeated/truncated to control context length, not sampled from a representative corpus. Torch first compilation can take several minutes per shape; total duration depends heavily on Colab and Torch Inductor. Allow roughly30–90minutes per account as a planning estimate, not a measured GPU runtime. Both accounts run simultaneously.
+The full run uses contexts128/512/2048, two prompt templates, 31 trials × 3 repetitions, five warmups, and16-token continuations. Prompt templates are repeated/truncated to control context length, not sampled from a representative corpus. Torch first compilation can take several minutes per shape; total duration depends heavily on Colab and Torch Inductor. Allow roughly30–90minutes per account as a planning estimate, not a measured GPU runtime. Independent runs may use separate GPUs; within-run comparisons remain primary.
 
 A heartbeat prints every minute. Partial archives are saved to Drive every five minutes; a final archive is saved and a browser download attempted even after an ordinary error or interruption. Browser permissions or abrupt runtime termination can prevent the download/final callback. Drive contains the latest completed backup. This does not keep Colab alive after a disconnect.
 
@@ -86,10 +86,10 @@ For manual GPU execution:
 
 ```
 python scripts/run_colab_set.py --set A
-# On the friend's GPU:
+# In a separate GPU session:
 python scripts/run_colab_set.py --set B
 ```
 
-## Files to return
+## Recorded outputs
 
-Return the whole result archives. Most useful: `environment.json`, `correctness.json`, `latency.json`, `compilation.json`, `torch_compilation.json`, `generation*.json`, `summary.json`, `table.csv`, compiler commands/logs, PTX/codegen and any `torch_compile_error.log`. We will compare within-run baseline/optimized ratios first, inspect regressions and verify token agreement before making performance claims. Do not compare absolute times across different account GPUs as an ablation.
+Result archives contain: `environment.json`, `correctness.json`, `latency.json`, `compilation.json`, `torch_compilation.json`, `generation*.json`, `summary.json`, `table.csv`, compiler commands/logs, PTX/codegen and any `torch_compile_error.log`. Evaluation uses within-run baseline/optimized ratios, numerical eligibility and token agreement. Do not compare absolute times across different GPU sessions as an ablation.

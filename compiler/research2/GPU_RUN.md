@@ -1,5 +1,7 @@
 # Run the saved experiments on an NVIDIA GPU
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 Use the supplied optimized tensor IR: rebuilding MLIR/IREE from source is unnecessary for these GPU runs. Choose the actual architecture; the commands below use an A100(sm_80). H100 uses sm_90, but only sm_80 offline compilation was tested here.
 
 From the unpacked repository root, in a Python3.12 environment:

@@ -1,5 +1,7 @@
 # Research claim audit
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 ## Established by this artifact
 
 1. A minimal, seed-free numerical counterexample on a pinned CPU compiler. It is independent of the custom projection rewrite.
@@ -18,14 +20,14 @@
 - Synthetic operators with runtime weights are not pretrained serving workloads. Extreme decode ratios compare with unabsorbed history projections, not a hand-optimized MLA baseline.
 - Conditional timing-bootstrap intervals omit workload/host uncertainty. A shared CPU environment cannot substantiate broad hardware generalization.
 
-## Submission work still needed
+## Evaluation boundaries
 
-1. Reproduce on a compiler built from the exact measured revision, then current upstream. Locate the relevant issue/fix history and independently confirm the diagnosis.
-2. Evaluate at least two GPU architectures, f16/bf16/f32 and real MLA/GQA model modules against correct fused and manually absorbed baselines. Collect hardware traffic and kernel-only as well as end-to-end latency.
-3. Develop and evaluate a broader semantic scheduling representation, with verified nonlinear reduction boundaries and a principled resource/performance model. A single pinned backend repair is narrower than a general research contribution.
-4. Broaden numerical analysis: verified caller bounds, approximation/error budgets, extreme/masked inputs, overflow/subnormal behavior, dynamic shapes.
-5. Measure compile/calibration amortization, model quality, serving workloads and cache update costs; repeat on independent machines and publish a clean reproducible artifact.
-6. Obtain external review, cite related compiler work more comprehensively, and match the intended venue's format and review criteria. This draft does not establish NeurIPS acceptance-level novelty.
+Broader validation requires independently reproduced upstream builds, additional
+GPU architectures and precisions, real model modules, and matched fused or
+manually absorbed baselines. Approximation/error budgets, dynamic shapes,
+compile/calibration amortization and serving workloads are outside this study.
+A pinned backend repair and known projection identities do not establish a
+general scheduling contribution or global research novelty.
 
 ## Primary literature checked
 

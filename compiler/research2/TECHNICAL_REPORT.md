@@ -1,5 +1,7 @@
 # Observation-aware KV-cache lowering in IREE
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 Seven C++ MLIR passes now execute in a complete PyTorch→IREE pipeline. The investigation identified two independently reproduced correctness defects and a family of cache-materialization gaps. The fixes are implemented and tested; being the first public report of these issues is not established.
 
 ## What changed from the original proposal

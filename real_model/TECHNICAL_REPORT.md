@@ -1,5 +1,7 @@
 # Real-model cache commit factoring: preparation results
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 This package tests a concrete compiler transformation on a pinned pretrained LLM. It does not claim a new publication result or a GPU speedup before the accompanying Colab runs.
 
 The model is SmolLM2-135M-Instruct (revision12fd25f77366fa6b3b4b768ec3050bf629380bac), with30 Llama decoder layers,9 query heads and3 KV heads. We use actual checkpoint weights and real prompt-derived caches, in float32. The original Hugging Face model forward and DynamicCache update are retained. The cache updates lower to `tensor.concat`; they do not match the original insert-slice/read-forwarding prototype.
@@ -28,7 +30,7 @@ It rewrites60 cache outputs (K and V in30 layers). The appended one-token rows a
 - Short autoregressive continuations preserve token agreement in the local checks. The latest runner additionally passes Torch SDPA comparisons and verifies cache input immutability after timing. Natural SDPA/eager comparisons pass for both workloads at contexts8/128.
 - Both full-model wrappers capture with Torch Dynamo fullgraph using backend=eager. This checks graph capture, not Torch Inductor CUDA performance or support.
 - All three IREE variants compile for T4 sm_75: A baseline, B baseline, B optimized. GPU execution, accuracy and latency remain untested locally.
-- Colab-style fresh parameter archive generation is checked separately: no MLIR re-export or compiler build is needed on the user's machine.
+- Colab-style fresh parameter archive generation is checked separately: no MLIR re-export or compiler build is needed on the reproduction host.
 
 CPU latency files have deliberately tiny trial counts and were produced during concurrent preparation. They validate runner behavior and must not be used as publishable speedup results.
 

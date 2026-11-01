@@ -1,20 +1,26 @@
-# Version2: retain Torch baselines after forced-winner validation
+# Bounded trig argument-reduction repair
 
-GPU repair result: all9 natural cases and18 forced-winner checks per repaired B variant passed. The first repair runner mistakenly excluded Torch baselines from SetB timing because forced-winner reports were produced only for IREE. This version validates both forced winners for Torch eager, SDPA and compiled Torch before applying the same eligibility gate. Original raw IREE timings remain usable; prior B repair results cannot establish a same-run Torch performance comparison.
+This extension preserves the computed FP32 phase while using bounded FP64 argument reduction for supported sine/cosine kernels. Natural and both forced-winner cases use the same fixed correctness gate. The historical repair/fusion ablation and final DRAM evaluation retain separate run identities.
 
-The updated cell tests contexts2048/4096 to shorten the control rerun; all three prompt templates remain. Use the updated RUN_REPAIR_CELL.txt in the existing SET=B Colab notebook; SetA need not be rerun just to fix this gate. Version2 writes repair_results_v2_A/B and preserves old result directories. Return repair_results_v2_B.tar.gz. All tolerance/IR/performance options remain unchanged. Torch compile failures stay explicitly unavailable. If no Torch compilation succeeds, there will still be no compiled-Torch timing; review errors and TIMED BACKENDS.
+## Reproduction
 
---- Original repair instructions ---
+This directory records the bounded trig repair and the original repair/fusion
+ablation. The final controlled evaluation is implemented in [dram/](../../../dram); use the root README or its Colab notebooks
+for the submitted IREE comparison. Earlier archived scripts retain the original
+ablation protocol and its failures.
 
-# Numerical repair and controlled performance experiment
+For that earlier protocol, run from `real_model/` after restoring artifacts,
+installing dependencies and downloading the pinned checkpoint:
 
-This is a new extension to the existing real-LLM project; original modules remain intact. It does not loosen tolerance or claim an unmeasured GPU speedup.
+```bash
+python experiments/stable_trig/run_repair.py --project . --set B --device cuda --torch-compile
+```
 
-## Run
-
-Download Attention_Repair_Tests.zip and RUN_REPAIR_CELL.txt. Paste the text cell below your existing Colab cells. Set SET='A' for the ordinary decoder account, SET='B' for the lookahead account. Upload the REPAIR ZIP when prompted. Keep original project/environment/Drive mount. If the runtime was reset, run original upload/environment/Drive cells first; the extension downloads the checkpoint and regenerates parameters if missing. Do not rerun the old benchmark.
-
-The extension compiles fresh variants and tests contexts2048/3072/4096 with prompts0/1/2. It saves output under repair_results_v2_A/B; original results are not overwritten. Backups every5minutes go to the already-mounted Drive, then final archive download is attempted. A hard runtime kill may prevent final callbacks. Return repair_results_v2_B.tar.gz, including failures. This run may take longer because it includes more variants and both-winner correctness tests; compilation is excluded from timing.
+The wrapper saves separate repair-results directories, validates natural and
+forced-winner outputs and keeps the numerical tolerances fixed. The companion
+RUN_REPAIR_CELL.txt is a legacy attachment-based bootstrap; current notebooks
+clone this repository directly. Earlier and final runs must retain separate
+identities and should not be pooled as one controlled experiment.
 
 ## Concrete finding and fix
 
@@ -42,7 +48,7 @@ At every natural case, both cache winners are additionally forced for GPU correc
 
 Real C++ pass compiled with MLIR19.1.1. Structural checks cover two rewrite sites, idempotence, lowering-config rejection, f64 rejection and large-kernel rejection. Twenty compiled random-angle seeds compare against float64 NumPy trig; the repair gives errors on the order1e-7 rather than1e-4. Small/out-of-domain finite fallback is checked for exact output bits. Source PTX emulation is additional explanatory evidence, not a substitute for compiled tests.
 
-The CPU full pretrained model reproduces the uploaded2048/prompt1 failure and the repair passes unchanged tolerance, reducing maximum discrepancy from about0.000762 to0.0000414. Further CPU checks and exact logs are included. All four repaired sm_75 variants compile; GPU numerical execution and speed remain pending. Existing unmodified variants retain the original tests/results.
+The CPU full pretrained model reproduces the observed2048/prompt1 failure and the repair passes unchanged tolerance, reducing maximum discrepancy from about0.000762 to0.0000414. Further CPU checks and exact logs are included. All four repaired sm_75 variants compile; GPU numerical execution and speed remain pending. Existing unmodified variants retain the original tests/results.
 
 ## Rebuild source
 

@@ -1,5 +1,7 @@
 # Measured CPU results
 
+> Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
+
 These are synthetic attention/block experiments on one AMD EPYC9V74 CPU, one thread. GPU runtime remains untested. Compilation is excluded. Read README.md for methodology and limitations.
 
 |ID|Best baseline µs|Masked µs|Conditional µs|Calibration choice|Choice speedup (95% bootstrap)|
