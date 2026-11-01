@@ -1,0 +1,359 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.72in,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,tabularx,array,xcolor,hyperref,fancyhdr,listings}
+\hypersetup{colorlinks=true,urlcolor=blue!55!black,linkcolor=black}
+\definecolor{codegray}{RGB}{245,246,248}
+\lstset{basicstyle=\ttfamily\footnotesize,backgroundcolor=\color{codegray},frame=single,framesep=4pt,breaklines=true,columns=fullflexible,showstringspaces=false}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.13}
+\newcommand{\smallhead}[1]{\vspace{5pt}\textbf{#1}\par}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries GQA and Attention Optimization in IREE}\par
+\vspace{6pt}
+{\normalsize
+Nishanth Senthil Kumar (EE23B049)
+\quad
+Dhruv Prasad (EE23B130)
+}\par
+\end{center}
+
+\section*{1. Introduction, Prior Work and Original Proposal}
+\textbf{Introduction and problem.} Grouped-query attention (GQA) has more query heads than key/value (KV) heads. For example, with $H_Q=8$ and $H_{KV}=2$, each KV head serves four query heads. A straightforward frontend repeats the small K and V tensors to match the number of query heads:
+\[
+K_{\rm expanded}=\operatorname{repeat}(K,4),\qquad
+\mathrm{KVhead}(h)=\left\lfloor h/4\right\rfloor.
+\]
+The repetition changes tensor storage, not the attention mathematics. In our early lowered IR, a broadcast dispatch wrote the expanded K/V tensors before subsequent matrix multiplications consumed them.
+
+\textbf{Original idea and implementation.} Recognize \texttt{broadcast/expand + reshape + attention} and use shared KV heads directly, rather than writing repeated tensors. A C++/MLIR prototype reorganized the query-head grouping and eliminated the explicit intermediate on representative patterns.
+\begin{lstlisting}
+// Before: Q [8,S,D], K,V [2,S,D]
+K8 = repeat_interleave(K, 4, head_axis);
+V8 = repeat_interleave(V, 4, head_axis);
+out = attention(Q, K8, V8);
+// After: head h reads K[h/4], V[h/4]; no stored K8/V8.
+\end{lstlisting}
+\textbf{Initial observation.} An illustrative For $H_Q=8$, $H_{KV}=2$, $S=128$ and $D=32$ in FP32,
+explicitly materializing both expanded K and V tensors adds
+\textbf{192~KiB} of tensor storage compared with compact K/V.
+This is a theoretical storage difference, not a measured
+runtime allocation or DRAM-traffic reduction.
+
+\smallhead{Prior work: checking what IREE already optimizes}
+An IREE flag ablation showed that two \emph{existing} passes already remove both separate KV-broadcast dispatches on the tested graphs:
+\begin{center}\small
+\begin{tabular}{lc}\toprule
+IREE configuration & Separate K/V broadcast dispatches \\\midrule
+Neither flag & 2\\
+Generalize matmul only & 2\\
+Aggressive reshape movement only & 2\\
+\textbf{Both flags} & \textbf{0}\\\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-4pt}
+\begin{lstlisting}
+--iree-opt-generalize-matmul
+--iree-dispatch-creation-enable-aggressive-reshape-movement
+\end{lstlisting}
+While developing our original GQA pass, we tested IREE compilation flags and discovered that enabling matmul generalization together with aggressive reshape movement already removed the redundant K/V expansion in our tested graphs. This made our original rewrite unnecessary for those configurations. Rather than duplicate an existing compiler optimization, we redirected the project toward other opportunities in KV-cache updates, projection placement and attention lowering. This finding also established a stronger IREE baseline for the rest of our experiments. The GQA formulation follows Ainslie et al. [1]; the baseline compiler behavior is documented by IREE [2,3].
+
+
+\section*{2. Proposed Methods and Implementation: KV Cache}
+During autoregressive inference, a KV cache stores historical tokens' keys/values. Functional tensor graphs may express small modifications as new versions of the entire cache. The compiler can sometimes avoid moving or constructing those full versions.
+
+\subsection*{2.1 Conditional cache-read forwarding}
+\textbf{Intuition:} If we change one entry in a notebook and immediately look up a different entry, we can read the original notebook instead of copying every page.\par\textbf{Before:} update a large cache $C$ at location $j$, producing $C'=\operatorname{update}(C,j,x)$, then immediately gather $C'[i]$. Naive lowering may materialize $C'$.
+
+\textbf{After:} forward the read to the new value only if it overlaps the update; otherwise read the old cache:
+\[
+C'[i]=\begin{cases}x,&i=j,\\C[i],&i\ne j.\end{cases}
+\]
+This matters especially for speculative/forked graphs, where a large cache version can be created for a candidate that is not ultimately used. The transformation specifically targets graphs that express temporary functional cache versions. The rewrite is related to tensor slice semantics and compiler canonicalization [4,5], and to the cache-sharing problems studied by PagedAttention [6].
+
+\textbf{Result versus IREE:} Tesla T4 \textbf{1.23$\times$ geometric mean across 9 shapes}, best \textbf{3.44$\times$}; the benefit was shape-dependent. Representative CPU cases: 1.42--3.63$\times$.
+\smallhead{GPU cache-forwarding measurements}
+
+Separate synthetic cache workloads on the Tesla T4 measured
+latency and total DRAM reads plus writes using Nsight Compute:
+
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Workload & Base ms & Opt.\ ms & Speedup & DRAM MB \\
+\midrule
+Small sparse forks
+& 0.288 & 0.246 & 1.17$\times$
+& $5.831 \to 0.128$ \\
+Large sparse forks
+& 1.777 & 1.230 & 1.44$\times$
+& $178.897 \to 0.137$ \\
+Dense no-rewrite control
+& 0.545 & 1.268 & 0.43$\times$
+& $0.285 \to 0.275$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The large sparse case reduced measured DRAM traffic by
+\textbf{99.92\%}, with a \textbf{1.44$\times$} latency speedup.
+These are isolated cache workloads. The dense no-rewrite
+control had equal canonical IR, but its timing direction
+flipped across repetitions; the cause remains unresolved.
+
+\subsection*{2.2 Masked-gather forwarding}
+
+Instead of per-element conditional control flow, this variant
+gathers from the original cache and the small update, then
+selects the required values. Here U replaces rows $p:p+t$ of C:
+
+\begin{lstlisting}
+inside = (p <= ids) & (ids < p+t)
+safe   = where(inside, ids-p, 0)  # U has at least one row
+base   = gather(C, ids)
+patch  = gather(U, safe)
+R      = where(expand_mask(inside), patch, base)
+\end{lstlisting}
+
+The mask selects U for indices inside the updated interval
+and C elsewhere. The safe index matters because both sides
+of a selection may be evaluated: even a discarded patch load
+must use a valid address.
+
+Two gathers and a mask add work, so a cost check rejects
+dense demand. An irregular-shape CUDA case failed to compile
+in the masked form and used the conditional fallback.
+The conditional and masked forms implement the same law;
+their speedups must not be added together.
+
+\textbf{Result.}
+On the CPU A1 cache workload, masked-gather forwarding reduced
+latency from 187.10 to 74.36~$\mu$s, a \textbf{2.52$\times$}
+speedup. Conditional forwarding achieved 2.04$\times$ on the
+same workload. These are alternative implementations, so their
+gains are not additive. The reported T4 forwarding-suite results
+do not establish a separate masked-only GPU speedup.
+
+\subsection*{2.3 Update-chain forwarding and coalescing}
+\textbf{Intuition:} Combine several nearby edits into one operation, just as updating a paragraph at once is simpler than saving a new document after every word.\par\textbf{Before:} write several adjacent patches successively, then read from the final version:
+\begin{lstlisting}
+C1 = update(C,  i,   x0)
+C2 = update(C1, i+1, x1)
+y  = gather(C2, index)
+\end{lstlisting}
+\textbf{After:} coalesce eligible contiguous writes and forward reads directly to the matching patch, falling back to $C$ only when no patch overlaps. This avoids repeatedly treating short intermediate versions as full tensors. The compiler must preserve update order, including overlapping writes. Related compiler foundations include MLIR slice folding and canonicalization [4,5].
+
+\textbf{Result:} Tesla T4 \textbf{1.01--1.03$\times$} for 4--16 updates, versus \textbf{2.17--2.34$\times$} in CPU tests. The GPU measurements show a modest benefit, while the CPU experiments show larger savings for repeated updates.
+
+\subsection*{2.4 Winner-cache factoring}
+\textbf{Intuition:} When only one of two proposed changes will be accepted, choose the winning change before copying the shared history.\par\textbf{Before:} several speculative branches each construct an updated full cache; only one branch wins:
+\begin{lstlisting}
+A = update(C, patch_A)
+B = update(C, patch_B)
+result = select(winner, A, B)
+\end{lstlisting}
+\textbf{After:} choose the small patch first and commit once:
+\begin{lstlisting}
+patch = select(winner, patch_A, patch_B)
+result = update(C, patch)
+\end{lstlisting}
+Instead of maintaining multiple competing full cache versions, the graph creates only the selected final version. Safe only if branches share the same starting cache and the selection has compatible semantics. Speculative decoding motivates this branch structure [7,8]; our compiler transformation is distinct from their decoding algorithms.
+
+\textbf{Result:} \textbf{1.57$\times$} in a T4 branch-selection benchmark (CPU: \textbf{3.60$\times$}). This concept led to the later full-model \emph{concat-commit factoring} experiment on page 5.
+\vspace{-0.5cm}
+
+\section*{3. Proposed Methods: Projection and Attention}
+\subsection*{3.1 Latent projection placement}
+\textbf{Intuition:} Instead of converting thousands of stored compact keys into large vectors, convert the current query into a compact vector once.\par\textbf{Before:} for every cached latent vector, materialize a large projected key. If $L\in\mathbb{R}^{T\times r}$, $W_K\in\mathbb{R}^{d\times r}$, and $Q\in\mathbb{R}^{1\times d}$, the score is $Q(LW_K^\top)^\top$.
+
+\textbf{After:} project the single query into the latent dimension and then compare against the compact cache:
+\[
+\underbrace{Q(LW_K^\top)^\top}_{\text{project }T\text{ cache rows}}
+=\underbrace{(QW_K)L^\top}_{\text{project one query}}.
+\]
+For a long context, this can reduce redundant key projections from $T$ vectors to one query (up to orientation conventions and other kernels). It uses standard matrix associativity; rounding and backend layout can affect correctness/performance. Latent attention and projection absorption are described in DeepSeek-V2 [9].
+
+\textbf{Result:} T4 \textbf{1.20$\times$ geometric mean over 16 shapes}; a broader valid suite reported \textbf{1.238$\times$ geometric mean over 26 cases}, with regressions on some shapes. CPU: \textbf{3.93$\times$} geometric mean over 16 shapes.
+\vspace{-0.5cm}
+\subsection*{3.2 Partial-RoPE projection}
+\textbf{Background:} Rotary Position Embedding (RoPE) encodes token positions in attention by rotating pairs of coordinates in query and key vectors. For a two-dimensional pair, a rotation through angle $\theta$ is
+\[
+R(\theta)=\begin{bmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{bmatrix}.
+\]
+The angle depends on token position (with different frequencies for different coordinate pairs), allowing query--key scores to capture relative position. \emph{Partial-RoPE} separates the representation into a non-rotary (plain/content) part and a smaller rotary (position-dependent) part.
+
+\textbf{Intuition:} Only the rotary part requires position-dependent rotation; projection work on the plain part can be reused or moved to the query side.
+
+\textbf{Before:} For each cached token, reconstruct a large projected key, including components that do not require rotation. A position-dependent rotation generally prevents moving an arbitrary key projection through the rotary operation.
+
+\textbf{After:} Handle the two components separately. For a cached compact vector $c_t$ and plain key $k_{\mathrm{plain},t}=W_{\mathrm{plain}}c_t$, use associativity:
+\[
+q_{\mathrm{plain}}^\top (W_{\mathrm{plain}}c_t)
+=(W_{\mathrm{plain}}^\top q_{\mathrm{plain}})^\top c_t.
+\]
+Thus project the current query once rather than projecting every cached plain key. Keep the position-dependent calculation for the smaller rotary part:
+\[
+\mathrm{score}_t = q_{\mathrm{plain}}^\top k_{\mathrm{plain},t}
++q_{\mathrm{rope}}^\top R_t k_{\mathrm{rope},t}.
+\]
+Here $R_t$ denotes the appropriate relative-position rotation (including the effect of the query position). The rewrite does \emph{not} commute arbitrary projections with RoPE rotations. See RoFormer [10] for RoPE and DeepSeek-V2 [9] for decoupled rotary components.
+
+\textbf{Result:} T4 \textbf{1.50$\times$ geometric mean in the evaluated projection suite}; CPU \textbf{11.40$\times$} in the evaluated projection suite. These are isolated test cases, not all-model speedups.
+\vspace{-0.5cm}
+
+\subsection*{3.3 Native-attention fallback}
+\textbf{Intuition:} If a specialized attention kernel does not support a particular wide shape reliably, use an equivalent sequence of standard operations for that shape.\par\textbf{Problem:} certain wide query/key dimensions (tested widths 256/512) required an alternative lowering path to preserve numerical correctness.
+
+\textbf{Fix:} guard the problematic shape and lower the computation into validated elementary operations (matmuls, softmax, value aggregation), rather than the original native form for those shapes. The fallback preserved the tested result and sometimes compiled to much faster kernels. This is motivated by the native-versus-decomposed lowering trade-off; see IREE pipeline documentation [2] and FlashAttention [11,12] for the broader kernel-design context.
+
+\textbf{Result:} a targeted T4 comparison fell from \textbf{14.50 ms to 1.56 ms (9.32$\times$)} with output agreement in subsequent verification. This demonstrates the effectiveness of shape-aware lowering for wide query/key dimensions.
+\vspace{-0.5cm}
+
+\section*{4. Evaluation Against IREE and Memory Analysis}
+\textbf{Baseline definition:} Every speedup below compares an optimized graph with its corresponding \emph{unoptimized IREE graph} for the same study. Ratios from different studies should not be multiplied or treated as one common end-to-end workload.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{
+@{}
+>{\raggedright\arraybackslash}p{0.29\linewidth}
+>{\raggedright\arraybackslash}p{0.34\linewidth}
+>{\raggedright\arraybackslash}X
+@{}
+}
+\toprule
+\textbf{Study} &
+\textbf{Tesla T4 speedup vs IREE} &
+\textbf{CPU speedup vs IREE} \\
+\midrule
+
+Original GQA repeat elimination &
+Not isolated on GPU; existing flags remove repeats &
+1.86$\times$ historical test vs default lowering \\
+
+Cache-forwarding suite &
+1.23$\times$ geom.\ mean (9); best 3.44$\times$;
+not separated by implementation &
+1.42--3.63$\times$ representative cases \\
+
+Conditional read forwarding &
+No separately attributed result &
+2.04$\times$ on A1
+(187.10 $\to$ 91.74~$\mu$s) \\
+
+
+Dense no-rewrite control &
+0.43$\times$ in recorded run;
+timing direction unstable &
+Not reported \\
+
+Update coalescing plus forwarding &
+1.01--1.03$\times$ (4--16 updates) &
+2.17--2.34$\times$ combined \\
+
+Winner factoring plus forwarding &
+1.57$\times$ branch-selection benchmark &
+3.60$\times$ combined;
+factoring alone 1.38$\times$ \\
+
+Latent projection placement &
+1.20$\times$ geom.\ mean (16) &
+3.93$\times$ geom.\ mean (16) \\
+
+Partial-RoPE plus projection &
+1.50$\times$ geom.\ mean (4) &
+11.40$\times$ geom.\ mean (4) \\
+
+Native-attention fallback &
+9.32$\times$ targeted comparison &
+10.63$\times$ vs correct guarded lowering \\
+
+\bottomrule
+\end{tabularx}
+\end{center}
+
+{\footnotesize
+Conditional and masked forwarding are alternative implementations.
+The suite-level GPU measurements do not establish separate
+speedups for each implementation. Combined results must not
+be interpreted as gains from each constituent pass alone.
+The dense control had equal canonical IR; its timing direction
+flipped across repetitions, so its slowdown remains unresolved.
+The targeted GPU fallback comparison is a separate study from
+the CPU comparison against correct guarded lowering.
+\par}
+\smallhead{What the numbers show}
+\vspace{-0.5cm}
+\begin{itemize}\setlength\itemsep{2pt}
+\item \textbf{Strongest reusable idea:} avoid large, temporary KV-cache versions when only a patch or one selected branch is needed. Forwarding and factoring can reduce unnecessary memory movement.
+\item \textbf{Shape-aware benefits:} gains vary by tensor dimensions, motivating compiler guards that select the better lowering for each workload.
+\item \textbf{CPU gains do not predict GPU gains.} GPU kernel fusion, parallelism, launch overhead and memory behavior change the outcome.
+\item \textbf{Numerical verification:} rewritten outputs were checked against their corresponding IREE computations, and the attention fallback was evaluated separately for wide dimensions.
+\end{itemize}
+\vspace{-0.5cm}
+\smallhead{How we built and tested the transformations}
+A standalone \textbf{C++ MLIR pass tool} performs the pattern rewrites; Python scripts feed IR into IREE, compile both control and rewritten graphs, check outputs, and time CPU/T4 executions. We inspected dispatches and intermediate buffers to distinguish \emph{actual graph changes} from speedups caused only by backend choice. \textbf{Measured IREE version:} 3.13.0 / 3.13.0rc20261016 (study-specific builds).
+
+\smallhead{Memory and DRAM profiling}
+We measured GPU DRAM reads and writes using NVIDIA Nsight Compute on the Tesla T4, alongside compiler dispatch and allocation measurements. In a synthetic forked-cache benchmark, forwarding reduced total DRAM traffic by approximately \textbf{99.92\%}, demonstrating how avoiding large temporary cache copies reduces off-chip transfers. In the pretrained branching workload, the change in total measured DRAM traffic was \textbf{--3.91\%} at 2,048 tokens, \textbf{+1.24\%} at 3,072, and \textbf{--0.27\%} at 4,096. The latency benefit therefore reflects more than DRAM bytes alone: eliminating duplicate work and changing kernel scheduling also matter. Separately, the original GQA ablation reduced first-invocation allocator bytes from 140,288 to 9,216. These quantities distinguish logical storage, allocations, and hardware-measured memory traffic [11].
+
+\smallhead{Relationship to existing compiler optimizations}
+Existing IREE passes already address the original GQA repeat pattern, while established projection identities motivate the remaining methods. Our work brings these ideas into an evaluated MLIR rewrite workflow and studies when cache-aware transformations improve IREE-generated code.
+\vspace{-0.5cm}
+
+\section*{5. Full-Model Evaluation, Conclusions and References}
+\textbf{Question.} Do these synthetic cache ideas help an actual pretrained transformer running under IREE? We evaluated \textbf{SmolLM2-135M-Instruct} (30 transformer layers) on a \textbf{Tesla T4}, timing one next-token full-model inference step with a custom two-candidate cache-commit graph.
+
+\textbf{Change.} Instead of building/concatenating two candidate cache histories and selecting the result, \emph{select the candidate increment first, then commit once}:
+\begin{lstlisting}
+// Before                       // After
+A = concat(C, a)                 patch = select(win, a, b)
+B = concat(C, b)                 out = concat(C, patch)
+out = select(win, A, B)
+\end{lstlisting}
+This is the model-level \textbf{concat-commit factoring} specialization of winner-cache factoring, related to cache sharing in [6--8]. \textbf{60 rewrite markers} were present in the rewritten model, versus zero in the control. Other pass families were \emph{not} demonstrated as active in this particular full-model test.
+
+\smallhead{Matched, validated IREE-only comparison}
+\begin{center}
+\begin{tabular}{lrr}\toprule
+Median latency per next-token step & 2,048-token context & 4,096-token context\\\midrule
+Stable IREE baseline & 43.264 ms & 82.409 ms\\
+Stable IREE + commit factoring & \textbf{31.743 ms} & \textbf{77.361 ms}\\\midrule
+Speedup & \textbf{1.36$\times$} & \textbf{1.06$\times$}\\
+Latency reduction & \textbf{26.46\%} & \textbf{5.52\%}\\\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Protocol:} multiple prompts and repeated synchronized timing after warmup; medians aggregated. Both stable-IREE variants passed numerical validation (absolute tolerance $5\times10^{-4}$, relative tolerance $3\times10^{-3}$). We use the numerically validated stable IREE configuration for a matched comparison.
+
+\textbf{Interpretation.} Avoiding competing cache commits saved about \textbf{11.45 ms} at 2,048 tokens, but only \textbf{4.55 ms} at 4,096. The result shows that removing duplicate cache commits helps a branch-aware inference graph. The metric is next-token step latency on this workload; full-sequence generation throughput is a separate measurement.
+\vspace{-0.5cm}
+\section*{6. Conclusion}
+We began by removing repeated KV-head expansion and established how to achieve it with existing IREE compiler optimizations. Six follow-up investigations located more useful opportunities in \textbf{KV-cache dataflow}, \textbf{branch commits}, and \textbf{projection placement}. The most concrete model-level result is a validated \textbf{1.36$\times$ IREE speedup at context 2,048} for the custom cache-commit workload, and \textbf{1.06$\times$ at 4,096}. These experiments show that compiler-level cache restructuring can improve realistic inference graphs while retaining mathematical equivalence.
+
+\newpage
+\section*{References and Project Resources}
+\noindent\textbf{Project code:} \url{https://github.com/lazarsalt1441/cs6886_project}
+
+\begingroup
+\normalsize
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\noindent[1] J. Ainslie et al., ``GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints,'' EMNLP, 2023. \url{https://arxiv.org/abs/2305.13245}\par
+\noindent[2] IREE Project, ``Optimization Options.'' \url{https://iree.dev/reference/optimization-options/}\par
+\noindent[3] IREE Project, ``Aggressive Reshape Movement,'' pull request 22707. \url{https://github.com/iree-org/iree/pull/22707}\par
+\noindent[4] LLVM Project, ``MLIR Tensor Dialect.'' \url{https://mlir.llvm.org/docs/Dialects/TensorOps/}\par
+\noindent[5] LLVM Project, ``MLIR Operation Canonicalization.'' \url{https://mlir.llvm.org/docs/Canonicalization/}\par
+\noindent[6] W. Kwon et al., ``Efficient Memory Management for Large Language Model Serving with PagedAttention,'' SOSP, 2023. \url{https://arxiv.org/abs/2309.06180}\par
+\noindent[7] Y. Leviathan et al., ``Fast Inference from Transformers via Speculative Decoding,'' ICML, 2023. \url{https://arxiv.org/abs/2211.17192}\par
+\noindent[8] X. Miao et al., ``SpecInfer: Accelerating Generative Large Language Model Serving with Tree-based Speculative Inference and Verification,'' 2023. \url{https://arxiv.org/abs/2305.09781}\par
+\noindent[9] DeepSeek-AI, ``DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model,'' 2024. \url{https://arxiv.org/abs/2405.04434}\par
+\noindent[10] J. Su et al., ``RoFormer: Enhanced Transformer with Rotary Position Embedding,'' 2021. \url{https://arxiv.org/abs/2104.09864}\par
+\noindent[11] T. Dao et al., ``FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness,'' NeurIPS, 2022. \url{https://arxiv.org/abs/2205.14135}\par
+\noindent[12] T. Dao, ``FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning,'' 2023. \url{https://arxiv.org/abs/2307.08691}\par
+\noindent[13] Project measurements, ``Attention Consolidated Results,'' October 2026. \url{https://github.com/lazarsalt1441/cs6886_project}\par
+\noindent[14] Project experiments and reproducibility materials, November 2026. \url{https://github.com/lazarsalt1441/cs6886_project/tree/main/dram}\par
+\endgroup
+\end{document}
