@@ -13,7 +13,7 @@ For that earlier protocol, run from `real_model/` after restoring artifacts,
 installing dependencies and downloading the pinned checkpoint:
 
 ```bash
-python experiments/stable_trig/run_repair.py --project . --set B --device cuda --torch-compile
+python experiments/stable_trig/run_repair.py --project . --set B --device cuda
 ```
 
 The wrapper saves separate repair-results directories, validates natural and
@@ -40,7 +40,7 @@ All variants in this extension receive these SAME precision settings. These sett
 A: original baseline, repaired baseline.
 B: original baseline, original cache pass, repaired baseline, repair+cache pass, repair+cache pass+aggressive fusion.
 
-The last variant adds only --iree-dispatch-creation-enable-aggressive-fusion. It is an experimental performance option, not a confirmed improvement. Compare repair+cache against repaired baseline to isolate the cache pass. Compare repair+cache+fusion against repair+cache to isolate fusion. Do not compare a combined variant only against the weakest baseline and attribute all gains to one pass. Torch eager, SDPA and optional Torch compile remain reference performance baselines.
+The last variant adds only --iree-dispatch-creation-enable-aggressive-fusion. It is an experimental performance option, not a confirmed improvement. Compare repair+cache against repaired baseline to isolate the cache pass. Compare repair+cache+fusion against repair+cache to isolate fusion. Do not compare a combined variant only against the weakest baseline and attribute all gains to one pass. The presented performance comparison is within IREE; Torch supplies the numerical reference.
 
 At every natural case, both cache winners are additionally forced for GPU correctness using separated log priors. Forced cases are never timed. Normal timings use natural priors. New forced-winner checks are reported independently; a backend must pass both forced winners as well as the natural case before being timed. Each passing backend is timed with randomized backend order,31trials x3repetitions and5warmups; full output and input immutability are rechecked afterward. Only final valid=true latency rows support claims. Reference-failing cases remain in validation.json and are not timed. No TTFT or complete-generation claim is made.
 

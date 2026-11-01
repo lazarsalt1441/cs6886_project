@@ -26,4 +26,4 @@ The snapshot case returns the pre-update K/V tensors. Stock IREE corrupts those 
 
 The native failure also occurs with the separately installed IREE3.12.0 compiler. The first affected revision is not established. Seven compiler passes are compiled and exercised via the standalone MLIR bridge; the proposed in-tree patches have not both been built into a complete source compiler. GPU compilation is separate from GPU execution.
 
-![Ablation](results/figures/extension-ablation.png)
+Ablation: `results/figures/extension-ablation.png` (restored by `scripts/unpack_artifacts.py` from the repository root).

@@ -1,16 +1,19 @@
 # Project report
 
-* [Expanded PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex): five pages, including references. Each transformation has a before/after example, use case and validity limits. Page 1 traces both IREE flags through generalization, reshape movement and fusion.
-* [Concise submission PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex): the earlier two-page main body plus one reference page, retained for the course's original body-length limit.
+* **Course submission:** [PDF](CS6886_Report_Concise.pdf) and [LaTeX](CS6886_Report_Concise.tex), two main pages plus a reference page. This is the report to use for the course's two-page body limit.
+* **Expanded explanation:** [PDF](CS6886_Report.pdf) and [editable LaTeX](CS6886_Report.tex), five pages including references. Each transformation has an example, use case and validity limits. Page 1 traces both IREE GQA flags.
+* **Per-study measurements:** [readable tables](study_results/per_study_results.md), [CSV](study_results/per_study_results.csv) and [JSON](study_results/per_study_results.json). Includes 182 IREE comparisons, individual variants, combined-pass ablations and regressions.
+
+The submission report covers the problem and baseline investigation, prior work cited alongside each method, the implementation/integration, matched-baseline evaluation and references including the repository URL. The expanded version is supplementary.
 
 Both LaTeX files are self-contained; no external figures or BibTeX build are required.
 
-Upload `CS6886_Report.tex` to a standard Overleaf project, or compile locally:
+Upload `CS6886_Report_Concise.tex` to a standard Overleaf project, or compile locally:
 
 ```bash
 cd report
-pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report.tex
-pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report.tex
+pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report_Concise.tex
+pdflatex -interaction=nonstopmode -halt-on-error CS6886_Report_Concise.tex
 ```
 
 The source uses standard TeX Live packages, including Latin Modern, TikZ,
@@ -47,3 +50,14 @@ are in `flag_evidence/`. Dispatch-name counting is specific to the pinned compil
 | Projection and partial RoPE | `AttentionProjection.cpp` |
 | Native reduction guard/fallback | `OnlineAttentionGuard.cpp`, `AttentionProjection.cpp` |
 | Stable trig | `StableTrig.cpp` |
+
+## Regenerate the study tables
+
+From the repository root:
+
+```bash
+python3 scripts/unpack_artifacts.py
+python3 report/summarize_studies.py
+```
+
+Only the Python standard library is needed. This recalculates recorded ratios; it does not rerun benchmarks. Synthetic CPU, GPU operator and pretrained-model timing contracts differ and are not pooled. Protection/normalization/phase guards are correctness repairs; combined forwarding gains are not attributed to a repair alone. No compiled-PyTorch metric is included.

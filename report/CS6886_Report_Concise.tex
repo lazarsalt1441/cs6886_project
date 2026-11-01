@@ -61,7 +61,7 @@
 \begin{itemize}
 \item \textbf{GQA and caching.} A KV cache stores earlier tokens' keys and values. With $H_q$ query and $H_{kv}$ KV heads, GQA shares each KV head across $g=H_q/H_{kv}$ query heads: $h_{kv}=\lfloor h_q/g\rfloor$~\cite{gqa,mqa}.
 \item \textbf{Initial hypothesis.} Explicit \code{repeat\_interleave}/reshape can expand K/V tensors. A C++ rewrite improved the original default CPU case \textbf{18.47 to 9.94\,$\mu$s (1.86$\times$)}, but stronger existing IREE settings remove the tested expansion too.
-\item \textbf{Deciding settings.} 20 fixtures, 160 compilations and 96 numerical checks established that both flags below were needed for the tested grouped cases; O3 alone was insufficient~\cite{ireesource,project}.
+\item \textbf{Deciding settings.} Ablation across head ratios and shapes established that both flags below were needed for the tested grouped cases; O3 alone was insufficient~\cite{ireesource,project}.
 \end{itemize}
 {\footnotesize\ttfamily
 --iree-opt-generalize-matmul\\
@@ -81,7 +81,7 @@ Let $C$ be an immutable history, $U$ a $t$-row update at position $p$, and $C'=\
 \end{equation*}
 \textbf{Winner factoring:} same history/append axis, scalar Boolean $c$. The model has \textbf{60 matches} (K/V in 30 layers); ordinary decode has \textbf{zero}. Candidate attention computations remain.
 
-\section{Implemented extensions and use cases}
+\section{Prior work and implemented extensions}
 {\small
 \begin{tabularx}{\linewidth}{@{}P{30mm}YY@{}}
 \toprule
@@ -112,38 +112,46 @@ Stable trig reduction & Bounded FP64 argument reduction inside small FP32 sine/c
 
 \newpage
 \section{Evaluation protocol}
-{\small
-\begin{tabularx}{\linewidth}{@{}P{28mm}Y@{}}
-\toprule
-\textbf{Platform} & Tesla T4 (\code{sm\_75}), driver 580.82.07; FP32, TF32 off. Torch 2.11.0+cu130 references; IREE 3.13.0 (compiler \code{89ece87b8985}); MLIR 19 driver.\\
-\textbf{Model} & SmolLM2-135M-Instruct~\cite{model}, checkpoint \code{12fd25f77366}; 30 layers, 9Q / 3KV heads, width 64. Track B: custom two-candidate step. Track A: ordinary-decode no-match control.\\
-\textbf{Matched baseline} & Both variants: O3, both shape flags, shared split-argmax workarounds, same trig repair. Set \code{--iree-input-demote-f64-to-f32=false}; disable numeric precision reduction in both.\\
-\textbf{Timing} & Three contexts\,$\times$\,three prompts\,$\times$\,three repetitions of 31 samples. Random backend order, resident outputs, context synchronization. Median of nine repetition medians; compilation/prefill/upload excluded.\\
-\textbf{Traffic} & Nsight Compute 2025.3.1 app-range replay~\cite{ncu}; prompt 0, three processes/backend/context, three fixed-input calls/range, bytes divided by 3. Separate unprofiled timing. 51 valid A + 61 B profiles; 112 CSV totals rechecked.\\
-\bottomrule
-\end{tabularx}}
+\smallnote{Standalone C++ MLIR 19 rewriting precedes IREE 3.13/LLVM 24 compilation (\code{89ece87b8985})~\cite{mlir}. GPU: Tesla T4, driver 580.82.07, FP32, TF32 off. SmolLM2-135M-Instruct~\cite{model}, checkpoint \code{12fd25f77366}: 30 layers, 9Q/3KV heads, width 64. Both IREE variants use O3, both GQA flags, identical split-argmax settings, trig repair and f64-preservation flags. Timing excludes compilation, prefill and upload: resident outputs, context synchronization, randomized order, 31 samples/repetition; median of nine repetition medians (three prompts, three repetitions). Nsight Compute 2025.3.1 app-range counters~\cite{ncu} use prompt 0, three independent processes and three calls/range, separately from timing. All 112 final counter exports were rechecked.}
 
-\section{Final IREE model results}
+\section{Winner factoring: pretrained two-candidate step}
 {\small
-\begin{tabularx}{\linewidth}{@{}r r r r r r r@{}}
+\begin{tabularx}{\linewidth}{@{}r r r r r Y@{}}
 \toprule
-\textbf{Context} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Latency lower} & \textbf{Base GB} & \textbf{Opt. GB} & \textbf{$\Delta$ DRAM}\\
+\textbf{Context} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup} & \textbf{Latency lower} & \textbf{Total DRAM change}\\
 \midrule
-2048 &43.264&31.815&\textbf{26.46\%}&2.417&2.323&$-3.91\%$\\
-3072 &63.326&60.386&4.64\%&3.093&3.132&$+1.24\%$\\
-4096 &82.409&77.858&5.52\%&3.881&3.870&$-0.27\%$\\
+2048 &43.264&31.815&\textbf{1.36$\times$}&\textbf{26.46\%}&$-3.91\%$\\
+3072 &63.326&60.386&1.05$\times$&4.64\%&$+1.24\%$\\
+4096 &82.409&77.858&1.06$\times$&5.52\%&$-0.27\%$\\
 \bottomrule
 \end{tabularx}}
-\smallnote{Matched IREE comparisons; decimal GB/MB. $\Delta$DRAM is signed read+write change (positive: more traffic). Timing: three prompts; counters: prompt 0.}
-\begin{itemize}
-\item \textbf{Correctness:} 9 natural + 18 forced-winner cases pass per IREE B variant, with exact old-cache prefixes and unchanged inputs. Worst error: $5.05\!\times\!10^{-5}$; fixed reference tolerance: atol$=5\!\times\!10^{-4}$, rtol$=3\!\times\!10^{-3}$.
-\item \textbf{Accuracy control:} unmodified IREE passed 5/9 natural cases; trig repair enabled 9/9. Both timed variants receive that repair.
-\item \textbf{Mechanism:} writes fall but reads rise. At context 2048: 987$\to$1047 kernels/call; 188.790$\to$188.928\,MB logical memcpy/call. Full-model copy elimination is not demonstrated; memcpy payload is not DRAM.
-\end{itemize}
+\smallnote{This comparison isolates concat winner factoring within the repaired IREE pipeline. All natural and forced-winner cases pass, with exact cache prefixes and unchanged inputs. Worst absolute error: $5.05\!\times\!10^{-5}$ (atol$=5\!\times\!10^{-4}$, rtol$=3\!\times\!10^{-3}$). Ordinary decode has no matches. Writes fall but reads rise: full-model DRAM reduction is inconsistent. At context 2048, kernels increase 987$\to$1047/call and logical memcpy remains 188.8\,MB/call.}
 
-\section{Synthetic mechanism and controls}
+\section{Per-transformation operator results}
+\smallnote{Speedup $=$ baseline time / optimized time; below 1 means slower. CPU rows are separate synthetic studies, not full-model gains. Suite figures are geometric means. Earlier T4 projection timings include output downloads; final model timings leave outputs resident. Combined gains are not additive. Full per-case times, variant names and source paths: \code{report/study\_results/}.}
 {\small
-\begin{tabularx}{\linewidth}{@{}Y r r r P{35mm}@{}}
+\begin{tabularx}{\linewidth}{@{}P{40mm}P{29mm}Y@{}}
+\toprule
+\textbf{Transformation} & \textbf{Measured effect} & \textbf{Workload / attribution}\hfill\cite{project}\\
+\midrule
+Original GQA head reuse &1.86$\times$ CPU&Default lowering only; no extra gain established over both upstream flags plus fusion.\\
+Conditional read forwarding &2.04$\times$ CPU&Cache A1: 187.10$\to$91.74\,$\mu$s; same best-correct baseline.\\
+Masked gather forwarding &2.52$\times$ CPU&Same A1: 187.10$\to$74.36\,$\mu$s; alternative to conditional reads.\\
+Winner factoring alone &1.38$\times$ CPU&2607.34$\to$1885.37\,$\mu$s; with masked forwarding: 723.42\,$\mu$s, \textbf{3.60$\times$ combined}.\\
+Adjacent-update coalescing &0.94--0.96$\times$ alone&4--16-token CPU chains. \textbf{2.17--2.34$\times$ combined} with masked forwarding; merging enables a later match.\\
+Snapshot protection / COW &2.58$\times$ combined&109.01$\to$42.27\,$\mu$s CPU: protection \emph{plus} masked forwarding vs fastest correct baseline; not protection alone.\\
+Key/value projection placement &3.93$\times$ CPU; 1.20$\times$ T4&16 cases per platform vs strong unabsorbed contractions. One decode ablation: key-only 1.92$\times$, value-only 1.95$\times$.\\
+Partial RoPE + projection &11.40$\times$ CPU; 1.50$\times$ T4&Four cases per platform; combined pipeline, no isolated RoPE gain. MLA absorption is prior art.\\
+Correct contraction fallback &10.63$\times$ CPU&One wide-head case: 131.11$\to$12.33\,$\mu$s vs correct guarded fused lowering; not a gain from the guard itself.\\
+Gather normalization / native guard &Correctness enablers&No independent valid speedup established. Wrong stock outputs are excluded from performance baselines.\\
+Stable trig reduction &5/9$\to$9/9 cases pass&Earlier matched-valid-case latency overhead: +0.07\% (A), +0.25\% (B); not a speed optimization.\\
+Extra aggressive fusion flag &0.97$\times$ at 2048&Earlier repaired B run: 32.02$\to$33.16\,ms; does not consistently help.\\
+\bottomrule
+\end{tabularx}}
+
+\section{Forwarding on T4: mechanism and negative control}
+{\small
+\begin{tabularx}{\linewidth}{@{}Y r r r P{36mm}@{}}
 \toprule
 \textbf{Track B fixture} & \textbf{Base ms} & \textbf{Opt. ms} & \textbf{Speedup} & \textbf{DRAM MB: base $\to$ opt.}\\
 \midrule
@@ -152,32 +160,13 @@ Large sparse forks&1.777&1.230&1.44$\times$&178.897$\to$0.137 (99.92\% less)\\
 Dense no-rewrite control&0.545&1.268&\textbf{0.43$\times$}&0.285$\to$0.275 (small / variable)\\
 \bottomrule
 \end{tabularx}}
-\smallnote{Track A large fixture: 178.228$\to$0.132\,MB (99.93\% less), a second same-GPU-family session. Synthetic FP64 NumPy tolerance: atol$=5\!\times\!10^{-5}$, rtol$=2\!\times\!10^{-3}$.}
+\smallnote{Conditional forwarding, separate from the model factoring result. Track A large fixture: 1.14$\times$, 178.228$\to$0.132\,MB in a second T4 session. Synthetic checks use independent FP64 NumPy references (atol$=5\!\times\!10^{-5}$, rtol$=2\!\times\!10^{-3}$). The unexplained no-rewrite regression and uncontrolled clocks limit causal attribution.}
 
-\section{CPU extensions and limitations}
-{\small
-\begin{tabularx}{\linewidth}{@{}P{39mm}P{30mm}Y@{}}
-\toprule
-\textbf{Earlier CPU study} & \textbf{Recorded gain} & \textbf{Scope}\hfill\cite{project}\\
-\midrule
-Latent projection placement &3.93$\times$ geometric mean&16 synthetic decomposed cases; strong unabsorbed baseline, not optimized MLA serving.\\
-Cache/block and winner cases &2.39$\times$/7.90$\times$;3.60$\times$&Two synthetic blocks and one winner-attention case; separate operator study.\\
-Coalescing; snapshot reads &2.17--2.34$\times$;2.58$\times$&4--16-token chains; fastest correct snapshot baseline. Regressions retained.\\
-\bottomrule
-\end{tabularx}}
-\begin{itemize}
-\item \textbf{Evidence strength differs:} logical elimination (IR), allocation requests (runtime), DRAM bytes (Nsight) and latency (separate timing) are different claims.
-\item \textbf{Timing uncertainty:} the no-rewrite regression and changing GPU clocks limit causal attribution. No controlled cross-session confidence interval or exact kernel cause is established.
-\item \textbf{Coverage:} one FP32 small model, one GPU family, custom branching. No general serving-throughput, all-GQA, mixed-precision or global-novelty claim.
-\item \textbf{Negative cases:} stock lowering mutates inputs in a single-fork probe; it is excluded. Wide-Q/K numerical failures and irregular masked CUDA compile failures remain recorded.
-\end{itemize}
-\begin{resultbox}
-\textbf{Conclusion.} Selective functional-cache handling improves the measured IREE branching step. Sparse synthetic forwarding reduces DRAM traffic. Graph coverage and full-model traffic causality remain limited.
-\end{resultbox}
+\textbf{Limitations.} One FP32 small model and GPU family; custom one-step branching, not complete serving throughput. Logical tensor elimination, physical allocation, DRAM bytes and latency are distinct claims. Incorrect ownership/numerical cases and irregular masked CUDA compile failures remain recorded. No all-GQA, mixed-precision or global-novelty claim is made.
 
 \clearpage
 \renewcommand{\refname}{References and attribution}
-\smallnote{\textbf{Attribution rule.} GQA, MLA absorption and decoupled RoPE have identifiable originating papers below. Read-over-write has classical foundations. For selection factoring, adjacent-update merging and this exact compiler repair, no definitive first paper is established here. Cache-sharing papers are related systems precedents, not attribution for our precise MLIR patterns.}
+\smallnote{\textbf{Prior work.} GQA, MLA absorption and decoupled RoPE have identifiable originating papers below. Read-over-write has classical foundations. For selection factoring, adjacent-update merging and this exact compiler repair, no definitive first paper is established here. Cache-sharing papers are related systems precedents, not attribution for our precise MLIR patterns.}
 \vspace{3pt}
 \begingroup
 \small
@@ -211,7 +200,7 @@ Coalescing; snapshot reads &2.17--2.34$\times$;2.58$\times$&4--16-token chains; 
 \url{https://arxiv.org/abs/2002.11054}
 \bibitem{ireesource} IREE contributors. \emph{GeneralizeLinalgNamedOps; BubbleUpExpandShapes; compilation pipelines}. Source pinned to compiler commit \code{89ece87b89852100c0a4ac3d515e14842d090967}. Implementation evidence for existing transformations, not a GQA-specific paper.
 \href{https://github.com/iree-org/iree/tree/89ece87b89852100c0a4ac3d515e14842d090967/compiler/src/iree/compiler}{Pinned IREE compiler source}; paths \code{GlobalOptimization/} and \code{DispatchCreation/}.
-\bibitem{model} Hugging Face. \emph{SmolLM2-135M-Instruct model card and checkpoint}. Pinned revision in Sec.5.
+\bibitem{model} Hugging Face. \emph{SmolLM2-135M-Instruct model card and checkpoint}. Pinned revision in the evaluation protocol.
 \url{https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct}
 \bibitem{ncu} NVIDIA. \emph{Nsight Compute Profiling Guide}. Application-range replay, metric coverage and cache/clock controls.
 \url{https://docs.nvidia.com/nsight-compute/ProfilingGuide/}

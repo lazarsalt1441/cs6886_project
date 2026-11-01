@@ -67,8 +67,7 @@ setup, and matching completed captures can be re-exported without recapture.
 ## Displayed IREE comparisons
 
 Default plots and regenerated model summary tables show IREE variants only.
-Raw experiment records retain all originally collected backends and numerical
-references; the collection protocol below continues to describe those full runs.
+New plans collect IREE performance metrics only. PyTorch remains the numerical reference and streaming-control implementation. Raw historical records retain all originally collected backends; their original plan files identify that earlier protocol. Do not reuse a historical run ID for a new plan.
 
 | Test | Purpose | Comparators |
 |---|---|---|
@@ -82,7 +81,7 @@ references; the collection protocol below continues to describe those full runs.
 | Nsight Systems trace | Attribute CUDA copies and kernel launches within the window | Same isolated call window, if nsys is installed |
 
 Main model correctness and latency cover contexts **2048, 3072, 4096**, three
-prompts each. All Torch and IREE backends must pass natural and both forced
+prompts each. All measured IREE backends must pass natural and both forced
 winners in B. Full logits, exact old-cache prefixes and appended cache rows are
 checked before and after measurement; inputs must remain unchanged. Model
 tolerance stays atol=5e-4, rtol=3e-3. Synthetic reference is independent FP64 NumPy

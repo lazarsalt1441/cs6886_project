@@ -13,7 +13,7 @@ PRECISION = ['--iree-input-demote-f64-to-f32=false',
 CUDA_SAFE = ['--iree-dispatch-creation-enable-split-reduction',
              '--iree-dispatch-creation-split-argmax-threshold=1024',
              '--iree-dispatch-creation-split-argmax-tile-size=256']
-MODEL_BACKENDS = ['iree_stable', 'iree_commit', 'torch_compile']
+MODEL_BACKENDS = ['iree_stable', 'iree_commit']
 
 def write_json(path, data):
     path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
@@ -29,8 +29,8 @@ def verify_assets():
 
 def backends(case, extras=False):
     if case['kind']=='control': return ['torch_stream']
-    if case['kind']=='synthetic': return ['iree_stable', 'iree_forwarded', 'torch_compile']
-    values = ['iree_stable'] + (['iree_commit'] if case['set']=='B' else []) + ['torch_compile']
+    if case['kind']=='synthetic': return ['iree_stable', 'iree_forwarded']
+    values = ['iree_stable'] + (['iree_commit'] if case['set']=='B' else [])
     if extras: values += ['torch_eager', 'torch_sdpa']
     return values
 
@@ -72,7 +72,7 @@ def build_plan(track='B', plan='main'):
         if plan!='smoke' and case['id'] in ['cache_large',f'{track}_n2048_p0']:
             for backend in [b for b in backends(case) if b.startswith('iree_')]:
                 profiles.append(dict(case=case['id'],backend=backend,rep=0,cache='warm',calls=1,replay='application'))
-    return dict(version=1,track=track,plan=plan,cases=cases,profiles=profiles,
+    return dict(version=2,track=track,plan=plan,cases=cases,profiles=profiles,
                 note='Fixed immutable inputs; repeated one-step calls, not an autoregressive generation loop')
 
 def parse_number(value):

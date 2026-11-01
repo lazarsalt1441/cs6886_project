@@ -42,6 +42,6 @@ A1–A9 are the nine attention shapes in study_cache.py; B1/B2 are two synthetic
 
 Allocation bytes include workspace and outputs after inputs are uploaded. Scheduled copy lengths are not measured DRAM traffic. LLVM IR/disassembly and CUDA HAL schedules are retained separately. No GPU speedup or full pretrained-model throughput claim follows from these data. Raw incorrect gather code is excluded from all timing baselines.
 
-![CPU latency](results/figures/cache-latency.png)
+CPU latency: `results/figures/cache-latency.png` (restored by `scripts/unpack_artifacts.py` from the repository root).
 
-![Allocation](results/figures/cache-allocation.png)
+Allocation: `results/figures/cache-allocation.png` (restored by `scripts/unpack_artifacts.py` from the repository root).

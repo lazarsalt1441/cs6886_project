@@ -1,0 +1,32 @@
+{
+  "report_body_pages": 2,
+  "report_reference_pages": 1,
+  "unit_tests_passed": 25,
+  "cpu_numerical_checks_passed": 18,
+  "cpu_runner_checks_passed": 6,
+  "quarantined_single_fork_probe_changed_arguments": [
+    1,
+    2
+  ],
+  "cuda_compile_only_programs_passed": 9,
+  "gpu_executed_in_this_review": false,
+  "raw_profiles_reparsed": 112,
+  "per_study_iree_comparisons_recomputed": 182,
+  "new_metric_plan": "IREE only; streaming control uses Torch",
+  "compiled_pytorch_in_presentation_metrics": false,
+  "cpp_sources_modified": false,
+  "fresh_cpp_sdk_build_repeated": false,
+  "cpp_rebuild_limitation": "SDK endpoint unreachable from review environment; original build records preserved.",
+  "rubric": {
+    "code_and_reproduction": "README.md",
+    "report": "report/CS6886_Report_Concise.pdf",
+    "editable_report": "report/CS6886_Report_Concise.tex",
+    "evaluation": "report/study_results/per_study_results.md"
+  },
+  "clean_staged_checkout": {
+    "source_and_asset_integrity": "pass",
+    "archive_unpack": "pass",
+    "112_profile_reanalysis": "pass",
+    "182_comparison_tables_byte_identical": "pass"
+  }
+}

@@ -8,7 +8,7 @@ The model is SmolLM2-135M-Instruct (revision12fd25f77366fa6b3b4b768ec3050bf62938
 
 ## Two workloads
 
-**A: ordinary decode.** Feed one next token and the existing cache to the model, return next-token logits and its updated cache. The compiler's before/after IR is identical: zero matches. We benchmark natural Torch eager, Torch SDPA, optional Torch compile and strong IREE. There is no meaningful optimized-IREE ablation for an identical program.
+**A: ordinary decode.** Feed one next token and the existing cache to the model, return next-token logits and its updated cache. The compiler's before/after IR is identical: zero matches. The presented performance baseline is strong IREE. Auxiliary historical backend records remain in the raw results. There is no meaningful optimized-IREE ablation for an identical program.
 
 **B: two-candidate lookahead.** Take the prefix's two most likely next tokens. Evaluate each using the same pretrained model/history. Score each path using its first-token log probability plus its best next-token log probability; commit only the better candidate's cache. This custom one-step lookahead is a valid inference driver, but is neither standard HF beam search nor a speculative acceptance algorithm.
 
@@ -50,6 +50,7 @@ Logical commit selection is factored in60 actual full-model graph locations. CPU
 
 Physical allocation elimination is not established. Candidate attention users remain. Actual DRAM reduction is not established: codegen can already fuse/CSE portions of the original graph. Offline PTX has33 distinct kernels for baseline B and34 for optimized B; these are compiled kernel definitions, not dynamic launch counts or memory-traffic measurements. An extra kernel can offset a smaller commit operation.
 
-Runtime improvement on a GPU remains an experiment. The notebook keeps KV resident, separates compilation from execution, randomizes backend order, logs numerical errors and tests an eager, SDPA and compiled Torch comparison where available. It can honestly return a regression or no improvement. Different accounts must not be compared as a baseline/optimized ablation.
+The later final GPU experiment is documented in the root report and `results/dram`. It keeps KV resident, separates compilation from execution, randomizes backend order and logs numerical errors. Comparisons use matched repaired IREE variants within a session; measurements from different accounts are not a baseline/optimized ablation.
 
-Next evidence needed: both result archives; within-run baseline/optimized repeated medians; correctness and token agreement; profile cache-commit dispatches and measured GPU traffic where profiling is permitted; then test a representative real branching decoder and more architectures/dtypes. Ordinary decoding has zero current matches, so success in the lookahead driver would not establish a general greedy-decoding speedup.
+
+The evaluated custom lookahead step does not establish a general greedy-decoding or serving-throughput improvement.

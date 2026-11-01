@@ -2,11 +2,13 @@
 
 This CS6886 project investigates attention and KV-cache optimization using C++ MLIR passes and IREE. The repository contains PyTorch exports, compiler implementations, correctness tests, CPU and Tesla T4 evaluations, an upstream optimization audit, and hardware DRAM measurements.
 
-**Expanded report:** [PDF](report/CS6886_Report.pdf) · [Editable LaTeX](report/CS6886_Report.tex). Five pages including references, with before/after examples for each transformation. The [concise submission report](report/CS6886_Report_Concise.pdf) retains the original two-page main body plus references.
+**Course submission report:** [PDF](report/CS6886_Report_Concise.pdf) · [Editable LaTeX](report/CS6886_Report_Concise.tex). **Two main pages, plus references**, covering the problem, prior work, implementation and comparison with IREE.
+
+The [expanded report](report/CS6886_Report.pdf) ([LaTeX](report/CS6886_Report.tex)) provides five pages of transformation examples and results. [Per-study results](report/study_results/per_study_results.md) ([CSV](report/study_results/per_study_results.csv)) map each measured effect to its pass, workload and raw source; combined effects are labelled.
 
 ## What the results support
 
-The original repeated-K/V-head rewrite improves the tested default CPU lowering, but existing IREE matmul generalization **together with** aggressive reshape movement eliminates the tested expansion. O3 alone is not the explanation. This is an investigation result, not a claim of a universally new GQA optimization. The extra-scalar-observation graph was an artificial IR counterexample, not a natural-model result. See [the recovered flag study](audit/sources/previous-GQA-flag-ablation.md) after unpacking artifacts, and [the independent audit](audit/TECHNICAL_REPORT.md).
+The original repeated-K/V-head rewrite improves the tested default CPU lowering, but existing IREE matmul generalization **together with** aggressive reshape movement eliminates the tested expansion. O3 alone is not the explanation. This is an investigation result, not a claim of a universally new GQA optimization. The extra-scalar-observation graph was an artificial IR counterexample, not a natural-model result. See [the independent audit](audit/TECHNICAL_REPORT.md). The original flag-ablation record is restored at `audit/sources/previous-GQA-flag-ablation.md` by the artifact unpacker.
 
 The most useful later transformations concern functional cache versions:
 
@@ -39,15 +41,16 @@ cd cs6886_project
 python3 scripts/unpack_artifacts.py
 python3 scripts/check_submission.py
 python3 scripts/reproduce_results.py
+python3 report/summarize_studies.py
 ```
 
-The last command needs no GPU or model download. It independently parses **112 valid final GPU profile CSVs**, verifies their saved byte totals, and regenerates aggregate CSV/JSON files under `reproduced/`. It also regenerates the per-track DRAM summaries. It does not run inference or create new performance measurements. The archive is split into modest Git blobs; the unpacker verifies every part and restores before/after IR, assembly/PTX, raw historical measurements and logs to their original paths.
+The result-analysis commands need no GPU or model download. `scripts/reproduce_results.py` independently parses **112 valid final GPU profile CSVs**, verifies their saved byte totals, and regenerates aggregate CSV/JSON files under `reproduced/`. It also regenerates the per-track DRAM summaries. It does not run inference or create new performance measurements. The archive is split into modest Git blobs; the unpacker verifies every part and restores before/after IR, assembly/PTX, raw historical measurements and logs to their original paths.
 
 `results/archive_provenance.json` records original archive SHA256s and campaign names. Track A's original archive happened to contain `B` in its filename; the internal plan identifies it as **A**. The second uploaded B zip was byte-identical to the B tar contents and is not counted as an independent run. Profiler report binaries, weights, SDKs and executable modules are excluded; exported counter CSVs and raw timing samples are included.
 
 ## CPU validation and offline GPU compilation
 
-Tested reproduction platform: Python 3.12, x86-64 Linux. SDK bootstrap requires Ubuntu 24.04-compatible glibc and development tools. The old IITM glibc 2.17 host cannot run these modern wheels directly; use a suitable container/compute environment or Colab. Do not run benchmarks on a cluster login node.
+Tested reproduction platform: Python 3.12, x86-64 Linux. SDK bootstrap requires Ubuntu 24.04-compatible glibc, `curl`, `dpkg-deb`, a C/C++ compiler and development headers (for example `build-essential`, `zlib1g-dev`, `libzstd-dev`, `libxml2-dev`). The old IITM glibc 2.17 host cannot run these modern wheels directly; use a suitable container/compute environment or Colab. Do not run benchmarks on a cluster login node.
 
 ```bash
 python3.12 -m venv .venv
@@ -58,7 +61,7 @@ python dram/tests/cpu_integration.py --cache local_validation --compiler .venv/b
 python dram/tests/compile_gpu.py --cache local_validation --arch sm_75 --compiler .venv/bin/iree-compile
 ```
 
-The unit suite has 24 tests. CPU integration executes saved C++-generated baseline/optimized synthetic IR against independent FP64 NumPy references, verifies caller inputs, and retains the quarantined single-fork ownership probe. CUDA compilation is **not GPU execution**. These commands do not require Torch or pretrained weights; Turbine/Transformers are required only for model regeneration/execution.
+The unit suite has 25 tests. CPU integration executes saved C++-generated baseline/optimized synthetic IR against independent FP64 NumPy references, verifies caller inputs, and retains the quarantined single-fork ownership probe. CUDA compilation is **not GPU execution**. These commands do not require Torch or pretrained weights; Turbine/Transformers are required only for model regeneration/execution.
 
 ## Build and exercise the actual C++ passes
 
@@ -76,7 +79,7 @@ python real_model/experiments/stable_trig/test_trig.py
 
 The build downloads hash-pinned LLVM/MLIR19.1.1 Debian packages without root. Set `MLIR_DIR` to an existing compatible SDK to avoid download. Full legacy test suites also expect `FileCheck` under their `toolchain/` paths. Unsupported types, shapes, conditions, encoding/lowering configurations and unsafe uses are rejected by the individual passes. Negative/idempotence and numerical tests are included. SDK and build directories are ignored.
 
-For the original Torch export, install `torch==2.11.0` from the appropriate CPU/CUDA index separately, then use `compiler/scripts/export_gqa.py` and `compiler/README.md`. The stale unavailable 2.14.1 setup pin has been replaced; historical recorded environment files remain unchanged.
+For the original Torch export, install `torch==2.11.0` from the appropriate CPU/CUDA index separately, then use `compiler/scripts/export_gqa.py` and `compiler/README.md`. Historical recorded environment files remain unchanged.
 
 ## Run the final GPU experiments in Colab
 
@@ -101,9 +104,11 @@ DRAM_KIT_ROOT = '/content/cs6886_project/dram'
 exec(Path(DRAM_KIT_ROOT, 'COLAB_RUN.py').read_text())
 ```
 
+New runs collect IREE latency and traffic only; PyTorch supplies numerical references and the streaming counter control. Original datasets retain the extra backends collected by the earlier protocol.
+
 The runner installs/checks pinned IREE/Transformers packages, retains CUDA Torch, downloads and SHA256-verifies the pinned checkpoint, generates parameters, builds executables on the GPU runtime, validates before timing, then profiles separate inference ranges. It rejects a mismatched Torch version rather than silently changing the baseline. Match Torch 2.11 deliberately if Colab's default changes. No venv creation is needed in these cells.
 
-It backs up partial/final archives to `MyDrive/Attention_DRAM_Results` and attempts a browser download. Drive authorization is interactive. Browser downloads and Colab session duration are not guaranteed; keep the session connected and laptop awake until a backup appears. Main can take tens of minutes or longer; extended can take hours. Compilation is not included in step latency. Do not run both tracks simultaneously on one GPU. Return the entire `attention_dram_*.tar.gz`, including failures.
+It backs up partial/final archives to `MyDrive/Attention_DRAM_Results` and attempts a browser download. Drive authorization is interactive. Browser downloads and Colab session duration are not guaranteed; keep the session connected and laptop awake until a backup appears. Main can take tens of minutes or longer; extended can take hours. Compilation is not included in step latency. Do not run both tracks simultaneously on one GPU. Keep the entire `attention_dram_*.tar.gz`, including failures.
 
 Both variants use O3, matmul generalization, aggressive reshape movement, the same split-argmax workarounds, and the same f64-preservation flags. Timing uses resident outputs, explicit device-context synchronization and randomized backend ordering. Nsight ranges use `app-range` replay; kernel-level diagnostics are kept separate. Logical memcpy payload is not added to DRAM counter totals. Full protocol: [dram/README.md](dram/README.md).
 

@@ -66,7 +66,7 @@ Repeat the optional profiles above using that interpreter/compiler, then the pai
   -o attention_early_decomposed.vmfb
 ```
 
-This was validated on CPU. CUDA validation is pending; do not assume it fixes the T4 schedule without execution.
+This was validated on CPU. This CPU result does not establish correctness of the T4 schedule.
 
 ## Complete GPU verification
 

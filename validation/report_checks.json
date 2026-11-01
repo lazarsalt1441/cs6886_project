@@ -23,5 +23,6 @@
     5,
     3
   ],
-  "scope": "Expanded explanations with recorded IREE performance results, new CPU Flow flag checks and illustrative NumPy laws; no new GPU timing."
+  "scope": "Both reports map measured effects to transformations, including combined-pass ablations, CPU and T4 projection suites, regressions and correctness-only repairs. The submission PDF has two body pages plus references. No new GPU timing.",
+  "per_study_iree_comparisons": 182
 }

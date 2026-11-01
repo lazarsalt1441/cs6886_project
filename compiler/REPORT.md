@@ -1,4 +1,4 @@
-> Research continuation correction: stronger existing IREE flags eliminate the original broadcast example. Its default-baseline speedup below does not establish novelty. The current study, independent backend counterexample, correct baselines and limitations are in [research/README.md](research/README.md) and [the manuscript](research/paper/manuscript.pdf).
+> Research continuation correction: stronger existing IREE flags eliminate the original broadcast example. Its default-baseline speedup below does not establish novelty. The current study, independent backend counterexample, correct baselines and limitations are in [research/README.md](research/README.md) and the manuscript: `research/paper/manuscript.pdf` (restored by the artifact unpacker).
 
 > Experiment-stage record. See the repository root README for the final GPU evaluation and current reproduction entry point.
 
@@ -134,9 +134,9 @@ are recorded separately from measured runtime buffers.
 | B2 H12/4 M7 N65 D40 | 99.79 | 158.08 | 119.13 | 1.327x | 569792 -> 114304 |
 | B1 H8/2 M64 N256 D64 | 630.52 | 606.21 | 584.56 | 1.037x | 1703936 -> 1179648 |
 
-![Pinned latency and speedup](results/performance.png)
+Pinned latency and speedup: `results/performance.png` (restored by `scripts/unpack_artifacts.py` from the repository root).
 
-![Measured runtime buffer peaks](results/memory.png)
+Measured runtime buffer peaks: `results/memory.png` (restored by `scripts/unpack_artifacts.py` from the repository root).
 
 The ratio-one control's 1.046x difference is measurement noise: its
 contractions are unchanged. The small irregular B1 H6/2 M3 N37 D24 case regresses

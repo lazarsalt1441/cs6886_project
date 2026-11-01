@@ -77,7 +77,12 @@ class GatesAndPlanning(unittest.TestCase):
         self.assertEqual(len([x for x in p['cases'] if x['kind']=='model']),9)
         self.assertTrue(all(c[x['case']]['prompt']==0 for x in p['profiles'] if c[x['case']]['kind']=='model'))
     def test_decode_no_fake_commit(self):
-        self.assertEqual(backends(dict(kind='model',set='A')),['iree_stable','torch_compile'])
+        self.assertEqual(backends(dict(kind='model',set='A')),['iree_stable'])
+    def test_profile_plan_has_no_compiled_torch_metric(self):
+        for track in ['A','B']:
+            plan=build_plan(track,'main')
+            self.assertTrue(all(p['backend'].startswith('iree_') or
+                                p['backend']=='torch_stream' for p in plan['profiles']))
     def test_extended_has_conditioning_and_three_prompts(self):
         p=build_plan('B','extended');self.assertTrue(any(x['cache']=='evicted' for x in p['profiles']))
         self.assertTrue(any('_p2' in x['case'] for x in p['profiles']))

@@ -16,17 +16,17 @@ Set B is a custom two-candidate, one-step lookahead driver using the pretrained 
 3. Choose **Runtime → Change runtime type → T4 GPU**. Prefer the same GPU type on both accounts; within-account comparisons remain primary.
 4. Run notebook cells in order. The first code cell clones the repository and restores prepared IR. The environment cell retains Colab's CUDA-enabled Torch and installs pinned IREE/Turbine/Transformers versions in a virtualenv. It avoids the previous `ensurepip` failure.
 5. Mount Google Drive when prompted, then run the last main cell.
-6. Leave `QUICK=False` for the full study. For an initial pipeline check, use `QUICK=True`; rerun with False for final measurements. Keep `SKIP_TORCH_COMPILE=False` for the stronger baseline, unless investigating a compiler failure.
+6. Leave `QUICK=False` for the full study. For an initial pipeline check, use `QUICK=True`; rerun with False for final measurements. Keep `SKIP_TORCH_COMPILE=True`; project performance tables compare IREE variants.
 7. Retain the complete `real_llm_set_*.tar.gz` archives. Setup failures are recorded in `setup.log`.
 
-The full run uses contexts128/512/2048, two prompt templates, 31 trials × 3 repetitions, five warmups, and16-token continuations. Prompt templates are repeated/truncated to control context length, not sampled from a representative corpus. Torch first compilation can take several minutes per shape; total duration depends heavily on Colab and Torch Inductor. Allow roughly30–90minutes per account as a planning estimate, not a measured GPU runtime. Independent runs may use separate GPUs; within-run comparisons remain primary.
+The full run uses contexts128/512/2048, two prompt templates, 31 trials × 3 repetitions, five warmups, and16-token continuations. Prompt templates are repeated/truncated to control context length, not sampled from a representative corpus. Total duration depends on Colab, context lengths and compilation; it is separate from measured step latency. Independent runs may use separate GPUs; within-run comparisons remain primary.
 
 A heartbeat prints every minute. Partial archives are saved to Drive every five minutes; a final archive is saved and a browser download attempted even after an ordinary error or interruption. Browser permissions or abrupt runtime termination can prevent the download/final callback. Drive contains the latest completed backup. This does not keep Colab alive after a disconnect.
 
 ## What is measured
 
 - Whole-model one-token decode/selection latency, with real prompt-derived KV caches resident on device. No random KV tensors are used for measurements.
-- Torch eager attention, natural Torch SDPA, optional `torch.compile(fullgraph=True)` of the eager-attention wrapper, strong IREE baseline, and optimized IREE where the pass actually matches. Torch SDPA chooses its own backend; we do not claim a particular FlashAttention kernel without profiling.
+- Strong IREE baseline and optimized IREE where the pass actually matches. Torch is the correctness reference; historical raw records retain auxiliary backend measurements. The default summary tables contain IREE only.
 - Randomized backend order for every trial, repeated measurements, raw samples and per-repetition medians. Inputs are uploaded before timing and verified unchanged afterward. Every returned cache/logit/winner is checked before and after timing.
 - `resident_outputs` measures synchronous invocation with outputs left on device. IREE's synchronous main ABI has an explicit fence await; Torch CUDA is synchronized. `logits_to_host` additionally downloads logits and the winner scalar. No full KV download is timed.
 - Prefill, checkpoint download, parameter creation and compilation are excluded from step latency. Their costs are not hidden inside execution measurements; IREE compilation and Torch first-call costs are recorded separately.
@@ -85,9 +85,9 @@ The SDK fetch verifies pinned MLIR/LLVM19.1.1 Debian package hashes and does not
 For manual GPU execution:
 
 ```
-python scripts/run_colab_set.py --set A
+python scripts/run_colab_set.py --set A --skip-torch-compile
 # In a separate GPU session:
-python scripts/run_colab_set.py --set B
+python scripts/run_colab_set.py --set B --skip-torch-compile
 ```
 
 ## Recorded outputs

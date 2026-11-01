@@ -35,6 +35,12 @@ real_model/model/
 /real_model/logs/
 /real_model/experiments/stable_trig/prepared/
 /real_model/experiments/stable_trig/evidence/
+/real_model/experiments/stable_trig/trig_test/
+/report/*.aux
+/report/*.log
+/report/*.out
+/report/*.toc
+/report/*.synctex.gz
 /audit/results/
 /audit/sources/
 /results/**/*.mlir

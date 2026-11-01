@@ -10,3 +10,5 @@
 The expanded report in `report/` explains each transformation and the two upstream GQA flags in five pages including references. The earlier concise PDF/LaTeX version retains two main pages plus one reference page. Four fresh flag combinations reproduce the 2/2/2/0 broadcast-dispatch result; 14 runnable NumPy examples check the explanatory array laws separately from compiler testing.
 
 Limitations: one FP32 small model and GPU family; custom branching step, not complete serving/generation; no new research novelty proved; no-match timing regressions and clock changes require independent confirmation. Snapshot/input-ownership failures remain quarantined. Kernel/replay timing cannot replace unprofiled latency. Published historical documents may reflect an earlier checkpoint; final claims are in root README and results/dram.
+
+Submission review: the main course report has two body pages plus references. Both report versions include per-transformation attribution; 182 recorded IREE comparisons can be recalculated using `report/summarize_studies.py`. Current DRAM plans and presentation tables use IREE metrics only. Raw historical records remain intact.

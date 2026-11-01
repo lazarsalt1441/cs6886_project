@@ -14,6 +14,7 @@ From a fresh checkout:
 python3 scripts/unpack_artifacts.py
 python3 scripts/check_submission.py
 python3 scripts/reproduce_results.py
+python3 report/summarize_studies.py
 ```
 
 The root README contains dependency installation, C++ build, numerical tests
@@ -30,3 +31,5 @@ Environment compatibility: modern wheels need a newer glibc than 2.17. GPU
 benchmarks require a CUDA compute node or Colab GPU, with profiler counter
 permission for DRAM collection. Nsight raw CSV export uses `--print-units base`
 and omits the details-only `--print-metric-name` option.
+
+Course submission report: `report/CS6886_Report_Concise.pdf` (two body pages plus references); editable source alongside it. `report/CS6886_Report.pdf` is supplementary. Current DRAM plans use IREE metrics only; historical plan files retain the original extra backends.
